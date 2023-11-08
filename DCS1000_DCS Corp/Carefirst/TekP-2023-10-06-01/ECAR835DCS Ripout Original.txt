@@ -1,0 +1,2822 @@
+/**********************************************************************************
+
+ECAR835DCS: Carefirst 835
+
+FormatCode:     ECAR835DCS
+Project:        Carefirst 835
+Client ID:      DCS1000
+Date/time:      2023-11-07 09:10:09.347
+Ripout version: 7.4
+Export Type:    Web
+Status:         Production
+Environment:    EWP
+Server:         EW3WUP3DB01
+Database:       ULTIPRO_WPDCSC
+Web Filename:   DCS1000_A6BD0_EEHISTORY_ECAR835DCS_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_SavePath') IS NOT NULL DROP TABLE dbo.U_ECAR835DCS_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ECAR835DCS'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'ECAR835DCS'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'ECAR835DCS'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ECAR835DCS')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ECAR835DCS'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ECAR835DCS'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ECAR835DCS'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ECAR835DCS'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ECAR835DCS'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ECAR835DCS'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ECAR835DCS'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ECAR835DCS'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ECAR835DCS'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_vwECAR835DCS_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECAR835DCS_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ECAR835DCS') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECAR835DCS];
+GO
+IF OBJECT_ID('U_ECAR835DCS_transsetwork') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_transsetwork];
+GO
+IF OBJECT_ID('U_ECAR835DCS_ST') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_ST];
+GO
+IF OBJECT_ID('U_ECAR835DCS_SE') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_SE];
+GO
+IF OBJECT_ID('U_ECAR835DCS_REF') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_REF];
+GO
+IF OBJECT_ID('U_ECAR835DCS_N1') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_N1];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2750_REF') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2750_REF];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2750_N1') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2750_N1];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2750_DTP') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2750_DTP];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2700_LS') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2700_LS];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2700_LE') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2700_LE];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2310_NM1') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2310_NM1];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_REF') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2300_REF];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_HD') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2300_HD];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_DTP') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2300_DTP];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_AMT') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2300_AMT];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2100A_AMT') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2100A_AMT];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2000_REF') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2000_REF];
+GO
+IF OBJECT_ID('U_ECAR835DCS_Loop2000_DTP') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_Loop2000_DTP];
+GO
+IF OBJECT_ID('U_ECAR835DCS_ISA') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_ISA];
+GO
+IF OBJECT_ID('U_ECAR835DCS_GS') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_GS];
+GO
+IF OBJECT_ID('U_ECAR835DCS_File') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_File];
+GO
+IF OBJECT_ID('U_ECAR835DCS_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_EEList];
+GO
+IF OBJECT_ID('U_ECAR835DCS_DTP') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_DTP];
+GO
+IF OBJECT_ID('U_ECAR835DCS_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_drvTbl];
+GO
+IF OBJECT_ID('U_ECAR835DCS_DepList') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_DepList];
+GO
+IF OBJECT_ID('U_ECAR835DCS_BGN') IS NOT NULL DROP TABLE [dbo].[U_ECAR835DCS_BGN];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECAR835DCS','Carefirst 835','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','ECAR835DCSZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','H','01','1','','ISA  Segment ID','','','"ISA"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','2','H','01','2','','Authorization Info Qualifer','','','"drvISA01_authinfoqual"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','10','H','01','3','','Authorization Info','','','"drvISA02_authinfo"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','2','H','01','4','','Security Info Qualifier','','','"drvISA03_secinfoqual"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','10','H','01','5','','Security Info','','','"drvISA04_secinfo"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','2','H','01','6','','Sender ID Qualifier','','','"drvISA05_senderidqual"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','15','H','01','7','','Sender ID','','','"drvISA06_senderid"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECAR835DCSZ0','2','H','01','8','','Receiver ID Qualifier','','','"drvISA07_recvidqual"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECAR835DCSZ0','15','H','01','9','','Receiver ID','','','"drvISA08_recvid"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECAR835DCSZ0','6','H','01','10','','Interchange Date','','','"drvISA09_intchgdate"','(''UD012''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECAR835DCSZ0','4','H','01','11','','InterChange Time','','','"drvISA10_intchgdate"','(''UDHMS''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECAR835DCSZ0','1','H','01','12','','InterChange Control ID','','','"drvISA11_intchgcontrolid"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECAR835DCSZ0','5','H','01','13','','Interchange Control Version','','','"drvISA12_intchgcontrolver"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECAR835DCSZ0','9','H','01','14','','Interchange Control Number','','','"drvISA13_intchgcontrolnum"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECAR835DCSZ0','1','H','01','15','','Acknowledgement Requested','','','"drvISA14_acknowreq"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECAR835DCSZ0','1','H','01','16','','Usage Indicator','','','"drvISA15_usageind"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECAR835DCSZ0','1','H','01','17','','Component Element Separator','','','"drvISA16_compelementsep"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','H','02','1','','GS  Segment ID','','','"GS"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','2','H','02','2','','Functional ID Code','','','"drvGS01_functidcode"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','15','H','02','3','','Sender ID','','','"drvGS02_senderid"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','15','H','02','4','','Receiver ID','','','"drvGS03_receiverid"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','8','H','02','5','','Date','','','"drvGS04_date"','(''UD112''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','4','H','02','6','','Time','','','"drvGS04_date"','(''UDHMS''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','9','H','02','7','','Group Control Number','','','"drvGS06_grpcontrolnum"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECAR835DCSZ0','2','H','02','8','','Responsible Agency Code','','','"drvGS07_respagencycode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECAR835DCSZ0','12','H','02','9','','Version  Release Indust','','','"drvGS08_verrelease"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','03','1','','ST  Segment ID (Transaction Se','','','"ST"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','03','2','','Transaction Set ID Code','','','"drvST01_transsetid"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','9','D','03','3','','Transaction Set Control Number','','','"drvST02_transsetctrlnum"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','35','D','03','4','','','','','"drvST03_implconvref"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','04','1','','BGN Segment ID (Beginning Segm','','','"BGN"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','2','D','04','2','','Transaction Set Purpose','','','"drvBGN01_transsetpurpose"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','30','D','04','3','','Reference Identification Sende','','','"drvBGN02_referenceidsender"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','8','D','04','4','','Date','','','"drvBGN03_date"','(''UD112''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','4','D','04','5','','Time','','','"drvBGN04_date"','(''UDHMS''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','2','D','04','6','','Time Zone','','','"drvBGN_05_timezone"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','30','D','04','7','','Reference Identification','','','"drvBGN06_referenceid"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECAR835DCSZ0','2','D','04','8','','Transaction Type Code','','','"drvBGN07_transtypecode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECAR835DCSZ0','2','D','04','9','','Action Code','','','"drvBGN08_actioncode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','05','1','','REF  Segment ID (Transaction S','','','"REF"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','05','2','','Reference ID Qualifier','','','"drvREF01_referenceidqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','30','D','05','3','','Reference Identification','','','"drvREF02_referenceid"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','06','1','','DTP Segment ID (File Effective','','','"DTP"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','06','2','','DateTime Qualifier','','','"drvDTP01_dttmqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','3','D','06','3','','DateTime Period Format','','','"drvDTP02_dttmformat"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','35','D','06','4','','DateTime Period','','','"drvDTP03_dttmperiod"','(''UD112''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','07','1','','N1  Segment ID  (Loop 1000)','','','"N1"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','07','2','','Entity Identifier Code','','','"drvN101_entityidcode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','60','D','07','3','','Name','','','"drvN102_name"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','2','D','07','4','','Identification Code Qualifier','','','"drvN103_idcodequal"','(''UA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','80','D','07','5','','Identification Code','','','"drvN104_idcode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','10','1','','INS  Segment ID (Loop 2000)','','','"INS"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','1','D','10','2','','YesNo Condition','','','"drvINS01_yesno"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','2','D','10','3','','Individual Relationship Code','','','"drvINS02_relationship"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','3','D','10','4','','Maintenance Type Code','','','"drvINS03_mainttype"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','2','D','10','5','','Maintenance Reason Code','','','"drvINS04_maintreason"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','1','D','10','6','','Benefit Status Code','','','"drvINS05_benstatus"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','1','D','10','7','','Medicare Plan Code','','','"drvINS06_medicareplan"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECAR835DCSZ0','2','D','10','8','','COBRA Qualifying Event','','','"drvINS07_cobraqualevent"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECAR835DCSZ0','2','D','10','9','','Employment Status Code','','','"drvINS08_emplstatuscode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECAR835DCSZ0','1','D','10','10','','Student Status','','','"drvINS09_studentstatus"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECAR835DCSZ0','1','D','10','11','','Handicap Indicator','','','"drvINS10_handicapind"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECAR835DCSZ0','2','D','10','12','','Date Format','','','"drvINS11_dateformat"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECAR835DCSZ0','35','D','10','13','','Death Date','','','"drvINS12_deathdate"','(''UD112''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECAR835DCSZ0','1','D','10','14','','Not Used','','','"spaces"','(''SS''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECAR835DCSZ0','30','D','10','15','','Not Used','','','"spaces"','(''SS''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECAR835DCSZ0','2','D','10','16','','Not Used','','','"spaces"','(''SS''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECAR835DCSZ0','3','D','10','17','','Not Used','','','"spaces"','(''SS''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECAR835DCSZ0','9','D','10','18','','Birth Sequence Number','','','"drvINS17_birthseqnumber"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','11','1','','REF  Segment ID (Loop 2000)','','','"REF"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','11','2','','Reference Number Qualifier','','','"drvREF01_refnumqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','30','D','11','3','','Reference Number','','','"drvREF02_refnum"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','12','1','','DTP  Segment ID (Loop 2000)','','','"DTP"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','12','2','','DateTime Qual','','','"drvDTP01_dttmqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','2','D','12','3','','DateTime Format','','','"drvDTP02_dttmformat"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','35','D','12','4','','DateTime Period','','','"drvDTP03_dttmperiod"','(''UD112''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','13','1','','NM1  Segment ID (Loop 2100A)','','','"NM1"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','13','2','','Entity Identifier Code','','','"drvNM101_entityidcode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','1','D','13','3','','Entity Type Qual','','','"drvNM102_entitytypequal"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','35','D','13','4','','Name Last','','','"drvNM103_namelast"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','25','D','13','5','','Name First','','','"drvNM104_namefirst"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','25','D','13','6','','Name Middle','','','"drvNM105_namemiddle"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','10','D','13','7','','Name Prefix','','','"drvNM106_nameprefix"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECAR835DCSZ0','10','D','13','8','','Name Suffix','','','"drvNM107_namesuffix"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECAR835DCSZ0','2','D','13','9','','Identification Code Qualifier','','','"drvNM108_identcodequal"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECAR835DCSZ0','80','D','13','10','','Identification Code','','','"drvNM109identcode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','14','1','','PER Segment ID (Loop 2100A)','','','"PER"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','2','D','14','2','','Contact Function Code','','','"drvPER01_contfunccode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','1','D','14','3','','Not Used','','','"spaces"','(''SS''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','2','D','14','4','','Communication Number1 Qual','','','"drvPER03_commnum1qual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','10','D','14','5','','Communication Number1','','','"drvPER04_commnum1"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','2','D','14','6','','Communication Number2 Qualifie','','','"drvPER05_commnum2qual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','100','D','14','7','','Communication Number2','','','"drvPER06_commnum2"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECAR835DCSZ0','2','D','14','8','','Communication Number3 Qual','','','"drvPER07_commnum3qual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECAR835DCSZ0','30','D','14','9','','Communication Number3','','','"drvPER08_commnum3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','15','1','','N3  Segment ID (Loop 2100A)','','','"N3"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','55','D','15','2','','AddressLine1','','','"drvN301_address1"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','55','D','15','3','','AddressLine2','','','"drvN302_address2"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','16','1','','N4  Segment ID (Loop 2100A)','','','"N4"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','30','D','16','2','','City','','','"drvN401_city"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','2','D','16','3','','State or Province','','','"drvN402_state"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','15','D','16','4','','Postal Code','','','"drvN403_zipcode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','3','D','16','5','','Country Code','','','"drvN404_country"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','2','D','16','6','','Location Qualifier','','','"drvN405_locationqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','30','D','16','7','','Location Identifier','','','"drvN406_location"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','17','1','','DMG  Segment ID (Loop 2100A)','','','"DMG"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','17','2','','DateTime Format Qual','','','"drvDMG01_dttmqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','35','D','17','3','','DateTime Period','','','"drvDMG02_dttmperiod"','(''UD112''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','1','D','17','4','','Gender Code','','','"drvDMG03_gender"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','1','D','17','5','','Marital Status','','','"drvDMG04_maritalstatus"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','1','D','17','6','','Ethnic Code','','','"drvDMG05_ethnic"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','2','D','17','7','','Citizenship Status','','','"drvDMG06_citizenship"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','18','1','','ICM Segment ID (Loop 2100A)','','','"ICM"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','1','D','18','2','','Frequency Code','','','"drvICM01_frequency"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','18','D','18','3','','Monetary Amount','','','"drvICM02_amount"','(''UNT2''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','15','D','18','4','','Quantity','','','"drvICM03_hours"','(''UNT0''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','30','D','18','5','','Location Identifier','','','"drvICM04_location"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','5','D','18','6','','Salary Grade','','','"drvICM05_salgrade"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','19','1','','AMT Segment ID (Loop 2100A)','','','"AMT"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','19','2','','Amount Qualifier Code','','','"drvAMT01_amtqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','18','D','19','3','','Monetary Amount','','','"drvAMT02_amount"','(''UNT2''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','45','1','','HD  Segment ID (Loop 2300)','','','"HD"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','45','2','','Maintenance Type Code','','','"drvHD01_mainttype"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','3','D','45','3','','Maintenance Reason Code','','','"drvHD02_maintreason"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','3','D','45','4','','Insurance Line Code','','','"drvHD03_inslinecode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','50','D','45','5','','Plan Coverage Description','','','"drvHD04_plancovdesc"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','3','D','45','6','','Coverage Level Code','','','"drvHD05_covlvl"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','46','1','','DTP  Segment ID','','','"DTP"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','46','2','','DateTime Qual','','','"drvDTP01_dttmqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','2','D','46','3','','DateTime Format Qual','','','"drvDTP02_dttmformat"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','35','D','46','4','','DateTime Period','','','"drvDTP03_dttmperiod"','(''UD112''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','47','1','','AMT Segment ID (Loop 2300)','','','"AMT"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','47','2','','Amount Qualifier Code','','','"drvAMT01_amtqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','18','D','47','3','','Monetary Amount','','','"drvAMT02_amount"','(''UNT2''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','48','1','','REF  Segment ID (Loop 2300)','','','"REF"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','2','D','48','2','','Reference Identification Quali','','','"drvREF01_refidentqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','25','D','48','20','','Reference Identification','','','"drvREF02_refident"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','50','1','','','','','"LX"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','6','D','50','2','','','','','"1"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','51','1','','','','','"NM1"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','51','2','','','','','"drvNM101_refidentqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','1','D','51','3','','','','','"drvNM102_refident"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','60','D','51','4','','','','','"drvNM103_lname"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECAR835DCSZ0','35','D','51','5','','','','','"drvNM104_fname"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECAR835DCSZ0','25','D','51','6','','','','','"drvNM105_mname"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECAR835DCSZ0','10','D','51','7','','','','','"drvNM106_prefix"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECAR835DCSZ0','10','D','51','8','','','','','"drvNM107_suffix"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECAR835DCSZ0','2','D','51','9','','','','','"drvNM108_qualifier"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECAR835DCSZ0','80','D','51','10','','','','','"drvNM109_idcode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECAR835DCSZ0','2','D','51','11','','','','','"drvNM110_relation"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','60','1','','','','','"LS"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','4','D','60','2','','','','','"2700"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','61','1','','','','','"LX"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','6','D','61','2','','','','','"1"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','62','1','','','','','"N1"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','62','2','','','','','"drvN101_refidentqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','60','D','62','3','','','','','"drvN102_refident"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','64','1','','','','','"REF"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','64','2','','','','','"drvREF01_refidentqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','50','D','64','3','','','','','"drvREF02_refident"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','D','66','1','','','','','"DTP"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','3','D','66','2','','','','','"drvDTP01_dttmqual"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','3','D','66','3','','','','','"drvDTP02_dttmformat"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECAR835DCSZ0','35','D','66','4','','','','','"drvDTP03_dttmperiod"','(''UD112''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','69','1','','','','','"LE"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','4','D','69','2','','','','','"2700"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','D','97','1','','SE  Segment ID (Transaction Se','','','"SE"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','6','D','97','2','','Number of Included Segments','','','"drvSE01_segcount"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','10','D','97','3','','Transaction Set Control number','','','"drvSE02_transsetctrlnum"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','2','T','98','1','','GE  Segment ID','','','"GE"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','6','T','98','2','','Number of Transaction Sets Inc','','','"drvGS_transsetcount"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','9','T','98','3','','Group Control number','','','"drvGS06_grpcontrolnum"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECAR835DCSZ0','3','T','99','1','','IEA  Segment ID','','','"IEA"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECAR835DCSZ0','5','T','99','2','','Number of Included Functional','','','"drvISA_groupcount"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECAR835DCSZ0','9','T','99','3','','Interchange Control Number','','','"drvISA13_intchgcontrolnum"','(''UA''=''F'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'ECAR835DCS_20231107.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Carefirst Active OE Session','201601019','EMPEXPORT','ACTIVEOE','Dec  4 2015 12:46PM','ECAR835DCS',NULL,NULL,NULL,'201601019','Jan  1 2016 12:00AM','Dec 30 1899 12:00AM','201601011','4','','','201601011',dbo.fn_GetTimedKey(),NULL,'ULTI_WPDCSC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','U6X8D,U6XD3,U6XFB',NULL,NULL,NULL,'Carefirst 835','202312319','EMPEXPORT','ECAR835DCS','Mar  1 2017 12:00AM','ECAR835DCS',NULL,NULL,NULL,'202311039','Feb 24 2017 12:00AM','Dec 30 1899 12:00AM','202310201','13523','','','202301131',dbo.fn_GetTimedKey(),NULL,'ULTI_WPDCSC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','U6X8D,U6XD3,U6XFB',NULL,NULL,NULL,'Carefirst Passive OE Session','202201109','EMPEXPORT','PASSIVEOE','Dec 13 2016  1:23PM','ECAR835DCS',NULL,NULL,NULL,'202201109','Jan 11 2017 12:00AM','Dec 30 1899 12:00AM','202201091','13288','','','202201091',dbo.fn_GetTimedKey(),NULL,'ULTI_WPDCSC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',U6X8D,U6XD3,U6XFB',NULL,NULL,NULL,'xxxTEST Carefirst 835','202206061','EMPEXPORT','TEST','Jun  6 2022 10:39AM','ECAR835DCS',NULL,NULL,NULL,'202206061','Jun  6 2022 12:00AM','Dec 30 1899 12:00AM','202205301','22226','','','202205301',dbo.fn_GetTimedKey(),NULL,'ULTI_WPDCSC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',U6X8D,U6XD3,U6XFB',NULL,NULL,NULL,'xxxunlock 835 template','201204119','EMPEXPORT','ZAP','Apr 11 2012 12:00AM','ECAR835DCS',NULL,NULL,NULL,'201204119','Apr 11 2012 12:00AM','Dec 30 1899 12:00AM','201204111',NULL,'','','201204111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','834LineFeed','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','InitialSort','C','drvsort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','IS834','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','SubSort','C','drvsubsort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','SystemID','V','589F522734FA');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','Testing','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECAR835DCS','UseFileName','V','Y');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','H01','dbo.U_ECAR835DCS_ISA',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','H02','dbo.U_ECAR835DCS_GS',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D03','dbo.U_ECAR835DCS_ST',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D04','dbo.U_ECAR835DCS_BGN',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D05','dbo.U_ECAR835DCS_REF','drvREF01_referenceidqual <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D06','dbo.U_ECAR835DCS_DTP','drvDTP01_dttmqual <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D07','dbo.U_ECAR835DCS_N1',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D10','dbo.U_ECAR835DCS_drvtbl  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D11','dbo.U_ECAR835DCS_Loop2000_ref  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D12','dbo.U_ECAR835DCS_Loop2000_dtp  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D13','dbo.U_ECAR835DCS_drvtbl  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D14','dbo.U_ECAR835DCS_drvtbl  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',' (drvPER03_commnum1qual <> '''' or drvPER05_commnum2qual <> '''' or drvPER07_commnum3qual <> '''')');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D15','dbo.U_ECAR835DCS_drvtbl  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')','(drvN301_address1 <> '''')');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D16','dbo.U_ECAR835DCS_drvtbl  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')','(drvN401_city <> '''')');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D17','dbo.U_ECAR835DCS_drvtbl  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D18','dbo.U_ECAR835DCS_drvtbl  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')','drvICM01_frequency <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D19','dbo.U_ECAR835DCS_Loop2100A_amt  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D45','dbo.U_ECAR835DCS_Loop2300_hd  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D46','dbo.U_ECAR835DCS_Loop2300_dtp  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D47','dbo.U_ECAR835DCS_Loop2300_amt  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D48','dbo.U_ECAR835DCS_Loop2300_ref  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D50','dbo.U_ECAR835DCS_Loop2310_NM1  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')','drvNM109_idcode <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D51','dbo.U_ECAR835DCS_Loop2310_NM1  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')','drvNM109_idcode <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D60','dbo.U_ECAR835DCS_Loop2700_LS   join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D61','dbo.U_ECAR835DCS_Loop2750_N1  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D62','dbo.U_ECAR835DCS_Loop2750_N1  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D64','dbo.U_ECAR835DCS_Loop2750_REF  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D66','dbo.U_ECAR835DCS_Loop2750_DTP  join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D69','dbo.U_ECAR835DCS_Loop2700_LE   join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'''') = isnull(drvdepid,'''')',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','D97','dbo.U_ECAR835DCS_SE',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','T98','dbo.U_ECAR835DCS_GS',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECAR835DCS','T99','dbo.U_ECAR835DCS_ISA',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_ECAR835DCS_BGN
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_BGN') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_BGN] (
+    [trnset] char(9) NULL,
+    [drvsort] varchar(24) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvBGN01_transsetpurpose] varchar(2) NOT NULL,
+    [drvBGN02_referenceidsender] char(9) NULL,
+    [drvBGN03_date] datetime NULL,
+    [drvBGN04_date] datetime NULL,
+    [drvBGN_05_timezone] varchar(2) NOT NULL,
+    [drvBGN06_referenceid] varchar(1) NOT NULL,
+    [drvBGN07_transtypecode] varchar(1) NOT NULL,
+    [drvBGN08_actioncode] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_DepList
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_DepList') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_DepList] (
+    [deeid] char(12) NOT NULL,
+    [ddepid] char(12) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_drvTbl
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvrectype] varchar(1) NOT NULL,
+    [drvssn] char(11) NULL,
+    [drvempno] char(9) NULL,
+    [drvemplstatus] char(1) NULL,
+    [drvsubsort] varchar(25) NULL,
+    [drvINS01_yesno] varchar(1) NOT NULL,
+    [drvINS02_relationship] varchar(2) NOT NULL,
+    [drvINS03_mainttype] varchar(3) NOT NULL,
+    [drvINS04_maintreason] varchar(2) NOT NULL,
+    [drvINS05_benstatus] varchar(1) NOT NULL,
+    [drvINS06_medicareplan] varchar(1) NOT NULL,
+    [drvINS07_cobraqualevent] varchar(1) NOT NULL,
+    [drvINS08_emplstatuscode] varchar(2) NULL,
+    [drvINS09_studentstatus] varchar(1) NOT NULL,
+    [drvINS10_handicapind] varchar(1) NOT NULL,
+    [drvINS11_dateformat] varchar(1) NOT NULL,
+    [drvINS12_deathdate] varchar(1) NOT NULL,
+    [drvINS17_birthseqnumber] varchar(1) NOT NULL,
+    [drvNM101_entityidcode] varchar(2) NOT NULL,
+    [drvNM102_entitytypequal] varchar(1) NOT NULL,
+    [drvNM103_namelast] varchar(6000) NULL,
+    [drvNM104_namefirst] varchar(6000) NULL,
+    [drvNM105_namemiddle] varchar(6000) NULL,
+    [drvNM106_nameprefix] varchar(1) NOT NULL,
+    [drvNM107_namesuffix] varchar(1) NOT NULL,
+    [drvNM108_identcodequal] varchar(2) NOT NULL,
+    [drvNM109identcode] char(11) NULL,
+    [drvPER01_contfunccode] varchar(2) NOT NULL,
+    [drvPER03_commnum1qual] varchar(2) NOT NULL,
+    [drvPER04_commnum1] varchar(50) NULL,
+    [drvPER05_commnum2qual] varchar(2) NOT NULL,
+    [drvPER06_commnum2] varchar(50) NULL,
+    [drvPER07_commnum3qual] varchar(1) NOT NULL,
+    [drvPER08_commnum3] varchar(1) NOT NULL,
+    [drvN301_address1] varchar(6000) NULL,
+    [drvN302_address2] varchar(6000) NULL,
+    [drvN401_city] varchar(6000) NULL,
+    [drvN402_state] varchar(255) NULL,
+    [drvN403_zipcode] varchar(8000) NULL,
+    [drvN404_country] varchar(1) NOT NULL,
+    [drvN405_locationqual] varchar(1) NOT NULL,
+    [drvN406_location] varchar(1) NOT NULL,
+    [drvDMG01_dttmqual] varchar(2) NOT NULL,
+    [drvDMG02_dttmperiod] datetime NULL,
+    [drvDMG03_gender] char(1) NULL,
+    [drvDMG04_maritalstatus] varchar(1) NOT NULL,
+    [drvDMG05_ethnic] varchar(1) NOT NULL,
+    [drvDMG06_citizenship] varchar(1) NOT NULL,
+    [drvICM01_frequency] varchar(1) NOT NULL,
+    [drvICM02_amount] varchar(1) NOT NULL,
+    [drvICM03_hours] varchar(1) NOT NULL,
+    [drvICM04_location] varchar(1) NOT NULL,
+    [drvICM05_salgrade] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_DTP
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_DTP') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_DTP] (
+    [trnset] char(9) NULL,
+    [drvsort] varchar(24) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvDTP01_dttmqual] varchar(3) NOT NULL,
+    [drvDTP02_dttmformat] varchar(2) NOT NULL,
+    [drvDTP03_dttmperiod] datetime NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_EEList
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_EEList') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_File
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_File') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(2000) NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_GS
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_GS') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_GS] (
+    [drvsort] char(20) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvGS01_functidcode] varchar(2) NOT NULL,
+    [drvGS02_senderid] varchar(9) NOT NULL,
+    [drvGS03_receiverid] varchar(5) NOT NULL,
+    [drvGS04_date] datetime NULL,
+    [drvGS05_date] datetime NULL,
+    [drvGS06_grpcontrolnum] varchar(9) NOT NULL,
+    [drvGS07_respagencycode] varchar(1) NOT NULL,
+    [drvGS08_verrelease] varchar(12) NOT NULL,
+    [drvGS_transsetcount] int NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_ISA
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_ISA') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_ISA] (
+    [drvsort] char(20) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvISA01_authinfoqual] varchar(2) NOT NULL,
+    [drvISA02_authinfo] varchar(1) NOT NULL,
+    [drvISA03_secinfoqual] varchar(2) NOT NULL,
+    [drvISA04_secinfo] varchar(1) NOT NULL,
+    [drvISA05_senderidqual] varchar(2) NOT NULL,
+    [drvISA06_senderid] varchar(9) NOT NULL,
+    [drvISA07_recvidqual] varchar(2) NOT NULL,
+    [drvISA08_recvid] varchar(5) NOT NULL,
+    [drvISA09_intchgdate] datetime NULL,
+    [drvISA10_intchgdate] datetime NULL,
+    [drvISA11_intchgcontrolid] varchar(1) NOT NULL,
+    [drvISA12_intchgcontrolver] varchar(5) NOT NULL,
+    [drvISA13_intchgcontrolnum] varchar(9) NOT NULL,
+    [drvISA14_acknowreq] varchar(1) NOT NULL,
+    [drvISA15_usageind] varchar(1) NOT NULL,
+    [drvISA16_compelementsep] varchar(1) NOT NULL,
+    [drvISA_groupcount] int NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2000_DTP
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2000_DTP') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2000_DTP] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvsubsort] varchar(25) NULL,
+    [drvDTP01_dttmqual] varchar(3) NOT NULL,
+    [drvDTP02_dttmformat] varchar(2) NOT NULL,
+    [drvDTP03_dttmperiod] datetime NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2000_REF
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2000_REF') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2000_REF] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvsubsort] varchar(25) NULL,
+    [drvREF01_refnumqual] varchar(2) NOT NULL,
+    [drvREF02_refnum] varchar(30) NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2100A_AMT
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2100A_AMT') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2100A_AMT] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvsubsort] varchar(25) NULL,
+    [drvAMT01_amtqual] varchar(1) NOT NULL,
+    [drvAMT02_amount] money NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2300_AMT
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_AMT') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2300_AMT] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] char(5) NOT NULL,
+    [drvsubsort] varchar(30) NULL,
+    [drvAMT01_amtqual] varchar(18) NULL,
+    [drvAMT02_amount] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2300_DTP
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_DTP') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2300_DTP] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] char(5) NOT NULL,
+    [drvsubsort] varchar(30) NULL,
+    [drvDTP01_dttmqual] varchar(3) NOT NULL,
+    [drvDTP02_dttmformat] varchar(2) NOT NULL,
+    [drvDTP03_dttmperiod] datetime NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2300_HD
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_HD') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2300_HD] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] char(5) NOT NULL,
+    [drvsubsort] varchar(30) NULL,
+    [drvHD01_mainttype] varchar(3) NOT NULL,
+    [drvHD02_maintreason] varchar(1) NOT NULL,
+    [drvHD03_inslinecode] varchar(3) NOT NULL,
+    [drvHD04_plancovdesc] varchar(50) NULL,
+    [drvHD05_covlvl] varchar(3) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2300_REF
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2300_REF') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2300_REF] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] char(5) NOT NULL,
+    [drvsubsort] varchar(30) NULL,
+    [drvREF01_refidentqual] varchar(2) NOT NULL,
+    [drvREF02_refident] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2310_NM1
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2310_NM1') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2310_NM1] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] char(5) NOT NULL,
+    [drvsubsort] varchar(30) NULL,
+    [drvNM101_refidentqual] varchar(2) NOT NULL,
+    [drvNM102_refident] varchar(1) NOT NULL,
+    [drvNM103_lname] varchar(1) NOT NULL,
+    [drvNM104_fname] varchar(1) NOT NULL,
+    [drvNM105_mname] varchar(1) NOT NULL,
+    [drvNM106_prefix] varchar(1) NOT NULL,
+    [drvNM107_suffix] varchar(1) NOT NULL,
+    [drvNM108_qualifier] varchar(2) NOT NULL,
+    [drvNM109_idcode] char(10) NULL,
+    [drvNM110_relation] varchar(2) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2700_LE
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2700_LE') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2700_LE] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] varchar(1) NOT NULL,
+    [drvsubsort] varchar(25) NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2700_LS
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2700_LS') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2700_LS] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] varchar(1) NOT NULL,
+    [drvsubsort] varchar(25) NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2750_DTP
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2750_DTP') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2750_DTP] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] varchar(1) NOT NULL,
+    [drvsubsort] varchar(25) NULL,
+    [drvDTP01_dttmqual] varchar(3) NOT NULL,
+    [drvDTP02_dttmformat] varchar(2) NOT NULL,
+    [drvDTP03_dttmperiod] datetime NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2750_N1
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2750_N1') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2750_N1] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] varchar(1) NOT NULL,
+    [drvsubsort] varchar(25) NULL,
+    [drvN101_refidentqual] varchar(2) NOT NULL,
+    [drvN102_refident] varchar(3) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_Loop2750_REF
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_Loop2750_REF') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_Loop2750_REF] (
+    [drvEEID] char(12) NULL,
+    [drvcoid] char(5) NULL,
+    [drvdepid] varchar(30) NULL,
+    [drvdedcode] varchar(1) NOT NULL,
+    [drvsubsort] varchar(25) NULL,
+    [drvREF01_refidentqual] varchar(2) NOT NULL,
+    [drvREF02_refident] varchar(4) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_N1
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_N1') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_N1] (
+    [trnset] char(9) NULL,
+    [drvsort] varchar(24) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvN101_entityidcode] varchar(2) NOT NULL,
+    [drvN102_name] varchar(70) NULL,
+    [drvN103_idcodequal] varchar(2) NOT NULL,
+    [drvN104_idcode] varchar(9) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_REF
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_REF') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_REF] (
+    [trnset] char(9) NULL,
+    [drvsort] varchar(24) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvREF01_referenceidqual] varchar(2) NOT NULL,
+    [drvREF02_referenceid] varchar(5) NOT NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_SE
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_SE') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_SE] (
+    [drvsort] varchar(36) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvSE01_segcount] int NULL,
+    [drvSE02_transsetctrlnum] char(9) NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_ST
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_ST') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_ST] (
+    [drvsort] varchar(24) NULL,
+    [drvsubsort] char(25) NULL,
+    [drvST01_transsetid] varchar(3) NOT NULL,
+    [drvST02_transsetctrlnum] char(9) NULL,
+    [drvST03_implconvref] varchar(12) NOT NULL,
+    [drvst_segcount] int NULL
+);
+
+-----------
+-- Create table U_ECAR835DCS_transsetwork
+-----------
+
+IF OBJECT_ID('U_ECAR835DCS_transsetwork') IS NULL
+CREATE TABLE [dbo].[U_ECAR835DCS_transsetwork] (
+    [trneeid] char(12) NULL,
+    [trncoid] char(5) NULL,
+    [trndepdepid] varchar(30) NULL,
+    [trnrow] int IDENTITY(1,1) NOT NULL,
+    [trnset] char(9) NULL,
+    [drvsort] char(20) NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECAR835DCS]
+ @systemid varchar(12) = ''
+AS
+Begin
+ 
+/*************************************************************************************************
+DRIVER TABLE SP FOR:  CareFirst 834 v5
+BUILT FOR: DCS Corporation
+ORIGINAL BUILD (V-1.0): 11/09/2015 - chas   - SF 05943573
+
+Modifications:
+Dagyei   8/1/2016  added location code MOSTL  SF 07356637
+B'Nai Jackson 08/05/2016 added location code DEREM1 & CAEAFB  - SF 07373815
+B'Nai Jackson 11/07/2016 update to remove sub-divisions PR-204700 
+Lynn Manning    05/13/2022    SR-2021-00354797   Updated ISA record, updated INS09 (Student) so it does not populate for SPS/DP.
+Lynn Manning    05/26/2022    SR-2021-00354797   Updated INS10 (handicapped) so it does not populate for SPS/DP.
+
+
+SELECT TOP 10 filFilePath, filFileName, * from FileInfo WHERE filFileName LIKE '%ECAR835DCS%' AND FilCreateDate > GETDATE()-30 ORDER by filCreateDate DESC
+
+SELECT * FROM dbo.U_Dsi_Configuration WHERE FormatCode = 'ECAR835DCS'
+SELECT * FROM dbo.U_Dsi_SqlClauses WHERE FormatCode = 'ECAR835DCS'
+SELECT * FROM dbo.U_Dsi_Parameters WHERE FormatCode = 'ECAR835DCS'
+SELECT * FROM AscEXP WHERE ExpFormatCode = 'ECAR835DCS'
+SELECT AdhFormatName, * FROM AscDefH WHERE AdhFormatCode = 'ECAR835DCS'
+SELECT * FROM dbo.U_Dsi_InterfaceActivityLog WHERE FormatCode = 'ECAR835DCS' ORDER BY DateTimeStamp DESC
+
+select TOP 10 filFilePath, filFileName, * from fileinfo WHERE filFileName LIKE '%ECAR835DCS%' ORDER by filCreateDate DESC
+
+exec [dbo].[_dsi_usp_ExportRipOut_v7_4] @FormatCode = 'ECAR835DCS', @AllObjects = 'Y', @IsWeb = 'Y'
+
+*************************************************************************************************/
+
+
+    /***************************
+    COLLECT DATE PARAMETERS
+    ****************************/
+    DECLARE 
+        @StartDate DATETIME,
+        @EndDate DATETIME,
+        @StartPerControl Char(9),
+        @EndPerControl Char(9),
+        @FormatCode Char(10),
+        @ExportCode Char(10),
+        @ExportFile char(200),
+        @PlanDate DATETIME
+        
+    --    Declare @Systemid char(12) 
+    --    set @Systemid = '6DWPQL0000K0'
+
+    SELECT 
+        @StartDate = CONVERT(DATETIME, LEFT(StartPerControl, 8) ),
+        @EndDate = CONVERT(DATETIME, LEFT(EndPerControl , 8)  ),
+        @StartPerControl = startpercontrol,
+        @EndPerControl  = endpercontrol,
+        @FormatCode = formatcode,
+        @ExportCode = Exportcode,
+        @Exportfile = ExportFile,
+        @PlanDate = convert(varchar(4), year(@EndDate)) + '0101'--'20160101' --12/05 BJ PR-204700
+    FROM dbo.U_Dsi_Parameters 
+    WHERE SystemID = @SystemID
+
+declare @filedate as datetime
+select @filedate = getdate()
+
+        
+-- STEP6 change variables below as needed
+declare @daysstopped int   
+declare @useaudit char(1)
+declare @includeoe char(1)
+
+declare @showalldeds char(1)
+declare @allcomp char(1)
+declare @onerecperemp char(1)
+declare @showstoppedoe  char(1)
+declare @oetype char(1)
+set @daysstopped = 30    -- set number of days if looking for only showing deds stopped within certain days
+set @useaudit = 'N'    -- Y or N  indicates if this export uses audit to determine data to pull
+set @includeoe = 'N'   -- Y or N  indicates if this export will include open enrollment
+set @showalldeds = 'N' -- Y or N  indicates if this export shows stopped and active ded of same type
+set @allcomp = 'Y'     -- Y or N  indicates if this export show deds for all companies for an employee
+set @onerecperemp = 'Y'  -- Y or N indicate if the export should show only one record per employee
+set @showstoppedoe = 'N' -- Y or N  indicates if stopped open enrollment deductions should be shown
+set @oetype = 'F'        -- P or F indicates if this export is for a passive or full oe
+
+declare @include_STref char(1)
+declare @include_STdtp char(1)
+declare @include_Loop2100Amt char(1) 
+declare @include_Loop2300amt char(1)
+declare @include_Loop2300ref char(1)
+declare @include_Loop2310nm1 char(1)
+declare @include_Loop2750n1  char(1)
+declare @include_Loop2750ref  char(1)
+declare @include_Loop2750dtp  char(1)
+set @include_STref = 'N'      -- Y or N if REF after BGN record is needed
+set @include_STdtp = 'N'      -- Y or N if DTP after above REF is needed
+set @include_Loop2100Amt = 'N'  -- Y or N if Loop 2100A Amt record is needed
+set @include_Loop2300Amt = 'N'  -- Y or N if Loop 2300 Amt record is needed
+set @include_Loop2300Ref = 'N'  -- Y or N if Loop 2300 Ref record is needed
+set @include_Loop2310NM1 = 'N'  -- Y or N if Loop 2300 NM1 record (PCP) is needed
+set @include_Loop2750N1  = 'N'  -- Y or N if Loop 2750 N1 record is needed
+set @include_Loop2750REF = 'N'  -- Y or N if Loop 2750 REF record is needed
+set @include_Loop2750DTP = 'N'  -- Y or N if Loop 2750 DTP record is needed
+
+-- STEP7  clean up EELIST if needed  must provide criteria
+
+--STEP8 clean up list if not using all companies
+if @allcomp = 'N'
+begin
+            delete dbo.u_ECAR835DCS_EELIST
+            from dbo.u_ECAR835DCS_EELIST
+            join vw_int_EmpComp t with (nolock) on xeeid = eeceeid and xcoid = eeccoid
+            where t.eecemplstatus = 'T'
+            and exists(select 1 from vw_int_EmpComp a where a.eeceeid = t.eeceeid
+                and a.eecemplstatus <> 'T')
+
+            delete dbo.u_ECAR835DCS_eelist
+            from dbo.u_ECAR835DCS_eelist a
+            join emppers with (nolock) on xeeid = eepeeid
+            where eephomecoid <> xcoid
+            and exists(select 1 from dbo.u_ECAR835DCS_eelist b where a.xeeid = b.xeeid
+            having count(*) > 1)
+
+
+end
+
+
+--BDM
+-- replace Esssssssss with the OE session if applicable
+
+DELETE FROM U_dsi_bdm_Configuration WHERE FormatCode = @FormatCode
+
+INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes','MIHSA,MIPPO')
+--INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes','MDHRA,MDOAP,MDTRI,MIHSA,MIPPO')
+-- select deddedcode, dedlongdesc, deddedtype from dedcode where deddedtype = 'MED' order by 1
+--MDHRA    Medical - HRA        MED 
+--MDOAP    Medical - OAP        MED 
+--MDTRI    Medical - Tri-Care    MED 
+--MIHSA    Medical - HSA        MED 
+--MIPPO    Medical - PPO        MED 
+
+IF @ExportCode NOT IN ('ACTIVEOE','PASSIVEOE') BEGIN
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'StartDateTime',@EndDate - @daysstopped)
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'EndDateTime',@EndDate)
+END
+IF @ExportCode IN ('ACTIVEOE','PASSIVEOE') BEGIN
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'StartDateTime',@StartDate)
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'EndDateTime',@EndDate)
+END
+
+INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOption', 'stopdate')    --'ActiveOnly')    --'stoptdate')    --'AuditDate')
+
+IF @ExportCode = 'ACTIVEOE' BEGIN
+   INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'Active')    --'Passive')
+END
+IF @ExportCode = 'PASSIVEOE' BEGIN
+   INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'Passive')    --'Active')
+END
+
+
+EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode
+
+
+
+--select * from dbo.U_dsi_bdm_EmpDeductions where eedformatcode = 'ECAR835DCS'
+
+
+
+
+--Step20 Clean up eelist if needed to only include employees with deductions
+            delete dbo.u_ECAR835DCS_eelist
+            from dbo.u_ECAR835DCS_eelist a
+            where not exists(select 1 from U_dsi_bdm_EmpDeductions 
+                where a.xeeid = eedeeid
+                and a.xcoid = eedcoid
+                and eedformatcode = @formatcode
+                and eedvalidforexport = 'Y')
+
+
+-- Step21   Clean up eelist if only one record per employee per type
+if @onerecperemp = 'Y'
+begin
+            delete dbo.u_ECAR835DCS_EELIST
+            from dbo.u_ECAR835DCS_EELIST
+            join vw_int_EmpComp t with (nolock) on xeeid = eeceeid and xcoid = eeccoid
+            where t.eecemplstatus = 'T'
+            and exists(select 1 from vw_int_EmpComp a where a.eeceeid = t.eeceeid
+                and a.eecemplstatus <> 'T')
+
+            delete dbo.u_ECAR835DCS_eelist
+            from dbo.u_ECAR835DCS_eelist a
+            join emppers with (nolock) on xeeid = eepeeid
+            where eephomecoid <> xcoid
+            and exists(select 1 from dbo.u_ECAR835DCS_eelist b where a.xeeid = b.xeeid
+            having count(*) > 1)
+end
+
+-- Clean up eelist by removing TEST EEs
+-- select eepeeid, eepnamelast, eepnamefirst from EmpPers where eepnamelast like 'test%'
+--begin tran -- commit rollback
+            delete dbo.u_ECAR835DCS_eelist
+            from dbo.u_ECAR835DCS_EELIST
+            join emppers with (nolock) on xeeid = eepeeid
+            where EepNameLast like 'testdcs%'
+
+
+-- Populate driver tables (The header logic follows employee and dependent logic)
+
+--STEP22 Populate Source for Employees
+if object_id('dbo.U_ECAR835DCS_drvTbl') is not null
+  drop table dbo.U_ECAR835DCS_drvTbl
+
+-- EE Detail
+
+
+-- Get Emp data
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvrectype = 'E',
+    drvssn = eepssn,
+    drvempno = eecempno,
+    drvemplstatus = eecemplstatus,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+    drvINS01_yesno ='Y',
+    drvINS02_relationship = '18',
+    drvINS03_mainttype = '030',
+    drvINS04_maintreason = 'XN',    --'AI',
+    drvINS05_benstatus = 'A',    --WHEN EepCOBRAIsActive = 'Y' THEN 'C' ELSE 'A' end,
+    drvINS06_medicareplan = '',
+    drvINS07_cobraqualevent = '',
+    drvINS08_emplstatuscode = case
+                when eecemplstatus in ('A','L','O','R','S') and eecfulltimeorparttime = 'F' then 'FT'
+                when eecemplstatus in ('A','L','O','R','S') then 'PT'
+                when eecemplstatus = 'T' then 'TE'
+                end,
+    drvINS09_studentstatus = ' ',
+    drvINS10_handicapind = ' ',
+    drvINS11_dateformat = '',
+    drvINS12_deathdate = '',
+    drvINS17_birthseqnumber = ' ',
+    drvNM101_entityidcode = 'IL',
+    drvNM102_entitytypequal = '1',
+    drvNM103_namelast = dbo.dsi_fnRemoveChars('.,/',Upper(eepNameLast)),
+    drvNM104_namefirst = dbo.dsi_fnRemoveChars('.,/',Upper(eepNameFirst)),
+    drvNM105_namemiddle  = dbo.dsi_fnRemoveChars('.,/',Upper(substring(eepNameMiddle,1,1))),
+    drvNM106_nameprefix = '',--CONVERT(CHAR(1),null),    --dbo.dsi_fnRemoveChars('.,/-Z',upper(eepNamePrefix)),
+    drvNM107_namesuffix = '',--convert(char(1),null),    --dbo.dsi_fnRemoveChars('.,/-Z',upper(eepNameSuffix)),
+    drvNM108_identcodequal = '34',
+    drvNM109identcode = eepssn,
+    drvPER01_contfunccode = 'IP',  --IP
+    drvPER03_commnum1qual = case when isnull(rtrim(eepphonehomenumber),'') = '' then '' else 'HP' end,
+    drvPER04_commnum1 = eepphonehomenumber,
+    drvPER05_commnum2qual = case when isnull(rtrim(eepaddressemail),'') = '' then '' else 'EM' end,
+    drvPER06_commnum2 = eepaddressemail,
+    drvPER07_commnum3qual = '',
+    drvPER08_commnum3 = '',
+    drvN301_address1 = dbo.dsi_fnRemoveChars('.,/-',Upper(eepAddressLine1)),
+    drvN302_address2 = dbo.dsi_fnRemoveChars('.,/-',Upper(eepAddressLine2)),
+    drvN401_city  = dbo.dsi_fnRemoveChars('.,/-',Upper(eepAddressCity)),
+    drvN402_state = eepAddressState,
+    drvN403_zipcode = replace(replace(left(eepAddressZipCode,5),'-',''),' ',''),
+    drvN404_country = '',        -- eepAddressCountry
+    drvN405_locationqual = '',
+    drvN406_location = '',
+    drvDMG01_dttmqual = 'D8',
+    drvDMG02_dttmperiod = eepdateofbirth,
+    drvDMG03_gender = eepgender,
+    drvDMG04_maritalstatus = case
+                    when eepmaritalstatus = 'M' then 'M'
+                    when eepmaritalstatus = 'Z' then 'U'
+                    else 'I'
+                    end, 
+    drvDMG05_ethnic = '',
+    drvDMG06_citizenship = '',
+    drvICM01_frequency = '',        --'7',
+    drvICM02_amount = '',            --eecannsalary,
+    drvICM03_hours = '',            --convert(char(20),convert(numeric(12,2),eecScheduledWorkHrs / 2)),    
+    drvICM04_location = '',            --CONVERT(varchar(10), jh.jobeffdate, 112),
+    drvICM05_salgrade = ''
+
+  into dbo.U_ECAR835DCS_drvTbl
+  from dbo.u_ECAR835DCS_eelist with (nolock)
+    join empPers with (nolock) on xEEID = eepEEID
+    join vw_int_EmpComp with (nolock) on xEEID = eecEEid and xCOID = eecCOID
+    --left join (select ejheeid, ejhcoid, max(ejhjobeffdate) jobeffdate
+        --from vw_int_EmpHJob where ejhisratechange = 'Y' group by ejheeid,ejhcoid) jh on jh.ejheeid = xeeid and jh.ejhcoid = xcoid
+
+
+
+--Build Loop 2000 REF Records
+if object_id('U_ECAR835DCS_Loop2000_REF') is not null
+  drop table dbo.U_ECAR835DCS_Loop2000_REF
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+    drvREF01_refnumqual = '0F',
+    drvREF02_refnum = cast(eepssn as varchar(30))
+
+into dbo.U_ECAR835DCS_Loop2000_REF
+from dbo.u_ECAR835DCS_eelist 
+join emppers on xeeid = eepeeid
+
+
+
+-- only include those needed
+--insert into dbo.U_ECAR835DCS_Loop2000_REF
+--SELECT    DISTINCT
+--    drvEEID = xEEID, 
+--    drvcoid = xcoid,
+--    drvdepid = cast(null as varchar),
+--    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+--    drvREF01_refnumqual = 'DX',
+--    drvREF02_refnum = '0001'
+--from dbo.u_ECAR835DCS_eelist
+--join emppers on xeeid = eepeeid 
+
+
+--insert into dbo.U_ECAR835DCS_Loop2000_REF
+--SELECT    DISTINCT
+--    drvEEID = xEEID, 
+--    drvcoid = xcoid,
+--    drvdepid = cast(null as varchar),
+--    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+--    drvREF01_refnumqual = 'ZZ',
+--    drvREF02_refnum = case
+--                when eecorglvl1 = 'CORP' then '0001'
+--                else '0002'
+--                end
+--from dbo.u_ECAR835DCS_eelist 
+--join emppers on xeeid = eepeeid
+--join vw_int_EmpComp on xeeid = eeceeid and xcoid = eeccoid
+--join vw_int_EmpComp on xeeid = eeceeid and xcoid = eeccoid
+
+
+--Build Loop 2000 DTP Records
+if object_id('U_ECAR835DCS_Loop2000_DTP') is not null
+  drop table dbo.U_ECAR835DCS_Loop2000_DTP
+
+--SELECT    DISTINCT
+--    drvEEID = xEEID, 
+--    drvcoid = xcoid,
+--    drvdepid = cast(null as varchar),
+--    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+--    drvDTP01_dttmqual = '336',
+--    drvDTP02_dttmformat = 'D8',
+--    drvDTP03_dttmperiod = eecdateoflasthire
+
+--into dbo.U_ECAR835DCS_Loop2000_DTP
+--from dbo.u_ECAR835DCS_eelist 
+--join emppers on xeeid = eepeeid
+--join vw_int_EmpComp on xeeid = eeceeid and xcoid = eeccoid
+
+
+--insert into dbo.U_ECAR835DCS_Loop2000_DTP
+--SELECT    DISTINCT
+--    drvEEID = xEEID, 
+--    drvcoid = xcoid,
+--    drvdepid = cast(null as varchar),
+--    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+--    drvDTP01_dttmqual = '337',
+--    drvDTP02_dttmformat = 'D8',
+--    drvDTP03_dttmperiod = eecdateoftermination
+
+--from dbo.u_ECAR835DCS_eelist 
+--join emppers on xeeid = eepeeid
+--join vw_int_EmpComp on xeeid = eeceeid and xcoid = eeccoid
+--where eecemplstatus = 'T'
+
+
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000' ,
+    drvDTP01_dttmqual = '303',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = eff.effdate
+
+into dbo.U_ECAR835DCS_Loop2000_DTP
+from dbo.u_ECAR835DCS_eelist
+    join emppers on xeeid = eepeeid 
+    JOIN (SELECT eedeeid eeid, EedCoID coid, MAX(EedBenStartDate) effdate 
+                from dbo.U_dsi_bdm_EmpDeductions 
+                WHERE EedFormatCode = @FormatCode
+                AND EedValidForExport = 'Y'
+                group by EedEEID,EedCoID) EFF ON eff.coid = xCOID AND eff.eeid = xEEID
+
+
+/* only include the dtp's needed
+
+insert into dbo.U_ECAR835DCS_Loop2000_DTP
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000' ,
+    drvDTP01_dttmqual = '357',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = eedbenstopdate
+
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on xeeid = eepeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+  where eedbenstopdate is not null
+
+*/
+
+--Build Loop 2100A AMT Records if needed (must provide joins and fields if needed)
+if object_id('U_ECAR835DCS_Loop2100A_AMT') is not null
+  drop table dbo.U_ECAR835DCS_Loop2100A_AMT
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+    drvAMT01_amtqual = '',
+    drvAMT02_amount = eecAnnSalary
+
+into dbo.U_ECAR835DCS_Loop2100A_AMT
+from dbo.u_ECAR835DCS_eelist
+join emppers on xeeid = eepeeid
+join vw_int_EmpComp on xeeid = eeceeid and xcoid = eeccoid
+where @include_Loop2100Amt = 'Y' 
+
+
+/* uncomment and fix logic if more than one AMT is needed
+
+insert into dbo.U_ECAR835DCS_Loop2100A_AMT
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2000',
+    drvAMT01_amtqual = '',
+    drvAMT02_amount = ''
+
+from dbo.u_ECAR835DCS_eelist
+join emppers on xeeid = eepeeid
+where @include_Loop2100Amt = 'Y' 
+
+
+*/
+
+-- Now build coverage data  HD Loop 2300
+if object_id('U_ECAR835DCS_Loop2300_HD') is not null
+  drop table dbo.U_ECAR835DCS_Loop2300_HD
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + eeddedcode,
+    drvHD01_mainttype = '030',
+    drvHD02_maintreason = '',
+    drvHD03_inslinecode = 'HLT',
+    --drvHD04_plancovdesc = '', 
+    
+    --Group Numbers    See Worksheet 'HD04'. Values are provided once the CareFirst Group Structure (benefits) are approved by the account.
+    --MIHSA    Medical - HSA    5801553DC10
+    --MIPPO    Medical - PPO    5801555DC10
+
+    
+--Product ID        "Group Number"                    NASCO Package Code                NASCO Department #                Rate Modifier                    
+--"1-3 a/n -3"    "4-23 a/n-20 Left Justified"    "24-28 a/n-5 Left Justified"    "29-37 a/n-9 Left Justified"    "37-41 a/n-4 Left Justified"
+
+--Status        Home Plan        Control Plan    Product Process Indicator    Product Process Indicator
+--"42 a/n-1"    "43-45 a/n-3"    "46-48 a/n-3"    "49 a/n-1"                    "50 a/n-1"
+    drvHD04_plancovdesc = 'NAS' + 
+                            --GROUP NUMBER
+                            case 
+                                when EedDedCode IN ('MIHSA') then '5801553DC10         '
+                                when EedDedCode IN ('MIPPO') then '5801555DC10         '
+                                end +
+                                 
+                            --NASCO Package Code
+                            --"Values:
+                            --006 - IND
+                            --016  - H&W/P&C/FAM/SAME SEX SPOUSE"
+                            -- select * from BenOpt
+                            case when eedbenoption = 'EE' then '006  '
+                                ELSE '016  ' END +
+                                 
+                            --NASCO Department # 
+                            --11/08/16 BJ PR-204700
+                            case 
+                                when EedDedCode IN ('MIHSA') then '00000K74W'
+                                when EedDedCode IN ('MIPPO') then '00000K9QQ'
+                                end +
+                            /*case when EedDedCode IN ('MIHSA') then 
+                                    case 
+                                        when EecLocation IN ('VAARL','VADAH','VADUM','VAFB','VAHQ','VAMC','VAPENT','VAREM1') then '00001K8QZ'
+                                        when EecLocation IN ('VAPORT') then '00001K8RB'
+                                        when EecLocation IN ('MDPAX','MDREM1') then '00001K8RD'
+                                        when EecLocation IN ('MDABNG','MDAPG') then '00001K8RF'
+                                        when EecLocation IN ('CAMAGU','CARDGC') then '00001K8RH'
+                                        when EecLocation IN ('MIREM1','MIWAR') then '00001K8RK'
+                                        when EecLocation IN ('OHDAY','OHDAYD','OHREM1','OHREM2','OHREM3') then '00001K8RM'
+                                        when EecLocation IN ('MABOS','NHNASH','NHREM1') then '00001K8RP'
+                                        when EecLocation IN ('ALHUNT','ALREM1') then '00001K8RR'
+                                        when EecLocation IN ('FLGCST','FLREM1') then '00001K8RT'
+                                        when EecLocation IN ('CASAND') then '00001K8RV'
+                                        when EecLocation IN ('AZREM1','CAEAFB','DEREM1','GAFB','GAREM1','ILREM1','KYFC','KYREM1','MNREM1','MSVICK','NCMCAS','NJREM1','NMWSO','NVREM1','NYREM1','OKREM1','PAPHIL','PAREM1','PAREM2','PAREM3','SCREM1','TNREM2','TXEPD','TXREM1','TXSAD','WAJBLM','WAREM1','MOSTL') --added MOSTL 8/1/2016 DA
+                                            then '00001K8RX' END --added MOSTL 8/1/2016 DA --08/05/16 BJ SF 07373815
+                                 when EedDedCode IN ('MIPPO') then 
+                                    case 
+                                        when EecLocation IN ('VAARL','VADAH','VADUM','VAFB','VAHQ','VAMC','VAPENT','VAREM1') then '00001K8RZ'
+                                        when EecLocation IN ('VAPORT') then '00001K8XC'
+                                        when EecLocation IN ('MDPAX','MDREM1') then '00001K8XG'
+                                        when EecLocation IN ('MDABNG','MDAPG') then '00001K8AB'
+                                        when EecLocation IN ('CAMAGU','CARDGC') then '00001K8AF'
+                                        when EecLocation IN ('MIREM1','MIWAR') then '00001K8BV'
+                                        when EecLocation IN ('OHDAY','OHDAYD','OHREM1','OHREM2','OHREM3') then '00001K8SA'
+                                        when EecLocation IN ('MABOS','NHNASH','NHREM1') then '00001K8XD'
+                                        when EecLocation IN ('ALHUNT','ALREM1') then '00001K8XH'
+                                        when EecLocation IN ('FLGCST','FLREM1') then '00001K8AC'
+                                        when EecLocation IN ('CASAND') then '00001K8BS'
+                                        when EecLocation IN ('AZREM1','CAEAFB','DEREM1','GAFB','GAREM1','ILREM1','KYFC','KYREM1','MNREM1','MSVICK','NCMCAS','NJREM1','NMWSO','NVREM1','NYREM1','OKREM1','PAPHIL','PAREM1','PAREM2','PAREM3','SCREM1','TNREM2','TXEPD','TXREM1','TXSAD','WAJBLM','WAREM1','MOSTL') --added MOSTL 8/1/2016 DA
+                                            then '00001K8BW' END--08/05/16 BJ SF 07373815
+                                 end +*/
+                                 --Rate Modifier
+                                 '    '+
+                                 --Status
+                                 'A' +
+                                 --Home Plan
+                                 --case when LEFT(LTRIM(eepaddresszipcode),3) IN ('210','211','212','213','214','215','216','217','218','219')
+                                 case when LEFT(LTRIM(eepaddresszipcode),3) BETWEEN '210' AND '219'
+                                 then '690'
+                                 else '580' end+
+                                 '580'+
+                                 'F'+
+                                 'V'
+                                      ,
+                                    
+    --EE        0    Employee Only
+    --EES       0    Employee + Spouse
+    --EEC       0    Employee + Child
+    --EEF       0    Employee + Family
+    --EEDP      0    Emp + Domestic Partner
+    --EEDPF     0    Emp + Dom Partner Family
+    drvHD05_covlvl = case eedbenoption
+                when 'EE' then 'IND'
+                when 'EEC' then 'ECH'
+                when 'EES' then 'ESP'
+                when 'EEDP' then 'ESP'
+                when 'EEF' then 'FAM'
+                when 'EEDPF' then 'FAM'
+            else ''    end
+
+into dbo.U_ECAR835DCS_Loop2300_HD
+from dbo.u_ECAR835DCS_eelist 
+    join empPers with (nolock) on xEEID = eepEEID
+    join vw_int_EmpComp with (nolock) on xEEID = eecEEid and xCOID = eecCOID
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+
+
+-- Now build coverage data DTP Loop 2300
+if object_id('U_ECAR835DCS_Loop2300_DTP') is not null
+  drop table dbo.U_ECAR835DCS_Loop2300_DTP
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + eeddedcode,
+    drvDTP01_dttmqual = '348',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = case when eedbenstartdate < @PlanDate then @PlanDate else eedbenstartdate end
+
+into dbo.U_ECAR835DCS_Loop2300_DTP
+from dbo.u_ECAR835DCS_eelist
+    join emppers on xeeid = eepeeid 
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+
+insert into dbo.U_ECAR835DCS_Loop2300_DTP
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + eeddedcode,
+    drvDTP01_dttmqual = '349',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = eedbenstopdate
+
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on xeeid = eepeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+  where eedbenstopdate is not null
+
+
+
+-- Now build coverage data AMT Loop 2300 if needed
+if object_id('U_ECAR835DCS_Loop2300_AMT') is not null
+  drop table dbo.U_ECAR835DCS_Loop2300_AMT
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + eeddedcode,
+    drvAMT01_amtqual = cast('' as varchar(18)),
+    drvAMT02_amount = ''
+
+into dbo.U_ECAR835DCS_Loop2300_AMT
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+  where @include_Loop2300Amt = 'Y' 
+
+
+/* uncomment and fix logic if more than one AMT is needed
+insert into dbo.U_ECAR835DCS_Loop2300_AMT
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = dedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + dedcode,
+    drvAMT01_amtqual = '',
+    drvAMT02_amount = ''
+
+from dbo.u_ECAR835DCS_eelist
+    join emppers on eepeeid = xeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+ where @include_Loop2300Amt = 'Y' 
+
+*/
+
+-- Build Coverage Level REF Loop 2300 if needed (must provided joins and data)
+if object_id('U_ECAR835DCS_Loop2300_REF') is not null
+  drop table dbo.U_ECAR835DCS_Loop2300_REF
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + eeddedcode,
+    drvREF01_refidentqual = '1L',
+    drvREF02_refident = ''
+
+into dbo.U_ECAR835DCS_Loop2300_REF
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+  where @include_Loop2300ref = 'Y' 
+
+/* uncomment and fix logic if more than one REF is needed
+insert into dbo.U_ECAR835DCS_Loop2300_REF
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = dedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300',
+    drvREF01_refidentqual = '',
+    drvREF02_refident = ''
+
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+    where @include_Loop2300ref = 'Y' 
+*/ 
+
+
+
+
+/*
+-- Include this section if the vendor needs a separate prescription RX
+
+INSERT into dbo.U_ECAR835DCS_Loop2300_HD  -- RX
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + 'Rx',
+    drvHD01_mainttype = '030',
+    drvHD02_maintreason = '',
+    drvHD03_inslinecode = 'PDG',
+    drvHD04_plancovdesc = '00010001',
+    drvHD05_covlvl = case when eedbenoption in ('EE') then 'EMP'
+                          when eedbenoption in ('EEC') then 'ECH'
+                          when eedbenoption in ('EES') then 'ESP'
+                          when eedbenoption in ('EEF') then 'FAM'
+                     else '' end
+
+from dbo.u_ECAR835DCS_eelist 
+    join empPers with (nolock) on xEEID = eepEEID
+    join vw_int_EmpComp with (nolock) on xEEID = eecEEid and xCOID = eecCOID
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+    where deddedtype = 'MED'
+
+
+
+
+insert into dbo.U_ECAR835DCS_Loop2300_DTP  --Rx
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + 'Rx',
+    drvDTP01_dttmqual = '348',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = case when eedbenstartdate < @PlanDate then @PlanDate else eedbenstartdate end
+
+from dbo.u_ECAR835DCS_eelist
+    join emppers on xeeid = eepeeid
+    join vw_int_EmpComp on eeceeid = xeeid and eeccoid = xcoid 
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+    where deddedtype = 'MED'
+
+insert into dbo.U_ECAR835DCS_Loop2300_DTP    --Rx
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + 'Rx',
+    drvDTP01_dttmqual = '349',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = eedbenstopdate
+
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on xeeid = eepeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+  where eedbenstopdate is not null
+    and deddedtype = 'MED'
+
+
+INSERT into dbo.U_ECAR835DCS_Loop2300_REF
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2300' + 'Rx',
+    drvREF01_refidentqual = '1L',
+    drvREF02_refident = ''
+
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+  where @include_Loop2300ref = 'Y' 
+    and deddedtype = 'MED'
+
+*/
+
+
+
+-- Build Coverage Level LX and NM1 Loop 2310 if needed (Primary Care Provider PCP information)
+if object_id('U_ECAR835DCS_Loop2310_NM1') is not null
+  drop table dbo.U_ECAR835DCS_Loop2310_NM1
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2310' + eeddedcode,
+    drvNM101_refidentqual = 'P3',        --P3 = pcp/doctor; QN = dentist; OD = optometrist; Y2 = managed care organaization; other codes available also
+    drvNM102_refident = '1',            --1 = person, 2 = non-person entity
+    drvNM103_lname = '',
+    drvNM104_fname = '',
+    drvNM105_mname = '',
+    drvNM106_prefix = '',
+    drvNM107_suffix = '',
+    drvNM108_qualifier = 'SV',            --sv = service provider number; 34 = ssn; fi = federal tax no.
+    drvNM109_idcode = eedprimarycarephysid,
+    drvNM110_relation = '72'            --72 = unknown relation; 25 = established patient; 26 = not established
+
+into dbo.U_ECAR835DCS_Loop2310_NM1
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y' 
+        AND EedCOID = xCOID AND EedEEID = xEEID
+  where @include_Loop2310nm1 = 'Y'
+    and isnull(eedprimarycarephysid,'') <> ''
+
+
+
+
+
+
+-- Build N1 Loop 2750 if needed (Reporting Category)  (2700 loop is created after this)
+if object_id('U_ECAR835DCS_Loop2750_N1') is not null
+  drop table dbo.U_ECAR835DCS_Loop2750_N1
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = '',    --eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2750',    -- + eeddedcode,
+    drvN101_refidentqual = '75',
+    drvN102_refident = 'rrr'
+
+into dbo.U_ECAR835DCS_Loop2750_N1
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    join vw_int_EmpComp with (nolock) on xEEID = eecEEid and xCOID = eecCOID
+    join jobcode with (nolock) on eecjobcode = jbcjobcode
+--    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+--        AND EedValidForExport = 'Y' 
+--        AND EedCOID = xCOID AND EedEEID = xEEID
+  where @include_Loop2750n1 = 'Y'
+
+
+
+-- Build REF Loop 2750 if needed (Reporting Category REF)
+if object_id('U_ECAR835DCS_Loop2750_REF') is not null
+  drop table dbo.U_ECAR835DCS_Loop2750_REF
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = '',    --eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2755',    -- + eeddedcode,
+    drvREF01_refidentqual = '18',                        --00 = district; 17 = client reporting; 18 = plan no; 19 = division; 3L = branch; LU = location; many others available
+    drvREF02_refident = 'pppp'
+
+into dbo.U_ECAR835DCS_Loop2750_REF
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    join vw_int_EmpComp with (nolock) on xEEID = eecEEid and xCOID = eecCOID
+    join jobcode with (nolock) on eecjobcode = jbcjobcode
+--    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+--        AND EedValidForExport = 'Y' 
+--        AND EedCOID = xCOID AND EedEEID = xEEID
+  where @include_Loop2750ref = 'Y'
+
+
+
+-- Build DTP Loop 2750 if needed (Reporting Category REF)
+if object_id('U_ECAR835DCS_Loop2750_DTP') is not null
+  drop table dbo.U_ECAR835DCS_Loop2750_DTP
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = '',    --eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2757',    -- + eeddedcode,
+    drvDTP01_dttmqual = '007',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = eecdateoflasthire
+
+into dbo.U_ECAR835DCS_Loop2750_DTP
+from dbo.u_ECAR835DCS_eelist 
+    join emppers on eepeeid = xeeid
+    join vw_int_EmpComp on eeceeid = xeeid and eeccoid = xcoid
+--    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+--        AND EedValidForExport = 'Y' 
+--        AND EedCOID = xCOID AND EedEEID = xEEID
+  where @include_Loop2750dtp = 'Y'
+
+
+
+-- Build LS Loop 2700
+if object_id('U_ECAR835DCS_Loop2700_LS') is not null
+  drop table dbo.U_ECAR835DCS_Loop2700_LS
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = '',    --eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2700'
+
+into dbo.U_ECAR835DCS_Loop2700_LS 
+from dbo.u_ECAR835DCS_eelist
+    join emppers on eepeeid = xeeid
+    join dbo.U_ECAR835DCS_Loop2750_N1 on xeeid = drveeid and xcoid = drvcoid
+  where @include_Loop2750n1 = 'Y'
+
+
+-- Build LE Loop 2700
+if object_id('U_ECAR835DCS_Loop2700_LE') is not null
+  drop table dbo.U_ECAR835DCS_Loop2700_LE
+
+SELECT    DISTINCT
+    drvEEID = xEEID, 
+    drvcoid = xcoid,
+    drvdepid = cast(null as varchar),
+    drvdedcode = '',    --eeddedcode,
+    drvsubsort = cast(eepssn as char(9)) + cast(' ' as char(12)) + '2799'
+
+into dbo.U_ECAR835DCS_Loop2700_LE 
+from dbo.u_ECAR835DCS_eelist
+    join emppers on eepeeid = xeeid
+    join dbo.U_ECAR835DCS_Loop2750_N1 on xeeid = drveeid and xcoid = drvcoid
+  where @include_Loop2750n1 = 'Y'
+
+
+
+
+
+
+
+----------------------------------------------------------
+
+
+
+-- Build Dependent List
+if object_id('dbo.U_ECAR835DCS_DepList') is not null
+  drop table dbo.U_ECAR835DCS_DepList
+
+select distinct dbneeid deeid, dbndeprecid ddepid
+into dbo.U_ECAR835DCS_DepList 
+from U_dsi_bdm_DepDeductions with (nolock)
+where DbnFormatCode = @FormatCode
+and dbnvalidforexport = 'Y'
+
+
+--select * from U_dsi_bdm_DepDeductions
+
+--STEP18 Populate Source for Dependents --must be careful if showing all company data (too many records on join)
+
+-- select * from dbo.U_ECAR835DCS_drvTbl 
+
+insert into dbo.U_ECAR835DCS_drvTbl 
+SELECT    DISTINCT
+    drvEEID = drvEEID, 
+    drvcoid = ' ',
+    drvdepid = ddepid,
+    drvrectype = 'D',
+    drvssn = drvssn,
+    drvempno = drvempno,
+    drvemplstatus = drvemplstatus,
+    drvsubsort = cast(drvssn as char(9)) + ddepid + '2000',
+    drvINS01_yesno ='N',
+    
+    --BRO                Brother
+    --CHL                Child
+    --COU                Cousin
+    --DAD                Father
+    --DP                 Registered Dom Partner
+    --DPC                Domestic Partner Child
+    --FIA                Fiance
+    --GRC                Grandson or Granddaughter
+    --MOM                Mother
+    --OTH                Other
+    --SIS                Sister
+    --SPS                Spouse
+    --STC                Step-Child
+    --STF                Step-father
+    --STM                Step-mother
+    --Z                  <None>
+    drvINS02_relationship = Case ConRelationShip 
+                WHEN 'SPS' THEN '01' 
+                WHEN 'DP'  THEN '53' 
+                WHEN 'CHL' THEN '19' 
+                WHEN 'STC' THEN '19' 
+                WHEN 'DPC' THEN '19' 
+                WHEN 'GRC' THEN '19' 
+                else '19' end,
+    drvINS03_mainttype = '030',
+    drvINS04_maintreason = 'XN',    --'AI',
+    drvINS05_benstatus = 'A',
+    drvINS06_medicareplan = '',
+    drvINS07_cobraqualevent = '',
+    drvINS08_emplstatuscode = '',
+    drvINS09_studentstatus = case when ISNULL(conrelationship,'') not in ('SPS','DP') AND ISNULL(conisstudent,'') = 'Y' then 'F' else '' end,  -- LynnM SR 354797
+    drvINS10_handicapind =   case when ISNULL(conrelationship,'') not in ('SPS','DP') AND ISNULL(conisdisabled,'') = 'Y' then 'Y' else '' end, -- LynnM SR 354797
+    drvINS11_dateformat = '',
+    drvINS12_deathdate = '',
+    drvINS17_birthseqnumber = ' ',
+    drvNM101_entityidcode = 'IL',
+    drvNM102_entitytypequal = '1',
+    drvNM103_namelast = dbo.dsi_fnRemoveChars('.,/',Upper(conNameLast)),
+    drvNM104_namefirst = dbo.dsi_fnRemoveChars('.,/',Upper(conNameFirst)),
+    drvNM105_namemiddle  = dbo.dsi_fnRemoveChars('.,/',Upper(substring(conNameMiddle,1,1))),
+    drvNM106_nameprefix = '',--CONVERT(CHAR(1),null),    --dbo.dsi_fnRemoveChars('.,/-Z',upper(conNamePrefix)),
+    drvNM107_namesuffix = '',--convert(char(1),null),    --dbo.dsi_fnRemoveChars('.,/-Z',upper(conNameSuffix)),
+    drvNM108_identcodequal = case
+                    when isnull(rtrim(conssn),'') = '' then ''
+                    else '34'
+                    end,
+    drvNM109identcode = isnull(rtrim(conssn),''),
+    drvPER01_contfunccode = '',  -- = 'IP',
+    drvPER03_commnum1qual = '',    --case when isnull(rtrim(eepphonehomenumber),'') = '' then '' else 'HP end,
+    drvPER04_commnum1 = '',        --eepphonehomenumber,
+    drvPER05_commnum2qual = '',    --case when isnull(rtrim(eepaddressemail),'') = '' then '' else 'EM' end,
+    drvPER06_commnum2 = '',        --eepaddressemail,
+    drvPER07_commnum3qual = '',
+    drvPER08_commnum3 = '',
+    drvN301_address1 = dbo.dsi_fnRemoveChars('.,/-',Upper(eepAddressLine1)),
+    drvN302_address2 = dbo.dsi_fnRemoveChars('.,/-',Upper(eepAddressLine2)),
+    drvN401_city  = dbo.dsi_fnRemoveChars('.,/-',Upper(eepAddressCity)),
+    drvN402_state = eepAddressState,
+    drvN403_zipcode = replace(replace(left(eepAddressZipCode,5),'-',''),' ',''),
+    drvN404_country = '',        -- eepAddressCountry
+    drvN405_locationqual = '',
+    drvN406_location = '',
+    drvDMG01_dttmqual = 'D8',
+    drvDMG02_dttmperiod = condateofbirth,
+    drvDMG03_gender = congender,
+    drvDMG04_maritalstatus = '',
+    drvDMG05_ethnic = '',
+    drvDMG06_citizenship = '',
+    drvICM01_frequency = '',
+    drvICM02_amount = '',
+    drvICM03_hours = '',
+    drvICM04_location = '',
+    drvICM05_salgrade = ''
+
+    from dbo.U_ECAR835DCS_DepList with (nolock)
+    join U_ECAR835DCS_drvTbl on deeid = drveeid and drvdepid is null
+    join empPers with (nolock) on dEEID = eepEEID
+    join contacts with (nolock)    on deeid = coneeid and consystemid = ddepid
+
+
+--Build Loop 2000 REF Records for dependents
+insert into dbo.U_ECAR835DCS_Loop2000_REF
+SELECT    DISTINCT
+    drvEEID = drvEEID, 
+    drvcoid = drvcoid,
+    drvdepid = drvdepid,
+    drvsubsort = cast(drvssn as char(9)) + drvdepid + '2000',
+    drvREF01_refnumqual = '0F',
+    drvREF02_refnum = cast(drvssn as varchar(30))
+
+from dbo.u_ECAR835DCS_drvtbl
+where drvrectype = 'D'
+
+
+--insert into dbo.U_ECAR835DCS_Loop2000_REF
+--SELECT    DISTINCT
+--    drvEEID = d.drvEEID, 
+--    drvcoid = d.drvcoid,
+--    drvdepid = d.drvdepid,
+--    drvsubsort = cast(d.drvssn as char(9)) + d.drvdepid + '2000',
+--    drvREF01_refnumqual = 'DX',
+--    drvREF02_refnum = '0001'
+--from dbo.u_ECAR835DCS_drvtbl D
+----join dbo.U_ECAR835DCS_Loop2000_REF R on r.drveeid = d.drveeid and r.drvdepid is null and drvREF01_refnumqual = 'DX'
+--where drvrectype = 'D'
+
+
+--insert into dbo.U_ECAR835DCS_Loop2000_REF
+--SELECT    DISTINCT
+--    drvEEID = d.drvEEID, 
+--    drvcoid = d.drvcoid,
+--    drvdepid = d.drvdepid,
+--    drvsubsort = cast(d.drvssn as char(9)) + d.drvdepid + '2000',
+--    drvREF01_refnumqual = 'ZZ',
+--    drvREF02_refnum = r.drvREF02_refnum
+--
+--from dbo.u_ECAR835DCS_drvtbl D
+--join dbo.u_ECAR835DCS_drvtbl E on d.drveeid = e.drveeid and e.drvrectype = 'E'
+--join vw_int_EmpComp on e.drveeid = eeceeid and e.drvcoid = eeccoid
+--join dbo.U_ECAR835DCS_Loop2000_REF R on r.drveeid = drveeid and r.drvdepid is null and drvREF01_refnumqual = 'zz'
+--where d.drvrectype = 'D'
+
+
+--Build Loop 2000 DTP Records for dependents (not usually needed)
+
+/*
+insert into dbo.U_ECAR835DCS_Loop2000_DTP
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2000' ,
+    drvDTP01_dttmqual = '356',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = dbnbenstartdate
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+
+
+insert into dbo.U_ECAR835DCS_Loop2000_DTP
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2000' ,
+    drvDTP01_dttmqual = '357',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = dbnbenstopdate
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and dbnbenstopdate is not null
+
+*/
+
+
+-- Now build coverage data  HD Loop 2300
+Insert into dbo.U_ECAR835DCS_Loop2300_HD
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2300' + dbndedcode,
+    drvHD01_mainttype = '030',
+    drvHD02_maintreason = '',
+    drvHD03_inslinecode = 'HLT',
+    drvHD04_plancovdesc = drvHD04_plancovdesc,
+    drvHD05_covlvl = ''
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+    join dbo.u_ECAR835DCS_Loop2300_HD E on dbneeid = e.drveeid and e.drvdepid is null and dbndedcode = e.drvdedcode and drvHD03_inslinecode <> 'PDG'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+
+
+
+--select * from dbo.U_dsi_bdm_DepDeductions
+
+-- Now build coverage data  DTP Loop 2300
+
+insert into dbo.U_ECAR835DCS_Loop2300_DTP
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2300' + dbndedcode,
+    drvDTP01_dttmqual = '348',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = case when dbnbenstartdate < @PlanDate then @PlanDate else dbnbenstartdate end
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+
+
+insert into dbo.U_ECAR835DCS_Loop2300_DTP
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2300' + dbndedcode,
+    drvDTP01_dttmqual = '349',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = dbnbenstopdate
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and dbnbenstopdate is not null
+
+
+-- Build Coverage Level REF Loop 2300 if needed (must provided joins and data)
+
+insert into dbo.U_ECAR835DCS_Loop2300_REF
+SELECT    DISTINCT
+    drvEEID = d.drvEEID, 
+    drvcoid = d.drvcoid,
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(d.drvssn as char(9)) + dbndeprecid + '2300' + dbndedcode,
+    drvREF01_refidentqual = '1L',
+    drvREF02_refident = ''        --r.drvREF02_refident
+ 
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl D on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+    --join dbo.U_ECAR835DCS_Loop2300_REF R on r.drveeid = d.drveeid and r.drvdepid is null and drvREF01_refidentqual = '1L' and r.drvdedcode = dbndedcode
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and @include_Loop2300ref = 'Y'
+
+
+
+/*
+-- dependent prescription Rx
+
+Insert into dbo.U_ECAR835DCS_Loop2300_HD    --Rx
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2300' + 'Rx',
+    drvHD01_mainttype = '030',
+    drvHD02_maintreason = '',
+    drvHD03_inslinecode = 'PDG', 
+    drvHD04_plancovdesc = '',
+    drvHD05_covlvl = ''
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+    --join dbo.u_ECAR835DCS_Loop2300_HD E on dbneeid = e.drveeid and e.drvdepid is null and dbndedcode = e.drvdedcode and drvHD03_inslinecode = 'PDG'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and deddedtype = 'MED'
+
+
+insert into dbo.U_ECAR835DCS_Loop2300_DTP    --Rx
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2300' + 'Rx',
+    drvDTP01_dttmqual = '348',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = case when dbnbenstartdate < @PlanDate then @PlanDate else dbnbenstartdate end
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+    join vw_int_EmpComp on drveeid = eeceeid
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and deddedtype = 'MED'
+
+
+insert into dbo.U_ECAR835DCS_Loop2300_DTP    --Rx
+SELECT    DISTINCT
+    drvEEID = dbnEEID, 
+    drvcoid = ' ',
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2300' + 'Rx',
+    drvDTP01_dttmqual = '349',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = dbnbenstopdate
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and dbnbenstopdate is not null
+    and deddedtype = 'MED'
+
+
+
+insert into dbo.U_ECAR835DCS_Loop2300_REF
+SELECT    DISTINCT
+    drvEEID = d.drvEEID, 
+    drvcoid = d.drvcoid,
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(d.drvssn as char(9)) + dbndeprecid + '2300' + 'Rx',
+    drvREF01_refidentqual = '1L',
+    drvREF02_refident = ''        --r.drvREF02_refident
+ 
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl D on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+    --join dbo.U_ECAR835DCS_Loop2300_REF R on r.drveeid = d.drveeid and r.drvdepid is null and drvREF01_refidentqual = '1L'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and @include_Loop2300ref = 'Y'
+    and deddedtype = 'MED'
+
+*/
+
+
+-- Build Coverage Level LX and NM1 Loop 2310 if needed (Primary Care Provider PCP information)
+
+insert into dbo.U_ECAR835DCS_Loop2310_NM1
+SELECT    DISTINCT
+    drvEEID = drvEEID, 
+    drvcoid = drvcoid,
+    drvdepid = dbndeprecid,
+    drvdedcode = dbndedcode,
+    drvsubsort = cast(drvssn as char(9)) + dbndeprecid + '2310' + dbndedcode,
+    drvNM101_refidentqual = 'P3',
+    drvNM102_refident = '1',
+    drvNM103_lname = '',
+    drvNM104_fname = '',
+    drvNM105_mname = '',
+    drvNM106_prefix = '',
+    drvNM107_suffix = '',
+    drvNM108_qualifier = 'SV',
+    drvNM109_idcode = dbnprimarycarephysid,
+    drvNM110_relation = '72'
+
+from dbo.U_dsi_bdm_DepDeductions with (nolock)
+    join dbo.u_ECAR835DCS_drvtbl on dbneeid = drveeid and dbndeprecid = drvdepid and drvrectype = 'D'
+where DbnFormatCode = @FormatCode
+    and dbnvalidforexport = 'Y'
+    and @include_Loop2310nm1 = 'Y'
+    and isnull(dbnprimarycarephysid,'') <> ''
+
+
+
+
+---- Build N1 Loop 2750 if needed (Reporting Category) - dependents  (usually not needed)
+--
+--Insert into dbo.U_ECAR835DCS_Loop2750_N1
+--SELECT    DISTINCT
+--    drvEEID = drvEEID, 
+--    drvcoid = drvcoid,
+--    drvdepid = drvdepid,
+--    drvdedcode = '',
+--    drvsubsort = cast(drvssn as char(9)) + drvdepid + '2750',    -- + eeddedcode,
+--    drvN101_refidentqual = '75',
+--    drvN102_refident = case when jbcflsatype = 'X' and eepaddressstate not in ('GA','NC') then '001'
+--                            when eepaddressstate = 'GA' then '002'
+--                            when eepaddressstate = 'NC' then '003'
+--                            when eepaddressstate = 'PR' then '005'
+--                        else '004' end
+--
+--from dbo.u_ECAR835DCS_drvtbl
+--    join emppers on eepeeid = drveeid
+--    join vw_int_EmpComp with (nolock) on drveeid = eecEEid and drvcoid = eecCOID
+--    join jobcode with (nolock) on eecjobcode = jbcjobcode
+--where drvrectype = 'D'
+--and @include_Loop2750n1 = 'Y'
+
+
+
+
+-- Build REF Loop 2750 if needed (Reporting Category REF) - dependents
+
+--Insert into dbo.U_ECAR835DCS_Loop2750_REF
+--SELECT    DISTINCT
+--    drvEEID = drvEEID, 
+--    drvcoid = drvcoid,
+--    drvdepid = drvdepid,
+--    drvdedcode = '',
+--    drvsubsort = cast(drvssn as char(9)) + drvdepid +  '2755',    -- + eeddedcode,
+--    drvREF01_refidentqual = '18',
+--    drvREF02_refident = case when jbcflsatype = 'X' and eepaddressstate not in ('GA','NC') then '001'
+--                            when eepaddressstate = 'GA' then '002'
+--                            when eepaddressstate = 'NC' then '003'
+--                            when eepaddressstate = 'PR' then '005'
+--                        else '004' end
+--
+--from dbo.u_ECAR835DCS_drvtbl
+--    join emppers on eepeeid = drveeid
+--    join vw_int_EmpComp with (nolock) on drveeid = eecEEid and drvcoid = eecCOID
+--    join jobcode with (nolock) on eecjobcode = jbcjobcode
+--where drvrectype = 'D'
+--and @include_Loop2750ref = 'Y'
+--
+--
+---- Build DTP Loop 2750 if needed (Reporting Category REF) - deps
+--
+--Insert into dbo.U_ECAR835DCS_Loop2750_DTP
+--SELECT    DISTINCT
+--    drvEEID = drv.drvEEID, 
+--    drvcoid = drv.drvcoid,
+--    drvdepid = drv.drvdepid,
+--    drvdedcode = '',
+--    drvsubsort = cast(drv.drvssn as char(9)) + drv.drvdepid + '2757',    -- + eeddedcode,
+--    drvDTP01_dttmqual = '007',
+--    drvDTP02_dttmformat = 'D8',
+--    drvDTP03_dttmperiod = dtp.drvDTP03_dttmperiod
+--
+--from dbo.u_ECAR835DCS_drvtbl drv
+--join dbo.U_ECAR835DCS_Loop2750_DTP dtp on drv.drveeid = dtp.drveeid and dtp.drvdepid is null and dtp.drvDTP01_dttmqual = '007'
+--where drvrectype = 'D'
+--and @include_Loop2750dtp = 'Y'
+--
+--
+--
+---- Build LS Loop 2700 - deps
+--
+--INSERT into dbo.U_ECAR835DCS_Loop2700_LS 
+--SELECT    DISTINCT
+--    drvEEID = drvEEID, 
+--    drvcoid = drvcoid,
+--    drvdepid = drvdepid,
+--    drvdedcode = '',
+--    drvsubsort = cast(drvssn as char(9)) + drvdepid + '2700'
+--
+--from dbo.u_ECAR835DCS_drvtbl
+--where drvrectype = 'D'
+--and @include_Loop2750n1 = 'Y'
+--
+--
+---- Build LE Loop 2700 - deps
+--
+--INSERT into dbo.U_ECAR835DCS_Loop2700_LE 
+--SELECT    DISTINCT
+--    drvEEID = drvEEID, 
+--    drvcoid = drvcoid,
+--    drvdepid = drvdepid,
+--    drvdedcode = '',
+--    drvsubsort = cast(drvssn as char(9)) + drvdepid +  '2799'
+--
+--from dbo.u_ECAR835DCS_drvtbl
+--where drvrectype = 'D'
+--and @include_Loop2750n1 = 'Y'
+
+
+
+
+--STEP24  delete deductions from employee when not used such in domestic partner codes
+--                        or if dependent deductions are not same as employeees
+
+--delete from dbo.U_ECAR835DCS_Loop2300_HD
+--where drvdepid is null and drvdedcode in ('XXXXX','YYYYY')
+--
+--delete from dbo.U_ECAR835DCS_Loop2300_DTP
+--where drvdepid is null and drvdedcode in ('XXXXX','YYYYY')
+--
+--delete from dbo.U_ECAR835DCS_Loop2300_AMT
+--where drvdepid is null and drvdedcode in ('XXXXX','YYYYY')
+--
+--delete from dbo.U_ECAR835DCS_Loop2300_REF
+--where drvdepid is null and drvdedcode in ('XXXXX','YYYYY')
+
+
+-- Build Transaction Set Tables
+if object_id('U_ECAR835DCS_transsetwork') is not null
+  drop table dbo.U_ECAR835DCS_transsetwork
+
+select trneeid = drveeid,
+    trncoid = drvcoid,
+    trndepdepid = drvdepid,
+    trnrow = identity(int,1,1),
+    trnset = cast(' ' as char(9)),
+    drvsort = cast(' ' as char(20))
+into dbo.u_ECAR835DCS_transsetwork
+from dbo.u_ECAR835DCS_drvtbl 
+order by drveeid,drvdepid
+
+-- Now build logic to handle assigning transaction sets (can't have more than 10000 Ins records in a set)
+update dbo.u_ECAR835DCS_transsetwork
+set trnset = dbo.fn_padzero((trnrow / 10000 + 1),9,0),
+    drvsort = dbo.fn_padzero((trnrow / 10000 + 1),8,0) + trneeid
+
+--Now build transaction set header - ST
+if object_id('U_ECAR835DCS_ST') is not null
+  drop table dbo.U_ECAR835DCS_ST
+
+
+SELECT    DISTINCT
+    drvsort = dbo.fn_padzero(trnset,8,0),
+    drvsubsort = cast(' ' as char(25)),
+    drvST01_transsetid = '834',
+    drvST02_transsetctrlnum = trnset,
+    drvST03_implconvref = '005010X220A1',        --'005010X220',
+    drvst_segcount = cast(0 as integer)
+
+into dbo.U_ECAR835DCS_ST
+from dbo.u_ECAR835DCS_transsetwork
+          
+
+--Now build BGN record
+if object_id('U_ECAR835DCS_BGN') is not null
+  drop table dbo.U_ECAR835DCS_BGN
+
+SELECT    DISTINCT
+    trnset = trnset,
+    drvsort = dbo.fn_padzero(trnset,8,0),
+    drvsubsort = cast(' ' as char(25)),
+    drvBGN01_transsetpurpose = '00',
+    drvBGN02_referenceidsender =  trnset,        --use customer fed tax ID if not specified by vendor
+    drvBGN03_date = @filedate,
+    drvBGN04_date = @filedate,
+    drvBGN_05_timezone = 'ET',
+    drvBGN06_referenceid = '',
+    drvBGN07_transtypecode = '',
+    drvBGN08_actioncode = '4'    --'RX'
+
+into dbo.U_ECAR835DCS_BGN
+from dbo.u_ECAR835DCS_transsetwork
+
+
+--Now build REF record
+if object_id('U_ECAR835DCS_REF') is not null
+  drop table dbo.U_ECAR835DCS_REF
+
+
+SELECT    DISTINCT
+    trnset = trnset,
+    drvsort = dbo.fn_padzero(trnset,8,0),
+    drvsubsort = cast(' ' as char(25)),
+    drvREF01_referenceidqual = '38',
+    drvREF02_referenceid = 'ppppp'
+
+into dbo.U_ECAR835DCS_REF
+from dbo.u_ECAR835DCS_transsetwork
+where @include_STref = 'Y'
+
+
+--Now build DTP record (can have multiple DTP records, if so insert additional records to table)
+if object_id('U_ECAR835DCS_DTP') is not null
+  drop table dbo.U_ECAR835DCS_DTP
+
+
+SELECT    DISTINCT
+    trnset = trnset,
+    drvsort = dbo.fn_padzero(trnset,8,0),
+    drvsubsort = cast(' ' as char(25)),
+    drvDTP01_dttmqual = '007',
+    drvDTP02_dttmformat = 'D8',
+    drvDTP03_dttmperiod = @filedate
+
+into dbo.U_ECAR835DCS_DTP
+from dbo.u_ECAR835DCS_transsetwork
+where @include_STdtp = 'Y'
+
+--Now build N1 record 
+if object_id('U_ECAR835DCS_N1') is not null
+  drop table dbo.U_ECAR835DCS_N1
+
+
+SELECT    DISTINCT
+    trnset = trnset,
+    drvsort = dbo.fn_padzero(trnset,8,0),
+    drvsubsort = cast(' ' as char(25)),
+    drvN101_entityidcode = 'P5',
+    drvN102_name = UPPER(cast('DCS Corp' as varchar(70))),   --UPPER(cast('DCS Corporation' as varchar(70))),
+    drvN103_idcodequal = 'FI',        --'24'  HIPPA EIN
+    drvN104_idcode = '541044062'
+
+into dbo.U_ECAR835DCS_N1
+from dbo.u_ECAR835DCS_transsetwork
+
+Insert into dbo.U_ECAR835DCS_N1
+SELECT    DISTINCT
+    trnset = trnset,
+    drvsort = dbo.fn_padzero(trnset,8,0),
+    drvsubsort = cast(' ' as char(25)),
+    drvN101_entityidcode = 'IN',
+    drvN102_name = 'CAREFIRST',
+    drvN103_idcodequal = 'FI',
+    drvN104_idcode = '521385894'
+
+from dbo.u_ECAR835DCS_transsetwork
+
+
+--update transaction set segment counts
+
+
+
+update dbo.U_ECAR835DCS_ST
+set drvst_segcount =
+    isnull(bgncount,0) +    -- BGN
+    isnull(refcount,0) +    -- REF
+    isnull(dtpcount,0) +    -- DTP
+    isnull(n1count,0) +    --N1
+    isnull(inscount,0) +     -- INS    
+    isnull(nm1count,0) +    -- NM1
+    isnull(percount,0) +    -- PER    
+    isnull(n3count,0) +     -- N3    
+    isnull(n4count,0) +    -- N4
+    isnull(dmgcount,0) +     -- DMG
+    isnull(icmcount,0) +    -- ICM
+    isnull(L2000refcount,0) +    -- Loop 2000 REF
+    isnull(L2000dtpcount,0) +    -- Loop 2000 DTP
+    isnull(L2100amtcount,0) +    -- Loop 2100 AMT
+    isnull(L2300hdcount,0) +    -- Loop 2300 HD
+    isnull(L2300dtpcount,0) +    -- Loop 2300 DTP
+    isnull(L2300amtcount,0) +    -- Loop 2300 AMT
+    isnull(l2300refcount,0) +    -- Loop 2300 REF
+    isnull(l2310lxcount,0) +    -- Loop 2310 LX
+    isnull(l2310nm1count,0) +    -- Loop 2310 NM1
+
+    isnull(l2700lscount,0) +    -- Loop 2700 LS
+    isnull(l2700lxcount,0) +    -- Loop 2700 LX
+    isnull(l2750n1count,0) +    -- Loop 2750 N1
+    isnull(l2750refcount,0) +    -- Loop 2750 REF
+    isnull(l2750dtpcount,0) +    -- Loop 2750 DTP
+    isnull(l2700lecount,0) +    -- Loop 2700 LE
+    2                    -- Count of ST, SE segment
+from dbo.U_ECAR835DCS_ST
+left join (select count(*) bgncount, trnset 
+    from dbo.U_ECAR835DCS_BGN group by trnset) bgn on bgn.trnset = drvST02_transsetctrlnum 
+left join (select count(*) refcount, trnset 
+    from dbo.U_ECAR835DCS_REF 
+    where drvREF01_referenceidqual <> '' group by trnset) ref on ref.trnset = drvST02_transsetctrlnum
+left join (select count(*) dtpcount, trnset 
+    from dbo.U_ECAR835DCS_DTP 
+    where drvDTP01_dttmqual <> ''
+    group by trnset) dtp on dtp.trnset = drvST02_transsetctrlnum
+left join (select count(*) n1count, trnset 
+    from dbo.U_ECAR835DCS_N1 group by trnset) n1 on n1.trnset = drvST02_transsetctrlnum 
+left join (select count(*) inscount, trnset 
+    from dbo.U_ECAR835DCS_drvtbl
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) ins on ins.trnset = drvST02_transsetctrlnum
+left join (select count(*) nm1count, trnset 
+    from dbo.U_ECAR835DCS_drvtbl
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) nm1 on nm1.trnset = drvST02_transsetctrlnum
+left join (select count(*) percount, trnset 
+    from dbo.U_ECAR835DCS_drvtbl
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    where (drvPER03_commnum1qual <> '' or drvPER05_commnum2qual <> '' or drvPER07_commnum3qual <> '')
+    group by trnset) per on per.trnset = drvST02_transsetctrlnum
+left join (select count(*) n3count, trnset 
+    from dbo.U_ECAR835DCS_drvtbl
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    where (drvN301_address1 <> '')
+    group by trnset) n3 on n3.trnset = drvST02_transsetctrlnum
+left join (select count(*) n4count, trnset 
+    from dbo.U_ECAR835DCS_drvtbl
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    where (drvN401_city <> '')
+    group by trnset) n4 on n4.trnset = drvST02_transsetctrlnum
+left join (select count(*) dmgcount, trnset 
+    from dbo.U_ECAR835DCS_drvtbl
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) dmg on dmg.trnset = drvST02_transsetctrlnum
+left join (select count(*) icmcount, trnset 
+    from dbo.U_ECAR835DCS_drvtbl
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    where drvICM01_frequency <> ''
+    group by trnset) icm on icm.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2000refcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2000_ref
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2000ref on l2000ref.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2000dtpcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2000_dtp
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2000dtp on l2000dtp.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2100amtcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2100A_amt 
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2100amt on l2100amt.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2300hdcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2300_hd 
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2300hd on l2300hd.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2300dtpcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2300_dtp 
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2300dtp on l2300dtp.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2300amtcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2300_amt 
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2300amt on l2300amt.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2300refcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2300_ref 
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2300ref on l2300ref.trnset = drvST02_transsetctrlnum
+
+left join (select count(*) L2310lxcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2310_nm1 
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2310lx on l2310lx.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2310nm1count, trnset 
+    from dbo.U_ECAR835DCS_Loop2310_nm1 
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2310nm1 on l2310nm1.trnset = drvST02_transsetctrlnum
+
+left join (select count(*) L2700lscount, trnset 
+    from dbo.U_ECAR835DCS_Loop2700_ls
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2700ls on l2700ls.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2700lxcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2700_ls
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2700lx on l2700lx.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2750n1count, trnset 
+    from dbo.U_ECAR835DCS_Loop2750_n1
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2750n1 on l2750n1.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2750refcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2750_ref
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2750ref on l2750ref.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2750dtpcount, trnset 
+    from dbo.U_ECAR835DCS_Loop2750_dtp
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2750dtp on l2750dtp.trnset = drvST02_transsetctrlnum
+left join (select count(*) L2700lecount, trnset 
+    from dbo.U_ECAR835DCS_Loop2700_ls
+    join dbo.u_ECAR835DCS_transsetwork  on trneeid = drveeid and trncoid = drvcoid and isnull(trndepdepid,'') = isnull(drvdepid,'')
+    group by trnset) l2700le on l2700le.trnset = drvST02_transsetctrlnum
+
+
+
+--Build SE Trailer
+--Now build transaction set trailer SE (can't use header record due to sorting)
+
+if object_id('U_ECAR835DCS_SE') is not null
+  drop table dbo.U_ECAR835DCS_SE
+
+SELECT    DISTINCT
+    drvsort = rtrim(drvsort)+ 'ZZZZZZZZZZZZ',        --'999999999999',
+    drvsubsort = cast(' ' as char(25)),
+    drvSE01_segcount = drvst_segcount,
+    drvSE02_transsetctrlnum = drvST02_transsetctrlnum
+
+into dbo.U_ECAR835DCS_SE
+from dbo.u_ECAR835DCS_ST
+
+--Step25 Create Headers
+
+--Create GS Header Record
+if object_id('U_ECAR835DCS_GS') is not null
+  drop table dbo.U_ECAR835DCS_GS
+
+SELECT    DISTINCT
+    drvsort = cast(' ' as char(20)),
+    drvsubsort = cast(' ' as char(25)),
+    drvGS01_functidcode = 'BE',
+    drvGS02_senderid = '541044062',
+    drvGS03_receiverid = '00190',
+    drvGS04_date = @filedate,
+    drvGS05_date = @filedate,
+    drvGS06_grpcontrolnum = '100000001',
+    drvGS07_respagencycode = 'X',
+    drvGS08_verrelease = '005010X220A1',        --'005010X220',
+    drvGS_transsetcount = setcount
+
+into dbo.U_ECAR835DCS_GS
+from (select count(*) setcount from dbo.U_ECAR835DCS_ST) st
+
+
+--Create ISA Header Record
+if object_id('U_ECAR835DCS_ISA') is not null
+  drop table dbo.U_ECAR835DCS_ISA
+
+SELECT    DISTINCT
+    drvsort = cast(' ' as char(20)),
+    drvsubsort = cast(' ' as char(25)),
+    drvISA01_authinfoqual = '00',
+    drvISA02_authinfo = ' ',
+    drvISA03_secinfoqual = '00',
+    drvISA04_secinfo = ' ',
+    drvISA05_senderidqual = '30',  -- LynnM SR 354797   'ZZ'
+    drvISA06_senderid = '541044062',  -- select cmmfedtaxid from compmast 541044062
+    drvISA07_recvidqual = 'ZZ',
+    drvISA08_recvid = '00190',  -- 00190 - MD Plan, 00580 - DC Plan
+    drvISA09_intchgdate = @filedate,
+    drvISA10_intchgdate = @filedate,
+    drvISA11_intchgcontrolid = '^',  -- LynnM SR 354797  '^',   
+    drvISA12_intchgcontrolver = '00501',
+    drvISA13_intchgcontrolnum = '100000001',
+    drvISA14_acknowreq = '0',
+    drvISA15_usageind =  case when @exportcode like '%TEST%' then 'T' else 'P' end,
+    drvISA16_compelementsep =  ':',  -- LynnM SR 354797  ':',        
+    drvISA_groupcount =  groupcount
+
+into dbo.U_ECAR835DCS_ISA
+from (select count(*) groupcount from dbo.U_ECAR835DCS_GS) gs
+
+
+
+--STEP30 Set FileName  
+if (dbo.dsi_fnVariable('ECAR835DCS','UseFileName') = 'N')
+  update dbo.U_dsi_Parameters
+    set ExportFile =  'DCSC_CAR_' + convert(char(8),getdate(),112) + '.txt'
+    where FormatCode = 'ECAR835DCS'
+
+END
+
+/********
+
+
+
+select * from ascdeff
+where adfheadersystemid IN (SELECT adhSystemID from AscDefH WHERE AdhFormatCode = 'ECAR835DCS')
+order by adfsetnumber, adffieldnumber
+
+
+
+padzero
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE function [dbo].[fn_PadZero](@numIn float, @Length int, @decimal int)
+  returns varchar(24) as
+  begin
+    declare @out varchar(24)
+    select @out = case when @numIn < 0 then '-' else '' end +
+      replace(str(abs(@numIn), @Length - case when @numIn < 0 then 1 else 0 end, @decimal), ' ', '0')
+    return @out
+  end
+
+
+
+
+
+--STEP31 Remember to alter view for correct sorting
+ALTER  View dbo.dsi_vwECAR835DCS_Export as
+        select top 2000000 Data from dbo.U_ECAR835DCS_File with (nolock)
+         order by case
+                when substring(Recordset,1,1) = 'H' then 1
+                when substring(Recordset,1,1) = 'D' then 2
+                when substring(Recordset,1,1) = 'T' then 3
+            end, 
+                initialsort, subsort, substring(Recordset,2,2),
+            case when substring(data,1,2) = 'N1' then
+                case when substring(data,4,2) = 'P5' then '1'
+                    when substring(data,4,2) = 'IN' then '2'
+                        else '3' end
+                when substring(data,1,3) = 'REF' then
+                    case when substring(data,5,2) = '0F' then '1'
+                        when substring(data,5,2) = '1L' then '2'
+                        else '3' + substring(data,5,2) end
+                when substring(data,1,3) = 'DTP' then
+                    case when substring(data,5,3) = '348' then '1'
+                        when substring(data,5,3) = '349' then '2'
+                        when substring(data,5,3) = '356' then '3'
+                        when substring(data,5,3) = '357' then '4'
+                        else '5' + substring(data,5,2) end
+            else '0'
+            end
+
+-- select * from dbo.U_ECAR835DCS_File where [data] like 'per%'
+
+*STEP27 Used for testing
+dbo.dsi_sp_testswitchbox_v2 'ECAR835DCS','ECAR835DCS'
+dbo.dsi_sp_testswitchbox_v2 'ECAR835DCS','TEST'
+dbo.dsi_sp_testswitchbox_v2 'ECAR835DCS','ACTIVEOE'
+dbo.dsi_sp_testswitchbox_v2 'ECAR835DCS','PASSIVEOE'
+*************/
+GO
+ CREATE  View dbo.dsi_vwECAR835DCS_Export as
+        select top 2000000 Data from dbo.U_ECAR835DCS_File with (nolock)
+         order by case
+                when substring(Recordset,1,1) = 'H' then 1
+                when substring(Recordset,1,1) = 'D' then 2
+                when substring(Recordset,1,1) = 'T' then 3
+            end, 
+                initialsort, subsort, substring(Recordset,2,2),
+            case when substring(data,1,2) = 'N1' then
+                case when substring(data,4,2) = 'P5' then '1'
+                    when substring(data,4,2) = 'IN' then '2'
+                        else '3' end
+                when substring(data,1,3) = 'REF' then
+                    case when substring(data,5,2) = '0F' then '1'
+                        when substring(data,5,2) = '1L' then '2'
+                        else '3' + substring(data,5,2) end
+                when substring(data,1,3) = 'DTP' then
+                    case when substring(data,5,3) = '348' then '1'
+                        when substring(data,5,3) = '349' then '2'
+                        when substring(data,5,3) = '356' then '3'
+                        when substring(data,5,3) = '357' then '4'
+                        else '5' + substring(data,5,2) end
+            else '0'
+            end
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'ECAR835DCS' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'ECAR835DCS'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'ECAR835DCS'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECAR835DCS', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'ECAR835DCS', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECAR835DCS', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout
