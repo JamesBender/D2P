@@ -11,8 +11,8 @@ Directions:
 @CreateDate - Replace with date of creation
 @SRNumber - Replace with SR number
 @CustomFormatCode - Replace with Format Code (i.e., ESUNLIF834)
-@SchEDULED = Replace with SCH_ and left 6 characherts of Format Code (ex: SCH_ESUNLI) 
 @CustomFormatName - Replace with Name of Interface (AdfFormatName) (i.e., Sunlife 834 Export)
+@SCHEDULED = Replace with SCH_ and left 6 characherts of Format Code (ex: SCH_ESUNLI)
 @CompanyCode - Replace with Company Code (i.e., GOOG)
 @IsWebFlag - Replace with 'Y' (Yes) or 'N' (No) for Web Interface Settings
 
@@ -1008,7 +1008,7 @@ ALTER VIEW dbo.dsi_vw@CustomFormatCode_Export AS
 GO
 
 --Check out iAscDefF
-SELECT * FROM dbo.iAscDefF
+SELECT * FROM dbo.AscDef
 WHERE AdfHeaderSystemID LIKE '@CustomFormatCode%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
