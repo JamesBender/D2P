@@ -1239,9 +1239,15 @@ BEGIN
         ,drvHD03_InsuranceLineCode = CASE WHEN bdmDedCode IN ('MED1','MED','MED3') THEN 'HLT'
                                            
                                      END
-        ,drvHD04_PlanCoverageDesc = Case When bdmDedcode IN ('MED1') THEN 'CP2' END
+        ,drvHD04_PlanCoverageDesc = Case When bdmDedcode IN ('MED1','MED2','MED3') and EepAddressState = 'IL' THEN 'ILP-CP2'
+                                    When bdmDedcode IN ('MED1','MED2','MED3') and EepAddressState = 'MI' THEN 'MIP-CP2'
+                                    When bdmDedcode IN ('MED1','MED2','MED3') and EepAddressState = 'MA' THEN 'MPF-CP2'
+                                    When bdmDedcode IN ('MED1','MED2','MED3') and EepAddressState = 'TX' THEN 'TXP-CP2'
+                                    ELSE 'CP2'
+                                    END
+
         ,drvHD05_CoverageLevelCode =Case When bdmDedCode IN ('MED1','MED2','MED3') AND bdmBenOption IN ('EE') then 'EMP'
-                                         when bdmDedCode IN ('MED1','MED2','MED3') AND bdmBenOption IN ('EES','bdmP') THEN 'ESP'     
+                                         when bdmDedCode IN ('MED1','MED2','MED3') AND bdmBenOption IN ('EES','EEDP') THEN 'ESP'     
                                          when bdmDedCode IN ('MED1','MED2','MED3') AND bdmBenOption IN ('EEC') then 'ECH'
                                          when bdmDedCode IN ('MED1','MED2','MED3') AND bdmBenOption IN ('EEF','EEDPF') THEN 'FAM'
                                          end
