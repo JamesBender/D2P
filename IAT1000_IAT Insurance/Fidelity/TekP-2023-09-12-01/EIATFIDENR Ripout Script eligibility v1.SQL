@@ -570,11 +570,13 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EIATFIDENR WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND BdmRecType = 'EMP'
     left Join dbo.U_EIATFIDENR_Audit WITH (NOLOCK) 
         ON audEEID = xeeid
         and audKey2 = xcoid
     Where EecEEType in ('REB','REF','REG','REH','CPB')
         AND  (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (EecDateofTermination  BETWEEN  @StartDate AND @EndDate or audDateTime BETWEEN  @StartDate AND @EndDate )))
+
     ;
     ---------------------------------
     -- HEADER RECORD
