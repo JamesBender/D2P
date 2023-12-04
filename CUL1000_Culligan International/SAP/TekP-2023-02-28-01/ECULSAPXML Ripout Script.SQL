@@ -398,14 +398,14 @@ BEGIN
     --==========================================
     -- Declare variables
     --==========================================
-    DECLARE  @FormatCode         VARCHAR(12)
+        DECLARE  @FormatCode         VARCHAR(12)
             ,@ExportCode         VARCHAR(12)
             ,@StartDate          DATETIME
             ,@EndDate            DATETIME
             ,@StartPerControl    VARCHAR(9)
             ,@EndPerControl      VARCHAR(9)
             ,@FileName           VARCHAR(100)
-            ,@ValueDate          Varchar(50)
+			,@ValueDate          Varchar(50)
 
     -- Declare dates from Parameter file
     SELECT
@@ -483,7 +483,7 @@ BEGIN
         ON GlbBaseSegment = substring(vGLAcctNumber,11,8)
    JOIN dbo.ChkHead ck WITH (NOLOCK)
         ON ckhgennumber = vGenNumber
-      Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
+   --   Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
         AND CASE WHEN vPayGroup = 'PGN' THEN 'Paragon Payroll Checks'
                                 WHEN vPayGroup = 'CWGB' THEN 'CWG Payroll Checks'
                                 WHEN vPayGroup = 'BCC' THEN 'Culligan BCC Payroll Checks'
@@ -543,13 +543,13 @@ BEGIN
         ON GlbBaseSegment = substring(vGLAcctNumber,11,8)
    JOIN dbo.ChkHead ck WITH (NOLOCK)
         ON ckhgennumber = vGenNumber
-        Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
+       -- Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
     GROUP BY ck.ckhrecid
     
     having CAst(SUM(vCreditAmt) AS DECIMAL(18,2)) <> 0.00 ) w
      
         
-     SET @ValueDate = (Select Convert(VARCHAR,MAX(drvValueDate), 120)  FROM  dbo.U_ECULSAPXML_WorkingTbl) 
+     SET @ValueDate = (Select Convert(VARCHAR (10),MAX(drvValueDate), 126)  FROM  dbo.U_ECULSAPXML_WorkingTbl) 
 
      --==========================================
     -- Build XML / Load For Custom BCP
@@ -570,7 +570,7 @@ BEGIN
   SELECT @HdrXML =
      
         (SELECT 
-        CreationDateTime =  GETDATE()
+        CreationDateTime =  Convert(VARCHAR, GETDATE(),112) +'T' + convert(VARCHAR(8), GETDATE(), 14) + 'Z'
         
         FOR XML PATH ('MessageHeader')
         , TYPE )     
@@ -586,7 +586,7 @@ BEGIN
         (SELECT
           
             (SELECT 
-                CreationDateTime =  GETDATE()
+                CreationDateTime =  Convert(VARCHAR, GETDATE(),112) +'T' + convert(VARCHAR(8), GETDATE(), 14) + 'Z'
         
             FOR XML PATH ('MessageHeader')
             , TYPE )     
@@ -607,23 +607,23 @@ BEGIN
                     CompanyCode = 'US01'
                    ,GLAccount= drvGLAccount
                    ,(SELECT  "@currencyCode"='USD' 
-                             , CASE WHEN FORMAT(drvDebit, '#.##' )  <> '0.00' THEN FORMAT(drvDebit, '#.##') 
-                                    WHEN FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##') 
-                                END
+                             , CASE WHEN drvGLAccount <>'11015050' and  FORMAT(drvDebit, '#.##' )  <> '0.00' THEN FORMAT(drvDebit, '#.##') 
+									WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##') 
+								END
                                 FOR XML PATH ('AmountInTransactionCurrency')
                             ,TYPE)
                     ,(SELECT  "@currencyCode"='USD' 
-                             , CASE WHEN FORMAT(drvDebit, '#.##' )  <> '0.00' THEN FORMAT(drvDebit, '#.##') 
-                                    WHEN FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##') 
-                                    END 
+                             , CASE WHEN drvGLAccount <>'11015050' and  FORMAT(drvDebit, '#.##' )  <> '0.00' THEN FORMAT(drvDebit, '#.##') 
+									WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##')
+									END 
                                 FOR XML PATH ('AmountInCompanyCodeCurrency')
                             ,TYPE)
-                    ,DocumentItemText = CASE WHEN FORMAT(drvDebit, '#.##' )  <> '0.00' THEN drvItemText
-                                             WHEN FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvItemText 
-                                         END
-                    ,AssignmentReference =  CASE WHEN FORMAT(drvDebit, '#.##' )  <> '0.00' THEN drvAssignmentNumber
-                                                 WHEN FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvAssignmentNumber 
-                                             END 
+                    ,DocumentItemText = CASE WHEN drvGLAccount <>'11015050' and FORMAT(drvDebit, '#.##' )  <> '0.00' THEN drvItemText
+											 WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvItemText 
+										 END
+                    ,AssignmentReference =  CASE WHEN drvGLAccount <>'11015050' and FORMAT(drvDebit, '#.##' )  <> '0.00' THEN drvAssignmentNumber
+												 WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvAssignmentNumber 
+											 END 
                     ,(SELECT 
                      ProfitCenter= 'C8010'
                     FOR XML PATH ('AccountAssignment')

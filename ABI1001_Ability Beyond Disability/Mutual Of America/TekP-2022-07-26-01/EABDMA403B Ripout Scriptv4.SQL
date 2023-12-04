@@ -5,7 +5,7 @@ EABDMA403B: Mutual of America 403b Export
 FormatCode:     EABDMA403B
 Project:        Mutual of America 403b Export
 Client ID:      ABI1001
-Date/time:      2023-07-28 16:01:34.407
+Date/time:      2023-11-30 06:55:53.460
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -315,15 +315,15 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EABDMA403B_20230728.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EABDMA403B_20231130.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual of America 403b Export','202209029','EMPEXPORT','ONDEM_XOE',NULL,'EABDMA403B',NULL,NULL,NULL,'202209029','Aug 31 2022  2:37PM','Aug 31 2022  2:37PM','202208201',NULL,'','','202208201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','LJM60,LJLQQ,LJMEE',NULL,NULL,NULL,'Mutual of America 403b E-Sched','202209029','EMPEXPORT','SCH_EABDMA',NULL,'EABDMA403B',NULL,NULL,NULL,'202307249','Aug 31 2022  2:37PM','Aug 31 2022  2:37PM','202307111',NULL,'','CTSTFF,NYSTFF','202208201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',LJM60,LJLQQ,LJMEE',NULL,NULL,NULL,'Mutual of America 403b Export','202209029','EMPEXPORT','ONDEM_XOE',NULL,'EABDMA403B',NULL,NULL,NULL,'202209029','Aug 31 2022  2:37PM','Aug 31 2022  2:37PM','202208201',NULL,'eecPaygroup','CTSTFF,NYSTFF','202208201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','LJM60,LJLQQ',NULL,NULL,NULL,'Mutual of America 403b E-Sched','202308181','EMPEXPORT','SCH_EABDMA',NULL,'EABDMA403B',NULL,NULL,NULL,'202311279',NULL,NULL,'202311131',NULL,'eecPaygroup','CTSTFF,NYSTFF','202308051',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Mutual of America 403b E-Test','202307249','EMPEXPORT','TEST_XOE','Nov 13 2022  6:52PM','EABDMA403B',NULL,NULL,NULL,'202307249','Sep  2 2022 12:00AM','Dec 30 1899 12:00AM','202307111','1128','','','202307111',dbo.fn_GetTimedKey(),NULL,'us3lKiABI1001',NULL);
 
 -----------
@@ -601,9 +601,8 @@ Purpose: Mutual of America 403b Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
-
 Marie Waters        07/21/2023     TekP-2022-07-26-01 Added 9-15 loan codes and populated loan number field
-XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
+
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EABDMA403B';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EABDMA403B';
@@ -655,7 +654,26 @@ BEGIN
     DELETE FROM dbo.U_EABDMA403B_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EABDMA403B_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
-    
+
+    -- Removes invalid EE types
+    DELETE dbo.U_EABDMA403B_EEList
+    FROM dbo.U_EABDMA403B_EEList
+    JOIN dbo.vw_int_EmpComp
+    ON EecEEID = xEEID
+    AND EecCoID = xCoID
+    WHERE EecOrglvl1 not IN ('EMPL')
+    --WHERE EecOrglvl1 IN ('CONT','CONS','INTERN')
+
+    --Remove test employees
+    DELETE FROM dbo.U_EABDMA403B_EEList where xEEID IN ('EDZ8GY000030','8NCIS90000K0','8P1GBV0000K0','8NLVUD0000K0','8P1GLK00A0K0','8P1GLK00A0K0')
+
+    -- Removes test EE type
+    DELETE dbo.U_EABDMA403B_EEList
+    FROM dbo.U_EABDMA403B_EEList
+    JOIN dbo.vw_int_EmpComp
+    ON EecEEID = xEEID
+    AND EecCoID = xCoID
+    WHERE EecEEType = 'TES'       
 
 
     --==========================================
@@ -687,8 +705,8 @@ BEGIN
     JOIN dbo.U_EABDMA403B_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime  Between  Dateadd(d, -30, @StartDate)  and @EndDate  --BETWEEN '01/01/' + CONVERT(VARCHAR(4), DATEPART(yy, @StartDate))  AND @EndDate
-    AND audAction <> 'DELETE' and audNewValue = 'T';
+    WHERE audDateTime Between Dateadd(d, -30, @StartDate) and @EndDate  --BETWEEN '01/01/' + CONVERT(VARCHAR(4), DATEPART(yy, @StartDate))  AND @EndDate
+   AND audAction = 'Update' and Ltrim(rtrim(audnewvalue)) = 'T';
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EABDMA403B_Audit ON dbo.U_EABDMA403B_Audit (audEEID,audKey2);
@@ -835,7 +853,6 @@ BEGIN
     --and left(PehPerControl,8) >= DATEADD(DAY, -365, Left(@StartPerControl, 8))
      WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
     AND PehPerControl <= @EndPerControl
-    --and peheeid = '8NE63S0000K0'
     GROUP BY PehEEID
       HAVING SUM(PehCurAmt)>= 0.00 OR SUM(PehCurHrs)>= 0.00;
 
@@ -946,9 +963,12 @@ BEGIN
         ON audeeid = xeeid
         and audKey2 = xcoid
 
-    WHERE  (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and (( AudDateTime Between  Dateadd(d, -30, @StartDate) and @EndDate) or ( PehCurAmt > 0.00  OR PdhEECurAmt > 0.00 )))
-        and eecorglvl1 = 'EMPL' and EecEEType <> 'TES'
-        and ((PehCurAmt) > 0.00  OR (PdhEECurAmtYTD) > 0.00 ))
+    WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and ((eecdateoftermination between DATEADD(d, -30, @StartDate) and @EndDate) 
+            or (PehInclInDefCompY > 0.00 or PehInclInDefCompHrsY > 0.00 or PdhEEDeff > 0.00 or PehInclInDefCompN > 0.00 or PdhEMPMatch > 0.00 or PdhEMPBaseCon > 0.00)))
+            and (PehCurAmt > 0.00 or PdhEECurAmt > 0.00 or PdhEECurAmtYTD > 0.00 or PehInclInDefCompYTD > 0.00))
+
+    --WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and ((AudDateTime Between Dateadd(d,-30,@StartDate) and @EndDate) or (PehCurAmt > 0.00 or PdhEECurAmt > 0.00 or PdhEECurAmtYTD > 0.00)))
+ --      and EecEEType <> 'TES' and (PehCurAmt > 0.00 or PdhEECurAmt > 0.00 or PdhEECurAmtYTD > 0.00))
   
         --    WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime BETWEEN '01/01/' + CONVERT(VARCHAR(4), DATEPART(yy, @StartDate))  AND @EndDate  ))
         --and eecorglvl1 = 'EMPL' and EecEEType <> 'TES'
