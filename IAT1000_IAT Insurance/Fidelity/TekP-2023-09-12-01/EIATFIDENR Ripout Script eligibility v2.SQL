@@ -606,7 +606,6 @@ BEGIN
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND bdmrectype = 'EMP'
-
      LEFT JOIN (
             SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent
             FROM (
