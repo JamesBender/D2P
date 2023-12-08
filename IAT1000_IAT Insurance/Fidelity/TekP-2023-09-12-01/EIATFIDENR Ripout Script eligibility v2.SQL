@@ -5,7 +5,7 @@ EIATFIDENR: Fidelity HSA Enrollment
 FormatCode:     EIATFIDENR
 Project:        Fidelity HSA Enrollment
 Client ID:      IAT1000
-Date/time:      2023-12-08 11:12:51.250
+Date/time:      2023-12-08 12:19:08.660
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -285,7 +285,10 @@ CREATE TABLE [dbo].[U_EIATFIDENR_Audit] (
     [audDateTime] datetime NOT NULL,
     [audOldValue] nvarchar(2000) NULL,
     [audNewValue] nvarchar(2000) NULL,
-    [audRowNo] bigint NULL
+    [audRowNo] bigint NULL,
+    [audNewHire] varchar(1) NOT NULL,
+    [audTermintation] varchar(1) NOT NULL,
+    [audBenefitDate] varchar(1) NOT NULL
 );
 
 -----------
@@ -487,16 +490,16 @@ BEGIN
         ,audOldValue
         ,audNewValue
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value ORDER BY audDateTime DESC)
-        --,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
-        --,audTermintation = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
-        --,audBenefitChange = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedBenStartDate' AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '') THEN 'Y' ELSE 'N'END
+        ,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        ,audTermintation = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
+        ,audBenefitDate = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedBenStartDate' AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '') THEN 'Y' ELSE 'N'END
     INTO dbo.U_EIATFIDENR_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
     JOIN dbo.U_EIATFIDENR_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE'  AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '');
+    AND audAction <> 'DELETE'  --AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '');
 ;
 
     -- Create Index
@@ -534,7 +537,7 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES(@FormatCode,'FutureDatedStartDateDays', '30')
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES(@FormatCode,'FutureDatedStopDateDays', '30')
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
+ --   INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -603,25 +606,36 @@ BEGIN
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND bdmrectype = 'EMP'
-        AND BdmChangeReason IN ('100','208','210','200','106','CHGRP','LEVNT1','401')
-    Join dbo.U_EIATFIDENR_Audit WITH (NOLOCK) 
-        ON audEEID = xeeid
-        and audKey2 = xcoid
-     --LEFT JOIN (
-     --       SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent
-     --       FROM (
-     --               SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent, ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID ORDER BY EdhEffDate desc) AS RN
-     --               FROM dbo.EmpHDed a WITH (NOLOCK)
-     --               JOIN dbo.BenChRsn WITH (NOLOCK)
-     --                   ON EdhChangeReason = BchCode
-     --               WHERE EdhDedCode IN (@DedList)
-     --                   AND edhChangeReason IN ('100','208','210','200','106','CHGRP','LEVNT1','401') AND EdhEffDate BETWEEN @StartDate AND @EndDate
-     --           ) AS X
-     --       WHERE RN = 1) AS Edh
-     --   ON EdhEEID = xEEID
-     --   AND EdhCoID = xCOID
-    --Where EecEEType in ('REB','REF','REG','REH','CPB')
-    --    AND  (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (EecDateofTermination  BETWEEN  @StartDate AND @EndDate or audDateTime BETWEEN  @StartDate AND @EndDate )))
+
+     LEFT JOIN (
+            SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent
+            FROM (
+                    SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent, ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID ORDER BY EdhEffDate desc) AS RN
+                    FROM dbo.EmpHDed a WITH (NOLOCK)
+                    JOIN dbo.BenChRsn WITH (NOLOCK)
+                        ON EdhChangeReason = BchCode
+                    WHERE EdhDedCode IN ('MEDP')
+                        AND edhChangeReason IN ('100','208','210','200','106','CHGRP','LEVNT1','401') AND EdhEffDate BETWEEN @StartDate AND @EndDate
+                ) AS X
+            WHERE RN = 1) AS Edh
+        ON EdhEEID = xEEID
+        AND EdhCoID = xCOID
+     LEFT JOIN (
+        -- Get NewHire, ReHire, Terms from Audit
+        SELECT audEEID
+            ,audNewHire = MAX(audNewHire)
+            ,audTermintation = MAX(audTermintation)                
+            ,audBenefitDate  = MAX(audBenefitDate)        --  
+        FROM dbo.U_EIATFIDENR_Audit
+        WHERE audRowNo = 1
+        AND (audNewHire = 'Y'            
+            OR audTermintation = 'Y'
+            OR audBenefitDate  = 'Y'
+        )
+        GROUP BY audEEID
+    ) AuditRecords
+         ON audEEID = xEEID
+    Where  ( edhChangeReason is not null OR  AudNewHire = 'Y' OR audTermintation = 'Y' OR AudBenefitDate = 'Y')
     ;
     ---------------------------------
     -- HEADER RECORD
