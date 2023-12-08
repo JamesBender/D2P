@@ -5,7 +5,7 @@ EIATFIDENR: Fidelity HSA Enrollment
 FormatCode:     EIATFIDENR
 Project:        Fidelity HSA Enrollment
 Client ID:      IAT1000
-Date/time:      2023-12-06 16:11:17.300
+Date/time:      2023-12-08 11:12:51.250
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -169,7 +169,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIATFIDENR_20231206.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIATFIDENR_20231208.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -179,7 +179,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'IAT Fidelity HSA OE Active','202310189','EMPEXPORT','OEACTIVE',NULL,'EIATFIDENR',NULL,NULL,NULL,'202310189','Oct 10 2023  4:54PM','Oct 10 2023  4:54PM','202310041',NULL,'','','202310041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'IAT Fidelity HSA OE Passive','202310189','EMPEXPORT','OEPASSIVE',NULL,'EIATFIDENR',NULL,NULL,NULL,'202310189','Oct 10 2023  4:54PM','Oct 10 2023  4:54PM','202310041',NULL,'','','202310041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Fidelity HSA Enrollment','202310109','EMPEXPORT','ONDEM_XOE',NULL,'EIATFIDENR',NULL,NULL,NULL,'202310109','Oct 10 2023  4:54PM','Oct 10 2023  4:54PM','202310101',NULL,'','','202310101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'FENUE,GDP4G,FEO5X',NULL,NULL,NULL,'Fidelity HSA Enroll - Fri 8am','202310109','EMPEXPORT','SCH_EIATFI',NULL,'EIATFIDENR',NULL,NULL,NULL,'202310109','Oct 10 2023  4:54PM','Oct 10 2023  4:54PM','202310101',NULL,'','','202310101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','FENUE,GDP4G,FEO5X',NULL,NULL,NULL,'Fidelity HSA Enroll - Fri 8am','202310109','EMPEXPORT','SCH_EIATFI',NULL,'EIATFIDENR',NULL,NULL,NULL,'202312089','Oct 10 2023  4:54PM','Oct 10 2023  4:54PM','202312011',NULL,'','','202310101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'IAT Fidelity HSA Enrollm-Test','202310189','EMPEXPORT','TEST_XOE',NULL,'EIATFIDENR',NULL,NULL,NULL,'202310189','Oct 10 2023  4:54PM','Oct 10 2023  4:54PM','202310041',NULL,'','','202310041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
@@ -285,11 +285,7 @@ CREATE TABLE [dbo].[U_EIATFIDENR_Audit] (
     [audDateTime] datetime NOT NULL,
     [audOldValue] nvarchar(2000) NULL,
     [audNewValue] nvarchar(2000) NULL,
-    [audRowNo] bigint NULL,
-	[AudNewHire] varchar(1) NULL,
-	[AudTermination] varchar(1) NULL,
-	[AudBenefitChange] varchar (1) NULL
-
+    [audRowNo] bigint NULL
 );
 
 -----------
@@ -474,8 +470,8 @@ BEGIN
         DROP TABLE dbo.U_EIATFIDENR_AuditFields;
     CREATE TABLE dbo.U_EIATFIDENR_AuditFields (aTableName varchar(30),aFieldName varchar(30));
 
-    INSERT INTO dbo.U_EBAKNCOBQB_AuditFields VALUES ('EmpComp','EecEmplStatus');
-    INSERT INTO dbo.U_EBAKNCOBQB_AuditFields VALUES ('EmpDed','EedBenStartDate');
+    INSERT INTO dbo.U_EIATFIDENR_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    INSERT INTO dbo.U_EIATFIDENR_AuditFields VALUES ('EmpDed','EedBenStartDate');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EIATFIDENR_Audit','U') IS NOT NULL
@@ -490,22 +486,25 @@ BEGIN
         ,audDateTime
         ,audOldValue
         ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-		,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
-        ,audTermintation = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
-        ,audBenefitChange = CASE WHEN audTableName = 'EmpDedFull' AND audFieldName = 'EedBenStartDate' AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '') THEN 'Y' ELSE 'N'END
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value ORDER BY audDateTime DESC)
+        --,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        --,audTermintation = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
+        --,audBenefitChange = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedBenStartDate' AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '') THEN 'Y' ELSE 'N'END
     INTO dbo.U_EIATFIDENR_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
     JOIN dbo.U_EIATFIDENR_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE';
+    AND audAction <> 'DELETE'  AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '');
+;
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EIATFIDENR_Audit ON dbo.U_EIATFIDENR_Audit (audEEID,audKey2);
 
- 
+    --changes only
+    DELETE FROM  dbo.U_EIATFIDENR_Audit WHERE audRowNo > 1;
+
     --==========================================
     -- Create Deduction List
     --==========================================
@@ -535,6 +534,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES(@FormatCode,'FutureDatedStartDateDays', '30')
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES(@FormatCode,'FutureDatedStopDateDays', '30')
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
+
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
     -- Run BDM Module
@@ -553,11 +554,6 @@ BEGIN
 
     IF @ExportCode LIKE 'OE%' 
         DELETE FROM dbo.U_dsi_BDM_EIATFIDENR WHERE BdmBenStopDate IS NOT NULL
-    --==========================================
-    -- Build Working Tables
-    --==========================================
-
-   
 
     --==========================================
     -- Build Driver Tables
@@ -601,28 +597,31 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.empcomp with (NOLOCK)
         ON eecEEID = xEEID
+        AND EecEEType in ('REB','REF','REG','REH','CPB')
+        --AND EecEmplStatus <> 'T'
     JOIN dbo.U_dsi_BDM_EIATFIDENR WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-        AND bdmrectype = 'Emp'
-    left Join dbo.U_EIATFIDENR_Audit WITH (NOLOCK) 
+        AND bdmrectype = 'EMP'
+        AND BdmChangeReason IN ('100','208','210','200','106','CHGRP','LEVNT1','401')
+    Join dbo.U_EIATFIDENR_Audit WITH (NOLOCK) 
         ON audEEID = xeeid
         and audKey2 = xcoid
-	 LEFT JOIN (
-            SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent
-            FROM (
-                    SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent, ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID ORDER BY EdhEffDate desc) AS RN
-                    FROM dbo.EmpHDed a WITH (NOLOCK)
-                    JOIN dbo.BenChRsn WITH (NOLOCK)
-                        ON EdhChangeReason = BchCode
-                    WHERE EdhDedCode IN (@DedList)
-                        AND edhChangeReason IN ('100','208','210','200','106','CHGRP','LEVNT1','401') AND EdhEffDate BETWEEN @StartDate AND @EndDate
-                ) AS X
-            WHERE RN = 1) AS Edh
-        ON EdhEEID = xEEID
-        AND EdhCoID = xCOID
-    Where EecEEType in ('REB','REF','REG','REH','CPB')
-        AND  (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (EecDateofTermination  BETWEEN  @StartDate AND @EndDate or audDateTime BETWEEN  @StartDate AND @EndDate )))
+     --LEFT JOIN (
+     --       SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent
+     --       FROM (
+     --               SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent, ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID ORDER BY EdhEffDate desc) AS RN
+     --               FROM dbo.EmpHDed a WITH (NOLOCK)
+     --               JOIN dbo.BenChRsn WITH (NOLOCK)
+     --                   ON EdhChangeReason = BchCode
+     --               WHERE EdhDedCode IN (@DedList)
+     --                   AND edhChangeReason IN ('100','208','210','200','106','CHGRP','LEVNT1','401') AND EdhEffDate BETWEEN @StartDate AND @EndDate
+     --           ) AS X
+     --       WHERE RN = 1) AS Edh
+     --   ON EdhEEID = xEEID
+     --   AND EdhCoID = xCOID
+    --Where EecEEType in ('REB','REF','REG','REH','CPB')
+    --    AND  (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (EecDateofTermination  BETWEEN  @StartDate AND @EndDate or audDateTime BETWEEN  @StartDate AND @EndDate )))
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -662,8 +661,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202310031'
-       ,expStartPerControl     = '202310031'
+    SET expLastStartPerControl = '202110031'
+       ,expStartPerControl     = '202110031'
        ,expLastEndPerControl   = '202310109'
        ,expEndPerControl       = '202310109'
 WHERE expFormatCode = 'EIATFIDENR';
