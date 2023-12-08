@@ -5,7 +5,7 @@ EAPAAETMED: Aetna Medical and Dental Export
 FormatCode:     EAPAAETMED
 Project:        Aetna Medical and Dental Export
 Client ID:      AME1075
-Date/time:      2023-09-21 16:16:41.040
+Date/time:      2023-12-08 06:13:10.870
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,18 +363,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAPAAETMED_20230921.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAPAAETMED_20231208.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202306219','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202306219','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202306011',NULL,'','','202306011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Active Open Enrollment','202306219','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202306219','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202306011',NULL,'','','202306011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202306219','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202306219','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202306011',NULL,'','','202306011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202306219','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202306219','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202306011',NULL,'','','202306011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Aetna Medical and Dental Expor','202306219','EMPEXPORT','SCH_EAPAAE','Oct  1 2018 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202306219','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202306011',NULL,'','','202306011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202307179','EMPEXPORT','TEST_XOE','Jul 17 2023 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202307179','Jul 17 2023 12:00AM','Dec 30 1899 12:00AM','202307031',NULL,'','','202307031',dbo.fn_GetTimedKey(),NULL,'us3lKiAME1075',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','NLYIG',NULL,NULL,NULL,'Aetna MedDen - Fri 2:30am','202306219','EMPEXPORT','SCH_EAPAAE','Oct  1 2018 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202312089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202312011',NULL,'','','202306011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202310259','EMPEXPORT','TEST_XOE','Jul 17 2023 12:00AM','EAPAAETMED',NULL,NULL,NULL,'202310259','Jul 17 2023 12:00AM','Dec 30 1899 12:00AM','202310011',NULL,'','','202310011',dbo.fn_GetTimedKey(),NULL,'us3lKiAME1075',NULL);
 
 -----------
 -- AscImp inserts
@@ -697,7 +697,7 @@ CREATE TABLE [dbo].[U_EAPAAETMED_HdrTbl] (
     [drvISA10_InterchangeTime] varchar(4) NULL,
     [drvISA15_UsageIndicator] varchar(1) NOT NULL,
     [drvISA16_ComponentSeprator] varchar(1) NOT NULL,
-    [drvGS02_SenderID] char(9) NULL,
+    [drvGS02_SenderID] varchar(7) NOT NULL,
     [drvGS03_ReceiverID] varchar(14) NOT NULL,
     [drvGS04_Date] varchar(8) NULL,
     [drvGS05_Time] varchar(4) NULL,
@@ -849,7 +849,7 @@ BEGIN
         ,@EndDate         = DATEADD(SS,-1,DATEADD(DD,1,LEFT(EndPerControl,8)))
         ,@FormatCode      = FormatCode
         ,@ExportCode      = ExportCode
-        ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
+        ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112) 
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
         ,@FileMinCovDate  = ''
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
@@ -898,16 +898,17 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'TermSelectionOption', 'AuditDate');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'TermSelectionOption','AuditDate');
 
     -- Non-required parms
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'IncludeOEDrops','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse',' SPS,PRT,FIA');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS,PRT,FIA');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHD,CHL,STC');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP');
-
+     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'FutureDatedStartDateDays','30');
+     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'FutureDatedStopDateDays','30');
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
     BEGIN
@@ -920,6 +921,71 @@ BEGIN
     END;
 
     EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
+
+         INSERT INTO [dbo].[U_dsi_BDM_EAPAAETMED]
+    (    [BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[Bdmdedtype]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+            ,[BdmSessionID]
+    )
+     Select distinct
+        'DEP'
+        ,bdmCoid
+        ,bdmEEID
+        ,DbnDepRecID
+        ,DbnSystemID
+        ,dbnRunID
+        ,dbnDedRowStatus
+        ,dbnRelationship
+        ,DbnDateofBirth
+        ,dbndedcode
+        ,bdmdedtype
+        ,edhBenOption
+        ,edhBenStatus
+        ,dbnBenStartDate
+        ,dbnBenStopDate
+        ,EdhEffDate
+        ,EdhEffDate
+        ,edhChangeReason
+        ,edhChangeReason
+        ,dbnBenStartDate
+        ,dbnBenStopDate
+        ,dbnIsPQB
+        ,dedIsCobraCovered
+        ,dbnSessionID
+          
+    FROM  dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+    JOIN dbo.emphded WITH (NOLOCK)
+        ON dbneeid = edheeid 
+    JOIN dbo.U_dsi_bdm_EAPAAETMED
+    ON dbneeid = bdmeeid
+    WHERE  dbnformatcode = 'EAPAAETMED'
+      and  DbnBenStatus NOT In ('W', 'C')
+      and bdmdedtype is not null
+      AND isnull(dbnDepRecid, '') NOT In (select isnull(bdmdeprecid, '') from dbo.U_dsi_bdm_EAPAAETMED)
+     and EdhEffDate > = @StartDate
+     and dbnbenstopdate > = @StartDate 
+
 
     --=========================================
     -- Update BdmChangeReason For Dependents
@@ -966,6 +1032,9 @@ BEGIN
     JOIN dbo.EmpDedFull WITH (NOLOCK)
         ON EedEmpDedTVID = BdmUSGField2;
 
+
+
+    
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -989,7 +1058,7 @@ BEGIN
         ,drvISA10_InterchangeTime = @RunTime
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
         ,drvISA16_ComponentSeprator = ':'
-        ,drvGS02_SenderID = CmmFedtaxId
+        ,drvGS02_SenderID = '0175208' --CmmFedtaxId
         ,drvGS03_ReceiverID = 'AMERICANPSYCHO'
         ,drvGS04_Date = @RunDate
         ,drvGS05_Time = @RunTime
@@ -1004,7 +1073,7 @@ BEGIN
         ,drvDTP00_DateTime0 = 'DTP'
         ,drvDTP01_DateTimeQualifier0 = '007'
         ,drvDTP02_DateTimeFormatQual0 = 'D8'
-        ,drvDTP03_DateTimePeriod0 = @RunDate
+        ,drvDTP03_DateTimePeriod0 = CASE WHEN @ExportCode LIKE 'OE%' THEN CONVERT(VARCHAR(4),YEAR(GETDATE())+1) + '0101'  ELSE @RunDate END
         ,drvDTP00_DateTime1 = ''
         ,drvDTP01_DateTimeQualifier1 = ''
         ,drvDTP02_DateTimeFormatQual1 = ''
@@ -1647,11 +1716,11 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '202306011'
-       ,ExpStartPerControl     = '202306011'
-       ,ExpLastEndPerControl   = '202306219'
-       ,ExpEndPerControl       = '202306219'
-WHERE ExpFormatCode = 'EAPAAETMED';
+    SET ExpLastStartPerControl = '202310011'
+       ,ExpStartPerControl     = '202310011'
+       ,ExpLastEndPerControl   = '202310259'
+       ,ExpEndPerControl       = '202310259'
+WHERE ExpFormatCode = 'EAPAAETMED' and expexportcode = 'TEST_XOE';
 
 **********************************************************************************/
 GO
