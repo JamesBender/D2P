@@ -4,16 +4,17 @@ ERSPRIN401: Principal 401K Contribution Export
 
 FormatCode:     ERSPRIN401
 Project:        Principal 401K Contribution Export
-Client ID:      USG1000
-Date/time:      2023-12-05 14:56:53.733
+Client ID:      ROA1001
+Date/time:      2023-12-12 16:44:16.893
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_ERSPRIN401_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW4WUP1DB03
+Database:       ULTIPRO_WPRSPP
+Web Filename:   ROA1001_K51QH_EEHISTORY_ERSPRIN401_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -278,16 +279,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ERSPRIN401_20231205.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ERSPRIN401_20231212.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202312059','EMPEXPORT','ONDEM_XOE',NULL,'ERSPRIN401',NULL,NULL,NULL,'202312059','Dec  5 2023  2:49PM','Dec  5 2023  2:49PM','202312051',NULL,'','','202312051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202312059','EMPEXPORT','SCH_ERSPRI',NULL,'ERSPRIN401',NULL,NULL,NULL,'202312059','Dec  5 2023  2:49PM','Dec  5 2023  2:49PM','202312051',NULL,'','','202312051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202312059','EMPEXPORT','TEST_XOE',NULL,'ERSPRIN401',NULL,NULL,NULL,'202312059','Dec  5 2023  2:49PM','Dec  5 2023  2:49PM','202312051',NULL,'','','202312051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal 401K','202312059','EMPEXPORT','ONDEM_XOE',NULL,'ERSPRIN401',NULL,NULL,NULL,'202312059','Dec  5 2023  2:49PM','Dec  5 2023  2:49PM','202312051',NULL,'','','202312051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal 401K','202312059','EMPEXPORT','SCH_ERSPRI',NULL,'ERSPRIN401',NULL,NULL,NULL,'202312059','Dec  5 2023  2:49PM','Dec  5 2023  2:49PM','202312051',NULL,'','','202312051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Principal 401K','202312089','EMPEXPORT','TEST_XOE',NULL,'ERSPRIN401',NULL,NULL,NULL,'202312089','Dec  5 2023  2:49PM','Dec  5 2023  2:49PM','202312081',NULL,'','','202312081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -299,11 +300,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ERSPRIN401','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -322,12 +324,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ERSPRIN401','D60','dbo.U_ERSPRIN401_drvTbl_407',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -554,7 +556,7 @@ CREATE TABLE [dbo].[U_ERSPRIN401_drvTbl_407] (
     [drvIdentificationNumber] char(11) NULL,
     [drvInvestmentType] varchar(2) NOT NULL,
     [drvTransactionType] varchar(3) NOT NULL,
-    [drvPayDate] datetime NULL,
+    [drvPayDate] varchar(30) NULL,
     [drvContributionType] varchar(1) NOT NULL,
     [drvElectiveDeferral] varchar(3) NOT NULL,
     [drvContributionAmount1] varchar(30) NULL,
@@ -709,7 +711,7 @@ BEGIN
     IF OBJECT_ID('U_ERSPRIN401_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_ERSPRIN401_AuditFields;
     CREATE TABLE dbo.U_ERSPRIN401_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-
+INSERT INTO dbo.U_ERSPRIN401_AuditFields VALUES ('EmpComp','Eecemplstatus');
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_ERSPRIN401_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_ERSPRIN401_Audit;
@@ -849,7 +851,7 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
-        ,drvSubSort = ''
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvRecordType = '180'
         ,drvContractNumber = '635164'
@@ -879,8 +881,17 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+     JOIN dbo.U_dsi_BDM_ERSPRIN401 WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
     LEFT JOIN dbo.U_ERSPRIN401_PEarHist WITH (NOLOCK)
         ON PehEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_PDedHist WITH (NOLOCK)
+        ON PdhEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_Audit WITH (NOLOCK)
+        ON audeeid = XEEID
+        AND audKey2 = XCOID
+    WHERE ( eecemplstatus <> 'T' or (eecemplstatus =  'T' AND audNewValue = 'T' ))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ERSPRIN401_drvTbl_181
@@ -892,7 +903,7 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
-        ,drvSubSort = ''
+        ,drvSubSort = '2'
         -- standard fields above and additional driver fields below
         ,drvRecordType = '181'
         ,drvContractNumber = '635164'
@@ -910,6 +921,14 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ERSPRIN401 WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN dbo.U_ERSPRIN401_PEarHist WITH (NOLOCK)
+        ON PehEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_PDedHist WITH (NOLOCK)
+        ON PdhEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_Audit WITH (NOLOCK)
+        ON audeeid = XEEID
+        AND audKey2 = XCOID
+    WHERE ( eecemplstatus <> 'T' or (eecemplstatus =  'T' AND audNewValue = 'T' ))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ERSPRIN401_drvTbl_220_D
@@ -921,7 +940,7 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
-        ,drvSubSort = ''
+        ,drvSubSort = '3'
         -- standard fields above and additional driver fields below
         ,drvRecordType = '220'
         ,drvContractNumber = '635164'
@@ -944,7 +963,15 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ERSPRIN401 WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN dbo.U_ERSPRIN401_PEarHist WITH (NOLOCK)
+        ON PehEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_PDedHist WITH (NOLOCK)
+        ON PdhEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_Audit WITH (NOLOCK)
+        ON audeeid = XEEID
+        AND audKey2 = XCOID
     WHERE EepAddressCountry = 'USA' 
+    AND   ( eecemplstatus <> 'T' or (eecemplstatus =  'T' AND audNewValue = 'T' ))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ERSPRIN401_drvTbl_220_I
@@ -956,7 +983,7 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
-        ,drvSubSort = ''
+        ,drvSubSort = '3'
         -- standard fields above and additional driver fields below
         ,drvRecordType = '220'
         ,drvContractNumber = '635164'
@@ -976,7 +1003,15 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ERSPRIN401 WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-        WHERE EepAddressCountry <> 'USA' 
+    LEFT JOIN dbo.U_ERSPRIN401_PEarHist WITH (NOLOCK)
+        ON PehEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_PDedHist WITH (NOLOCK)
+        ON PdhEEID = XEEID
+       LEFT JOIN dbo.U_ERSPRIN401_Audit WITH (NOLOCK)
+        ON audeeid = XEEID
+        AND audKey2 = XCOID
+    WHERE EepAddressCountry <> 'USA' 
+    AND   ( eecemplstatus <> 'T' or (eecemplstatus =  'T' AND audNewValue = 'T' ))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ERSPRIN401_drvTbl_240
@@ -988,7 +1023,7 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
-        ,drvSubSort = ''
+        ,drvSubSort = '4'
         -- standard fields above and additional driver fields below
         ,drvRecordType = '240'
         ,drvContractNumber = '635164'
@@ -1013,6 +1048,14 @@ BEGIN
     LEFT JOIN dbo.EmpMPhon WITH (NOLOCK)
         ON efoeeid =Xeeid
         and efoPhoneType = 'CEL'
+    LEFT JOIN dbo.U_ERSPRIN401_PEarHist WITH (NOLOCK)
+        ON PehEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_PDedHist WITH (NOLOCK)
+        ON PdhEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_Audit WITH (NOLOCK)
+        ON audeeid = XEEID
+        AND audKey2 = XCOID
+    WHERE ( eecemplstatus <> 'T' or (eecemplstatus =  'T' AND audNewValue = 'T' ))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ERSPRIN401_drvTbl_407
@@ -1024,14 +1067,14 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
-        ,drvSubSort = ''
+        ,drvSubSort = '5'
         -- standard fields above and additional driver fields below
         ,drvRecordType = '407'
         ,drvContractNumber = '635164'
         ,drvIdentificationNumber = EepSSN
         ,drvInvestmentType = '00'
         ,drvTransactionType = '001'
-        ,drvPayDate = PrgPayDate
+        ,drvPayDate = convert(varchar, PrgPayDate, 101)
         ,drvContributionType = 'L'
         ,drvElectiveDeferral = '001'
         ,drvContributionAmount1 =  Cast(dbo.dsi_fnpadzero(Pdh401, 10,0)as varchar)
@@ -1062,6 +1105,10 @@ BEGIN
         ON PehEEID = XEEID
     LEFT JOIN dbo.U_ERSPRIN401_PDedHist WITH (NOLOCK)
         ON PdhEEID = XEEID
+    LEFT JOIN dbo.U_ERSPRIN401_Audit WITH (NOLOCK)
+        ON audeeid = XEEID
+        AND audKey2 = XCOID
+    WHERE ( eecemplstatus <> 'T' or (eecemplstatus =  'T' AND audNewValue = 'T' ))
     ;
 
     --==========================================
@@ -1078,11 +1125,17 @@ BEGIN
     END
 
 END;
-/**********************************************************************************'*/
+/**********************************************************************************
+--Alter the View
+ALTER VIEW dbo.dsi_vwERSPRIN401_Export AS
+    SELECT TOP 20000000 RTRIM(Data) AS Data FROM dbo.U_ERSPRIN401_File (NOLOCK)
+    ORDER BY  InitialSort, SubSort,RIGHT(RecordSet,2);
+   --Check out iascDefF SELECT * FROM dbo.iascDefF WHERE AdfHeaderSystemID LIKE 'ERSPRIN401%' ORDER BY AdfSetNumber, AdfFieldNumber;   --Update Dates UPDATE dbo.AscExp     SET expLastStartPerControl = '202312081'        ,expStartPerControl     = '202312081'        ,expLastEndPerControl   = '202312089'        ,expEndPerControl       = '202312089' WHERE expFormatCode = 'ERSPRIN401' and expexportcode = 'TEST_XOE' ;
+**********************************************************************************'*/
 GO
-CREATE VIEW dbo.dsi_vwERSPRIN401_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_ERSPRIN401_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort
+CREATE VIEW dbo.dsi_vwERSPRIN401_Export AS
+    SELECT TOP 20000000 RTRIM(Data) AS Data FROM dbo.U_ERSPRIN401_File (NOLOCK)
+    ORDER BY  InitialSort, SubSort,RIGHT(RecordSet,2);
 
 GO
 
