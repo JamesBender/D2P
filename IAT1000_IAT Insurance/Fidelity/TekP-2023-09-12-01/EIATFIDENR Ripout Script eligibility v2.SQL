@@ -492,7 +492,7 @@ BEGIN
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value ORDER BY audDateTime DESC)
         ,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
         ,audTermintation = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
-        ,audBenefitDate = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedBenStartDate' AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '') THEN 'Y' ELSE 'N'END
+        ,audBenefitDate = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedBenStartDate'  AND ISNULL(audOldValue, '') <> ISNULL(audNewValue, '') THEN 'Y' ELSE 'N'END
     INTO dbo.U_EIATFIDENR_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
     JOIN dbo.U_EIATFIDENR_AuditFields WITH (NOLOCK) 
