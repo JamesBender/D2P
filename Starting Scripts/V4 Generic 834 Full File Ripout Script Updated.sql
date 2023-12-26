@@ -757,21 +757,21 @@ BEGIN
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
-        ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
-                              CASE WHEN BdmRecType = 'EMP' THEN EepNameLast
-                                   WHEN BdmRecType = 'DEP' THEN ConNameLast
+         ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
+                              CASE WHEN BdmRecType = 'EMP' THEN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameLast, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')
+                                   WHEN BdmRecType = 'DEP' THEN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(ConNameLast, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')
                               END)
         ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-',
-                               CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst
-                                    WHEN BdmRecType = 'DEP' THEN ConNameFirst
+                               CASE WHEN BdmRecType = 'EMP' THEN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameFirst, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')
+                                    WHEN BdmRecType = 'DEP' THEN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(ConNameFirst, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')
                                END)
         ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
         ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
+        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' AND EepNameSuffix <> 'Z' THEN EepNameSuffix
+                                     WHEN BdmRecType = 'DEP' AND ConNameSuffix <> 'Z' THEN ConNameSuffix
                                 END
         ,drvNM108_IDCodeQualifier1 =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                             WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'

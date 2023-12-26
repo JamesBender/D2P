@@ -5,7 +5,7 @@ ECULSAPXML: SAP General Journal Entry XML
 FormatCode:     ECULSAPXML
 Project:        SAP General Journal Entry XML
 Client ID:      CUL1000
-Date/time:      2023-11-21 15:13:22.233
+Date/time:      2023-12-13 06:25:31.180
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -153,7 +153,7 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECULSAPXML_20231121.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECULSAPXML_20231213.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -162,7 +162,7 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SAP GL XML Export','202311179','EMPEXPORT','ONDEM_XOE',NULL,'ECULSAPXML',NULL,NULL,NULL,'202311179','Nov 20 2023  9:37AM','Nov 20 2023  9:37AM','202311171',NULL,'','','202311171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SAP GL XML Export-Sched','202311179','EMPEXPORT','SCH_ECULSA',NULL,'ECULSAPXML',NULL,NULL,NULL,'202311179','Nov 20 2023  9:37AM','Nov 20 2023  9:37AM','202311171',NULL,'','','202311171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'SAP GL XML Export-Test','202311179','EMPEXPORT','TEST_XOE',NULL,'ECULSAPXML',NULL,NULL,NULL,'202311179','Nov 20 2023  9:37AM','Nov 20 2023  9:37AM','202311171',NULL,'','','202311171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'SAP GL XML Export-Test','202312019','EMPEXPORT','TEST_XOE',NULL,'ECULSAPXML',NULL,NULL,NULL,'202312019','Nov 20 2023  9:37AM','Nov 20 2023  9:37AM','202312011',NULL,'','','202312011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -177,7 +177,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','MultFile','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','NoEmpty','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','OverrideCount','V','728');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','OverrideCount','V','733');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','PmtInfId','V','53');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECULSAPXML','TestPath','V',NULL);
@@ -385,6 +385,14 @@ SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECULSAPXML';
 SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ECULSAPXML';
 SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECULSAPXML' ORDER BY RunID DESC;
 
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202312011'
+       ,expStartPerControl     = '202312011'
+       ,expLastEndPerControl   = '202312019'
+       ,expEndPerControl       = '202312019'
+WHERE expFormatCode = 'ECULSAPXML' and expexportcode = 'TEST_XOE';
+
 Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECULSAPXML', 'ONDEM_XOE';
@@ -398,14 +406,14 @@ BEGIN
     --==========================================
     -- Declare variables
     --==========================================
-        DECLARE  @FormatCode         VARCHAR(12)
+    DECLARE  @FormatCode         VARCHAR(12)
             ,@ExportCode         VARCHAR(12)
             ,@StartDate          DATETIME
             ,@EndDate            DATETIME
             ,@StartPerControl    VARCHAR(9)
             ,@EndPerControl      VARCHAR(9)
             ,@FileName           VARCHAR(100)
-			,@ValueDate          Varchar(50)
+            ,@ValueDate          Varchar(50)
 
     -- Declare dates from Parameter file
     SELECT
@@ -483,7 +491,7 @@ BEGIN
         ON GlbBaseSegment = substring(vGLAcctNumber,11,8)
    JOIN dbo.ChkHead ck WITH (NOLOCK)
         ON ckhgennumber = vGenNumber
-   --   Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
+   Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
         AND CASE WHEN vPayGroup = 'PGN' THEN 'Paragon Payroll Checks'
                                 WHEN vPayGroup = 'CWGB' THEN 'CWG Payroll Checks'
                                 WHEN vPayGroup = 'BCC' THEN 'Culligan BCC Payroll Checks'
@@ -543,7 +551,7 @@ BEGIN
         ON GlbBaseSegment = substring(vGLAcctNumber,11,8)
    JOIN dbo.ChkHead ck WITH (NOLOCK)
         ON ckhgennumber = vGenNumber
-       -- Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
+      Where Convert(VARCHAR, VPaydate, 120) Between Convert(VARCHAR, @Startdate, 120) and Convert(VARCHAR, @Enddate, 120)
     GROUP BY ck.ckhrecid
     
     having CAst(SUM(vCreditAmt) AS DECIMAL(18,2)) <> 0.00 ) w
@@ -570,7 +578,7 @@ BEGIN
   SELECT @HdrXML =
      
         (SELECT 
-        CreationDateTime =  Convert(VARCHAR, GETDATE(),112) +'T' + convert(VARCHAR(8), GETDATE(), 14) + 'Z'
+        CreationDateTime = Convert(VARCHAR, GETDATE(),126)+ 'Z'-- Convert(VARCHAR, GETDATE(),112) +'T' + convert(VARCHAR(8), GETDATE(), 14) + 'Z'
         
         FOR XML PATH ('MessageHeader')
         , TYPE )     
@@ -586,7 +594,7 @@ BEGIN
         (SELECT
           
             (SELECT 
-                CreationDateTime =  Convert(VARCHAR, GETDATE(),112) +'T' + convert(VARCHAR(8), GETDATE(), 14) + 'Z'
+                CreationDateTime =  Convert(VARCHAR, GETDATE(),126)+ 'Z' --Convert(VARCHAR, GETDATE(),112) +'T' + convert(VARCHAR(8), GETDATE(), 14) + 'Z'
         
             FOR XML PATH ('MessageHeader')
             , TYPE )     
@@ -601,29 +609,29 @@ BEGIN
                ,CreatedByUser ='TEST'
                ,CompanyCode = 'US01'
                ,DocumentDate= @ValueDate
-               ,PostinDate = @ValueDate
+               ,PostingDate = @ValueDate
                ,DocumentReferenceID = '1508'
                ,(SELECT
                     CompanyCode = 'US01'
                    ,GLAccount= drvGLAccount
                    ,(SELECT  "@currencyCode"='USD' 
                              , CASE WHEN drvGLAccount <>'11015050' and  FORMAT(drvDebit, '#.##' )  <> '0.00' THEN FORMAT(drvDebit, '#.##') 
-									WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##') 
-								END
+                                    WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##') 
+                                END
                                 FOR XML PATH ('AmountInTransactionCurrency')
                             ,TYPE)
                     ,(SELECT  "@currencyCode"='USD' 
                              , CASE WHEN drvGLAccount <>'11015050' and  FORMAT(drvDebit, '#.##' )  <> '0.00' THEN FORMAT(drvDebit, '#.##') 
-									WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##')
-									END 
+                                    WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN FORMAT(drvCredit, '#.##')
+                                    END 
                                 FOR XML PATH ('AmountInCompanyCodeCurrency')
                             ,TYPE)
                     ,DocumentItemText = CASE WHEN drvGLAccount <>'11015050' and FORMAT(drvDebit, '#.##' )  <> '0.00' THEN drvItemText
-											 WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvItemText 
-										 END
+                                             WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvItemText 
+                                         END
                     ,AssignmentReference =  CASE WHEN drvGLAccount <>'11015050' and FORMAT(drvDebit, '#.##' )  <> '0.00' THEN drvAssignmentNumber
-												 WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvAssignmentNumber 
-											 END 
+                                                 WHEN drvGLAccount ='11015050' and FORMAT(drvCredit, '#.##' )  <> '0.00' THEN drvAssignmentNumber 
+                                             END 
                     ,(SELECT 
                      ProfitCenter= 'C8010'
                     FOR XML PATH ('AccountAssignment')
@@ -684,6 +692,14 @@ END
 
 -- View XML File from XML Table
 SELECT * FROM dbo.U_ECULSAPXML_XML (NOLOCK)
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202312011'
+       ,expStartPerControl     = '202312011'
+       ,expLastEndPerControl   = '202312019'
+       ,expEndPerControl       = '202312019'
+WHERE expFormatCode = 'ECULSAPXML' and expexportcode = 'TEST_XOE';
 
 */
 GO

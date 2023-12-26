@@ -5,7 +5,7 @@ EBAMLIRPEX: BAML IRP&I
 FormatCode:     EBAMLIRPEX
 Project:        BAML IRP&I
 Client ID:      BIO1009
-Date/time:      2023-11-22 15:30:22.963
+Date/time:      2023-12-08 07:25:36.003
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -739,7 +739,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBAMLIRPEX_20231122.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBAMLIRPEX_20231208.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -856,10 +856,7 @@ CREATE TABLE [dbo].[U_EBAMLIRPEX_Audit] (
     [audDateTime] datetime NOT NULL,
     [audOldValue] nvarchar(2000) NULL,
     [audNewValue] nvarchar(2000) NULL,
-    [audRowNo] bigint NULL,
-    [audUser2] nvarchar(2000) NULL,
-    [audUser3] nvarchar(2000) NULL,
-    [audOrgDesc] nvarchar(2000) NULL
+    [audRowNo] bigint NULL
 );
 
 -----------
@@ -891,10 +888,10 @@ CREATE TABLE [dbo].[U_EBAMLIRPEX_drvTbl_BAC01] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvInitialSort] char(9) NULL,
-    [drvSubSort] varchar(1) NOT NULL,
+    [drvSubSort] varchar(2) NOT NULL,
     [drvTableCode] varchar(2) NULL,
-    [drvCode] nvarchar(2000) NULL,
-    [drvCodeDesc] nvarchar(2000) NULL,
+    [drvCode] varchar(15) NULL,
+    [drvCodeDesc] varchar(40) NULL,
     [drvCodeDescFlag] varchar(1) NOT NULL
 );
 
@@ -1180,54 +1177,55 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EBAMLIRPEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-    --==========================================
-    -- Audit Section
-    --==========================================
-    -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_EBAMLIRPEX_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_EBAMLIRPEX_AuditFields;
-    CREATE TABLE dbo.U_EBAMLIRPEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    ----==========================================
+ --   -- Audit Section
+ --   --==========================================
+ --   -- Get data from audit fields table. Add fields here if auditing
+ --   IF OBJECT_ID('U_EBAMLIRPEX_AuditFields','U')  IS NOT NULL
+ --       DROP TABLE dbo.U_EBAMLIRPEX_AuditFields;
+ --   CREATE TABLE dbo.U_EBAMLIRPEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
 
-    INSERT INTO dbo.U_EBAMLIRPEX_AuditFields VALUES ('EmpComp','EecOrgLvl3');
-    INSERT INTO dbo.U_EBAMLIRPEX_AuditFields VALUES ('OrgLevel','OrgGLSegment');
-    INSERT INTO dbo.U_EBAMLIRPEX_AuditFields VALUES ('OrgLevel','OrgDesc');
+ --  -- INSERT INTO dbo.U_EBAMLIRPEX_AuditFields VALUES ('EmpComp','EecOrgLvl3');
+    ----INSERT INTO dbo.U_EBAMLIRPEX_AuditFields VALUES ('OrgLevel','OrgGLSegment');
+    ----INSERT INTO dbo.U_EBAMLIRPEX_AuditFields VALUES ('OrgLevel','OrgDesc');
+    --INSERT INTO dbo.U_EBAMLIRPEX_AuditFields VALUES ('EmpComp','eecEmplStatus');    
 
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_EBAMLIRPEX_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_EBAMLIRPEX_Audit;
-    SELECT 
-        audEEID  = audKey1Value
-        ,audCOID = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-        ,audUser2 = Case when  audtablename  = 'OrgLevel'  and audfieldname = 'OrgGLSegment' and audOldValue is not null and audNewValue is not null then audNewValue END
-        ,audUser3 = Case when  audtablename  = 'EmpComp'  and audfieldname = 'EecOrgLvl3' and audOldValue is not null and audNewValue is not null then audNewValue END
-        ,audOrgDesc = Case when  audtablename  = 'OrgLevel'  and audfieldname = 'OrgDesc' and audOldValue is not null and audNewValue is not null then audNewValue END
-    INTO dbo.U_EBAMLIRPEX_Audit
-    FROM dbo.vw_AuditData WITH (NOLOCK) 
-    JOIN dbo.U_EBAMLIRPEX_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate    
-       AND audAction <> 'DELETE';
+ --   -- Create audit table based on fields defined above
+ --   IF OBJECT_ID('U_EBAMLIRPEX_Audit','U')  IS NOT NULL
+ --       DROP TABLE dbo.U_EBAMLIRPEX_Audit;
+ --   SELECT 
+ --       audEEID  = audKey1Value
+ --       ,audCOID = audKey2Value
+ --       ,audKey3 = audKey3Value
+ --       ,audTableName
+ --       ,audFieldName
+ --       ,audAction
+ --       ,audDateTime
+ --       ,audOldValue
+ --       ,audNewValue
+ --       ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    --    --,audUser2 = Case when  audtablename  = 'OrgLevel'  and audfieldname = 'OrgGLSegment' and audOldValue  IS NOT NULL and audNewValue  IS NOT NULL then audNewValue END
+    --    --,audUser3 = Case when  audtablename  = 'EmpComp'  and audfieldname = 'EecOrgLvl3' and audOldValue  IS NOT NULL and audNewValue  IS NOT NULL then audNewValue END
+    --    --,audOrgDesc = Case when  audtablename  = 'OrgLevel'  and audfieldname = 'OrgDesc' and audOldValue  IS NOT NULL and audNewValue  IS NOT NULL then audNewValue END
+ --   INTO dbo.U_EBAMLIRPEX_Audit
+ --   FROM dbo.vw_AuditData WITH (NOLOCK) 
+ --   JOIN dbo.U_EBAMLIRPEX_AuditFields WITH (NOLOCK) 
+ --       ON audTableName = aTableName
+ --       AND audFieldName = aFieldName
+ --   WHERE audDateTime BETWEEN @StartDate AND @EndDate    
+ --      AND audAction <> 'DELETE';
 
-    -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_EBAMLIRPEX_Audit ON dbo.U_EBAMLIRPEX_Audit (audEEID,audCOID);
+ --   -- Create Index
+ --   CREATE CLUSTERED INDEX CDX_U_EBAMLIRPEX_Audit ON dbo.U_EBAMLIRPEX_Audit (audEEID,audCOID);
 
   
     --==========================================
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'ESPP,ESPP1,ESPP2.ESPPS';
+    SET @DedList = 'ESPP,ESPP1,ESPP2,ESPPS';
 
-    IF OBJECT_ID('U_EBAMLIRPEX_DedList','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_DedList','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_DedList;
     SELECT DISTINCT
          DedCode = DedDedCode
@@ -1258,7 +1256,7 @@ BEGIN
   -----------------------------
     -- Working Table - YTD FICA Withholdings
     -----------------------------
-    IF OBJECT_ID('U_EBAMLIRPEX_PTaxHist','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_PTaxHist','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_PTaxHist;
     SELECT DISTINCT
          PthEEID
@@ -1282,7 +1280,7 @@ BEGIN
     ---------------------------------
     -- DETAIL RECORD - U_EBAMLIRPEX_drvTbl_IBSH
     ---------------------------------
-    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_IBSH','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_IBSH','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_drvTbl_IBSH;
     SELECT DISTINCT
          drvEEID = ''
@@ -1305,7 +1303,7 @@ BEGIN
     ---------------------------------
     -- DETAIL RECORD - U_EBAMLIRPEX_drvTbl_IBEN
     ---------------------------------
-    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_IBEN','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_IBEN','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_drvTbl_IBEN;
     SELECT DISTINCT
          drvEEID = xEEID
@@ -1332,9 +1330,9 @@ BEGIN
         AND BdmCoID = xCoID
         and BdmDedCode NOT IN ('ESPP','ESPP1','ESPP2','ESPPS')
          JOIN jobcode on jbcjobcode = eecjobcode
-        WHERE EecEEType IN ('FEL', 'FTC', 'REG') AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  EecDateofTermination > = DateAdd(d, -180, GETDATE() )))
-         AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
-         LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
+        WHERE EecEEType IN ('FEL', 'FTC', 'REG') AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
+         --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' 
+         --OR LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
    
     Union
 
@@ -1363,14 +1361,14 @@ BEGIN
         AND BdmCoID = xCoID
         and BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS')
         JOIN jobcode on jbcjobcode = eecjobcode
-       WHERE EecEEType IN ('FEL', 'FTC', 'REG') AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  EecDateofTermination > = DateAdd(d, -180, GETDATE() )))
-        AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
-        LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
+       WHERE EecEEType IN ('FEL', 'FTC', 'REG') AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
+        --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
+        --LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EBAMLIRPEX_drvTbl_BSH01
     ---------------------------------
-    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_BSH01','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_BSH01','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_drvTbl_BSH01;
       SELECT DISTINCT
          drvEEID = xEEID
@@ -1401,14 +1399,15 @@ BEGIN
         ,drvTaxcode = Case when EepAddressCountry = 'USA' THEN 'USA'
                            When EepAddressCountry <> 'USA' THEN LEFT(EepAddressCountry,3)
                         END
-        ,drvPhone1 = Case when EecPhoneBusinessNumber IS NOT NULL THEN EecPhoneBusinessNumber END
+        ,drvPhone1 = Case when efoPhoneNumber   IS NOT NULL THEN  efoPhoneNumber  END----Case when ISNULL(EecPhoneBusinessNumber, '') <> '' THEN EecPhoneBusinessNumber END
 
-        ,drvPhone1Type = Case when BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'W' END
+        ,drvPhone1Type = Case when efoPhoneNumber   IS NOT NULL THEN  'C' END --Case when ISNULL(EecPhoneBusinessNumber, '') <> '' THEN 'W' END
+                            --Case when BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'W' END
         ,drvMailCode =  Case when EepAddressCountry = 'USA' THEN 'D'
                              when EepAddressCountry <> 'USA' THEN 'I'
                             END
         ,drvPreferredCurrency = 'USD'
-        ,drvLanguagePrefCode = Case when EecLanguageCode IS NOT NULL THEN
+        ,drvLanguagePrefCode = Case when EecLanguageCode  IS NOT NULL THEN
                                     Case when EecLanguageCode = 'EN' THEN 'ENG'
                                          when EecLanguageCode ='FR' THEN 'FRA'
                                          when EecLanguageCode = 'SP' THEN 'SPA'
@@ -1420,16 +1419,17 @@ BEGIN
         ,EecDateOfOriginalHire = Convert(Varchar, EecDateOfOriginalHire,112)
         ,drvTermRehireDate = Case when EecEmplStatus = 'T' THEN CONVERT(VARCHAR,EecDateOfTermination, 112) END
         ,drvTermID = Case when EecEmplStatus = 'T' THEN
-                            CASE when eecemplstatus = 'T' and ( BdmChangeReason =  '210' OR EecTermReason = '203') THEN 'DEATH' 
+                            CASE when BdmChangeReason =  '210' OR EecTermReason = '203' THEN 'DEATH' 
                             when BdmChangeReason = '206' THEN 'DISABLED'
-                            when (BdmChangeReason ='208' OR EecTermReason = '202' )THEN 'RETIRED'
-                            when eecemplstatus = 'T' and ( BdmChangeReason <>  '210' OR EecTermReason<> '203') THEN 'TERM' --EecTermReason IN ('100','101','102','103','104','200','201','204','205','207','209','210','211','212','213')
+                            when BdmChangeReason ='208' OR EecTermReason = '202' THEN 'RETIRED'
+                            ELSE 'TERM'
+                                --when BdmChangeReason <> '210' OR EecTermReason <> '203' THEN 'TERM' --EecTermReason IN ('100','101','102','103','104','200','201','204','205','207','209','210','211','212','213')
                             END
                         END
 
         ,drvEmploymentStatusEffDate = Case  when EecEmplStatus = 'T' THEN CONVERT(VARCHAR,EecDateOfTermination, 112)
                                             when EecEmplStatus <> 'T' and EecDateOfLastHire <> EecDateOfOriginalHire THEN CONVERT(VARCHAR,EecDateOfLastHire , 112)                                           
-                                            WHEn EecEmplStatus <> 'T' and (EecDateOfLastHire is null or (EecDateOfLastHire = EecDateOfOriginalHire)) THEN CONVERT(VARCHAR,EecDateOfOriginalHire , 112)
+                                            WHEn EecEmplStatus <> 'T' and (EecDateOfLastHire  IS NULL or (EecDateOfLastHire = EecDateOfOriginalHire)) THEN CONVERT(VARCHAR,EecDateOfOriginalHire , 112)
                                         END
 
         ,drvEmail = Case when EecEmplStatus = 'A' THEN EepAddressEmail else EepAddressEMailAlternate END
@@ -1456,7 +1456,7 @@ BEGIN
         ,drvCountryofResidenceFlag = Case when BDMDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
         ,drvCitizenshipFlag = Case when BDMDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
         ,drvTaxJurisdictionFlag = Case when BDMDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
-        ,drvBusEmailFlag = Case WHEN EepAddressEMail is not null then 'Y' ELSE 'N' END
+        ,drvBusEmailFlag = Case WHEN EepAddressEMail  IS NOT NULL then 'Y' ELSE 'N' END
         ,drvPhoneNumberFlag = Case when BDMDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
         ,drvMailCodeFlag = Case when BDMDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
         ,drvLanguagePrefCodeFlag = Case when BDMDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
@@ -1480,7 +1480,7 @@ BEGIN
         ,drvACUserCode2 = cmpGlSegment --Left(u2.OrgGLSegment, 3) --GL Segment (3 digits)-- MW updated 11/7/23 per layout update
         ,drvACUsercode3 = u3.OrgGLSegment --Cost Center (4 digits)
         ,drvACYTDFICAOAS = dbo.dsi_fnpadzero(Replace(PthFICATaxAmtYTD, '.', ''), 11, 0) + '0000' ---EetYTDGrossSupTaxWag
-        ,drvACRegion = Case when EecUDField01 IS NOT NULL THEN '1' END
+        ,drvACRegion = Case when EecUDField01  IS NOT NULL THEN '1' END
         ,drvACEELvlRestrictCode = Case when EecEmplStatus = 'T' AND (BdmChangeReason = '210' OR EecTermReason = '203') THEN '100' ELSE '163' END
         ,drvACRehireCorrTermInd = Case when EecDateOfLastHire <> EecDateOfOriginalHire AND (EecJobChangeReason = '101' OR EecHireSource = 'REHIRE') THEN 'R' END
         ,drvACYTDMedicare = dbo.dsi_fnpadzero(Replace(PthMedicare, '.', ''), 11, 0) + '0000' 
@@ -1499,9 +1499,9 @@ BEGIN
                                         When EepAddressCountry <> 'USA' THEN '00'
                                     END
                             
-        ,drvAC_SUPPLEMENTAL_COMP = dbo.dsi_fnpadzero(Replace(PthSupComp, '.', ''), 11, 0) --+ '0000'  --Case when PthTaxCode IN ('USFIT)' THEN  SUM(PthCurSuppTaxAmt) for first percontrol to the latest for the year.-- 000000000123456 decimal is implied after 13th position for this field
+        ,drvAC_SUPPLEMENTAL_COMP = dbo.dsi_fnpadzero(Replace(PthSupComp, '.', ''), 15, 0) --+ '0000'  --Case when PthTaxCode IN ('USFIT)' THEN  SUM(PthCurSuppTaxAmt) for first percontrol to the latest for the year.-- 000000000123456 decimal is implied after 13th position for this field
 
-        ,drvAC_USER_TEXT_10 = UPPER(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbo.dsi_fnRemoveChars('.,/-',(EepNameLast+', '+EepNameFirst)), 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a'), 'ô', 'o'), 'ç', 'c'), 'ë', 'e'),'€','c'),'§','s'),'Ž','z'))
+        ,drvAC_USER_TEXT_10 = UPPER(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbo.dsi_fnRemoveChars('./-',(EepNameLast+', '+EepNameFirst)), 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a'), 'ô', 'o'), 'ç', 'c'), 'ë', 'e'),'€','c'),'§','s'),'Ž','z'))
         ,drvEmployeeID = EecEmpNo
         ,drvPayrollID = 'UKG'
         ,drvPayrollCurrency = 'USD'
@@ -1515,7 +1515,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-        JOIN dbo.company WITH (NOLOCK) -- MW added 11/7/23
+    JOIN dbo.company WITH (NOLOCK) -- MW added 11/7/23
         ON cmpcoid = xcoid
    LEFT JOIN dbo.U_dsi_BDM_EBAMLIRPEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
@@ -1533,14 +1533,17 @@ BEGIN
     LEFT JOIN dbo.U_EBAMLIRPEX_PTaxHist WITH (NOLOCK)
         ON PthEEID = xEEID
     JOIN jobcode on jbcjobcode = eecjobcode
-         WHERE EecEEType IN ('FEL', 'FTC', 'REG') AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  EecDateofTermination > = DateAdd(d, -180, GETDATE() )))
-         AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
-         LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
+ LEFT JOIN dbo.EmpMPhon WITH (NOLOCK)
+        ON efoeeid =Xeeid
+        and efoPhoneType = 'CEL'
+         WHERE EecEEType IN ('FEL', 'FTC', 'REG') AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
+        -- AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
+        -- LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EBAMLIRPEX_drvTbl_BCS01
     ---------------------------------
-    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_BCS01','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_BCS01','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_drvTbl_BCS01;
     SELECT DISTINCT
          drvEEID = xEEID
@@ -1550,7 +1553,7 @@ BEGIN
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
         ,drvSearchKey = Case when BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN EecEmpNo END
-        ,drvPartNumber = Case when EepAddressCountry = 'USA' THEN EepSSN END
+        ,drvPartNumber = EepSSN  --Case when EepAddressCountry = 'USA' THEN EepSSN END
         ,drvProductIdentifier = Case when EepAddressCountry = 'USA' THEN 'ES1'
                                         when EepAddressCountry <> 'USA' THEN 'ES2'
                                     END
@@ -1577,7 +1580,7 @@ BEGIN
         ,drvMaxShares = dbo.dsi_fnpadzero(0, 15,0)
         ,drvEmployeeNumber = EecEmpNo
         ,drvEspp_EmployeeId = EecEmpNo
-        ,drvTax_IdentificationNumber = Case when BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') AND EepAddressCountry = 'USA' THEN EepSSN END
+        ,drvTax_IdentificationNumber = EepSSN  --Case when BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') AND EepAddressCountry = 'USA' THEN EepSSN END
         ,drvEspp_PayrollFreq = Case pgrPayFrequency 
                                         WHEN 'S' THEN 'S'
                                         WHEN 'B' THEN 'B'
@@ -1600,36 +1603,39 @@ BEGIN
         and BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS')
     JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
-       WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  EecDateofTermination > = DateAdd(d, -180, GETDATE() )))
-         AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
-         LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
-         and xeeid = 'DF1S9I000050'
+       WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
+         --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
+         --LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
+         --and xeeid = 'DF1S9I000050'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EBAMLIRPEX_drvTbl_BAC01
     ---------------------------------
-    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_BAC01','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_drvTbl_BAC01','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_drvTbl_BAC01;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
        -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
-        ,drvSubSort = ''
+        ,drvSubSort =  '05'   --Left(u2.OrgGLSegment, 3) -- MW 12/5/23                       
+              
         -- standard fields above and additional driver fields below 
-        ,drvTableCode = Case when Left(u2.OrgGLSegment, 3) is not null  THEN '05'
-                             when Left(u2.OrgGLSegment, 3) is null  THEN '06'
-                         END
-        ,drvCode = Case when u2.OrgGLSegment is not null and audUser2 is not null and u2.OrgGLSegment <> audUser2 THEN LEFT(audUser2, 3) 
-                        when EjhOrglvl3 <> EecOrgLvl3  and audUser3 is not null THEN audUser3 
-                        END
-        ,drvCodeDesc = Case when u2.OrgGLSegment is not null and audUser2 is not null and u2.OrgGLSegment <> audUser2 THEN audOrgDesc
-                            when EjhOrglvl3 <> EecOrgLvl3  and audUser3 is not null THEN audOrgDesc
-                        END
-         --Case when LEFT(GLSegment,3) THEN AudNewValue (the new code description) for 05=IBSH01_AC_USER_CODE2 
-                        --Case when EjhOrglvl3<>EecOrglvl3 (CostCenter) THEN AudNewValue (the new code description) for 06=IBSH01_AC_USER_CODE4
+        ,drvTableCode = CASE WHEN CmpGLSegment   IS NOT NULL  THEN '05' END --Left(u2.OrgGLSegment, 3) -- MW 12/5/23                           
+                        
+        ,drvCode = Case  when CmpGLSegment   IS NOT NULL   THEN CmpGLSegment  END  -- MW 12/5/23                            
+                       
+            --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN LEFT(audUser2, 3) 
+                        --when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audUser3 
+                        --END
+        ,drvCodeDesc = CASE WHEN ISNULL(CmpGLSegment, '') <> ''     THEN cmpcompanyName  END -- MW 12/8/23 
+            --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN audOrgDesc
+                        --    when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audOrgDesc
+                        --END
+         --CASE WHEN LEFT(GLSegment,3) THEN AudNewValue (the new code description) for 05=IBSH01_AC_USER_CODE2 
+                        --CASE WHEN EjhOrglvl3<>EecOrglvl3 (CostCenter) THEN AudNewValue (the new code description) for 06=IBSH01_AC_USER_CODE4
         ,drvCodeDescFlag = 'Y' -- per request MW updated to be hardcoded again 11/16/23 -- CASE WHEN EecDedGroupCode NOT In ( 'CONT', 'INTNO') THEN 'N' ELSE 'Y' END -- 'Y' -- MW updated 11/7/23 per layout update
-    INTO dbo.U_EBAMLIRPEX_drvTbl_BAC01
+   INTO dbo.U_EBAMLIRPEX_drvTbl_BAC01
     FROM dbo.U_EBAMLIRPEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
@@ -1640,36 +1646,107 @@ BEGIN
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         and BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS')
+    JOIN dbo.company WITH (NOLOCK) -- MW added 12/5/23
+        ON cmpcoid = xcoid
     LEFT JOIN dbo.OrgLevel U2  WITH(NOLOCK) 
         ON eecorglvl1 = U2.orgcode
-         and Left(U2.OrgGLSegment, 3) IN ('110','115','125','510','210','215','220','225','230','235','240','245') 
+    --     and Left(U2.OrgGLSegment, 3) IN ('110','115','125','510','210','215','220','225','230','235','240','245') 
     LEFT JOIN dbo.OrgLevel U3  WITH(NOLOCK) 
         ON eecorglvl3 = U3.orgcode
          and u3.OrgGLSegment IN ('1105','1110','1115','1205','1210','1215','1220','1225','1230','1235','1240','1305','3105',
                                     '3110','3115','3120','3130','3140','3205','3210','4105','4205','7105','7110','7205','7215','7305','7310','7315','7405','7410','7505','7506') 
     LEFT JOIN dbo.U_EBAMLIRPEX_PTaxHist WITH (NOLOCK)
         ON PthEEID = xEEID
-        
+    LEFT JOIN dbo.OrgLevel U4 WITH(NOLOCK) 
+        ON CmpGLSegment = U4.orgcode
     LEFT JOIN (SELECT * FROM  (SELECT Ejheeid,ejhCoid, EjhOrglvl3, EjhJobEffDate,ROW_NUMBER() OVER(PARTITION BY ejheeid ORDER BY auditkey DESC) as Row_Num from dbo.EmphJob WITH (NOLOCK)
-                where EjhOrglvl3 is not null
+                where EjhOrglvl3  IS NOT NULL
             ) A WHERE Row_Num = 1) as User3
             ON User3.ejheeid = xeeid
             and User3.EjhCoid =XCOID
         --Left JOIN dbo.TmpAlloc TGL WITH(NOLOCK) 
         --ON TGL.Eeid = Xeeid
-    LEFT JOIN dbo.U_EBAMLIRPEX_Audit  WITH (NOLOCK)
-        ON Audeeid = XEEID
-        and AudCoid = XCOID
-       WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  EecDateofTermination > = DateAdd(d, -180, GETDATE() )))
+    --LEFT JOIN dbo.U_EBAMLIRPEX_Audit  WITH (NOLOCK)
+    --    ON Audeeid = XEEID
+    --    and AudCoid = XCOID
+       WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
         
-         AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
-         LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
-         and xeeid = 'DF1S9I000050'
+         --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
+         --LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
+         --and xeeid = 'DF1S9I000050'    
+
+  UNION
+
+
+SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+       -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvInitialSort = EecEmpNo
+        ,drvSubSort =  '06'
+                         
+        -- standard fields above and additional driver fields below 
+        ,drvTableCode = CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN '06'  END--Left(u2.OrgGLSegment, 3)
+                        
+        ,drvCode = CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN EecOrglvl1  END
+            --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN LEFT(audUser2, 3) 
+                        --when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audUser3 
+                        --END
+        ,drvCodeDesc = CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN  U2.orgdesc END
+            --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN audOrgDesc
+                        --    when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audOrgDesc
+                        --END
+         --CASE WHEN LEFT(GLSegment,3) THEN AudNewValue (the new code description) for 05=IBSH01_AC_USER_CODE2 
+                        --CASE WHEN EjhOrglvl3<>EecOrglvl3 (CostCenter) THEN AudNewValue (the new code description) for 06=IBSH01_AC_USER_CODE4
+        ,drvCodeDescFlag = 'Y' -- per request MW updated to be hardcoded again 11/16/23 -- CASE WHEN EecDedGroupCode NOT In ( 'CONT', 'INTNO') THEN 'N' ELSE 'Y' END -- 'Y' -- MW updated 11/7/23 per layout update
+    --INTO dbo.U_EBAMLIRPEX_drvTbl_BAC01
+    FROM dbo.U_EBAMLIRPEX_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    LEFT JOIN dbo.U_dsi_BDM_EBAMLIRPEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        and BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS')
+    JOIN dbo.company WITH (NOLOCK) -- MW added 12/5/23
+        ON cmpcoid = xcoid
+    LEFT JOIN dbo.OrgLevel U2  WITH(NOLOCK) 
+        ON eecorglvl1 = U2.orgcode
+    --     and Left(U2.OrgGLSegment, 3) IN ('110','115','125','510','210','215','220','225','230','235','240','245') 
+    LEFT JOIN dbo.OrgLevel U3  WITH(NOLOCK) 
+        ON eecorglvl3 = U3.orgcode
+         and u3.OrgGLSegment IN ('1105','1110','1115','1205','1210','1215','1220','1225','1230','1235','1240','1305','3105',
+                                    '3110','3115','3120','3130','3140','3205','3210','4105','4205','7105','7110','7205','7215','7305','7310','7315','7405','7410','7505','7506') 
+    LEFT JOIN dbo.U_EBAMLIRPEX_PTaxHist WITH (NOLOCK)
+        ON PthEEID = xEEID
+    LEFT JOIN dbo.OrgLevel U4 WITH(NOLOCK) 
+        ON CmpGLSegment = U4.orgcode
+    LEFT JOIN (SELECT * FROM  (SELECT Ejheeid,ejhCoid, EjhOrglvl3, EjhJobEffDate,ROW_NUMBER() OVER(PARTITION BY ejheeid ORDER BY auditkey DESC) as Row_Num from dbo.EmphJob WITH (NOLOCK)
+                where EjhOrglvl3  IS NOT NULL
+            ) A WHERE Row_Num = 1) as User3
+            ON User3.ejheeid = xeeid
+            and User3.EjhCoid =XCOID
+        --Left JOIN dbo.TmpAlloc TGL WITH(NOLOCK) 
+        --ON TGL.Eeid = Xeeid
+    --LEFT JOIN dbo.U_EBAMLIRPEX_Audit  WITH (NOLOCK)
+    --    ON Audeeid = XEEID
+    --    and AudCoid = XCOID
+       WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
+        
+         --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
+         --LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
+         --and xeeid = 'DF1S9I000050'
+
+        
+
+        
     ;
     ---------------------------------
     -- TRAILER RECORD
     ---------------------------------
-    IF OBJECT_ID('U_EBAMLIRPEX_Trailer','U') IS NOT NULL
+    IF OBJECT_ID('U_EBAMLIRPEX_Trailer','U')  IS NOT NULL
         DROP TABLE dbo.U_EBAMLIRPEX_Trailer;
     SELECT DISTINCT
          drvRecordCount = ((Select count(*) from dbo.U_EBAMLIRPEX_drvTbl_IBEN) + (Select count(*) from dbo.U_EBAMLIRPEX_drvTbl_BSH01) + 2)
