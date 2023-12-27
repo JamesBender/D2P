@@ -5,7 +5,7 @@ EULTHSBCFW: HSBC Positive Pay
 FormatCode:     EULTHSBCFW
 Project:        HSBC Positive Pay
 Client ID:      ULT1005
-Date/time:      2023-12-26 16:45:12.650
+Date/time:      2023-12-27 09:01:33.150
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -181,16 +181,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EULTHSBCFW_20231226.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EULTHSBCFW_20231227.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',TWZNN,A0GJH',NULL,NULL,NULL,'HSBC Positive Pay ONDEM','202311109','EMPEXPORT','ONDEM_XOE',NULL,'EULTHSBCFW',NULL,NULL,NULL,'202311109','Aug  8 2023 10:27AM','Aug  8 2023 10:27AM','202311101',NULL,'','','202311101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',A0GJH,TWZNN',NULL,NULL,NULL,'HSBC Positive Pay-Sched','202311109','EMPEXPORT','SCH_EULTHS',NULL,'EULTHSBCFW',NULL,NULL,NULL,'202311109','Aug  8 2023 10:27AM','Aug  8 2023 10:27AM','202311101',NULL,'','','202311101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',TWZNN,A0GJH',NULL,NULL,NULL,'HSBC Positive Pay-Test','202311109','EMPEXPORT','TEST_XOE',NULL,'EULTHSBCFW',NULL,NULL,NULL,'202311109','Aug  8 2023 10:27AM','Aug  8 2023 10:27AM','202311101',NULL,'','','202311101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'TWZNN',NULL,NULL,NULL,'HSBC Positive Pay ONDEM','202312229','EMPEXPORT','ONDEM_XOE',NULL,'EULTHSBCFW',NULL,NULL,NULL,'202312229','Aug  8 2023 10:27AM','Aug  8 2023 10:27AM','202312221',NULL,'','','202312221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'TWZNN',NULL,NULL,NULL,'HSBC Positive Pay-Sched','202312229','EMPEXPORT','SCH_EULTHS',NULL,'EULTHSBCFW',NULL,NULL,NULL,'202312229','Aug  8 2023 10:27AM','Aug  8 2023 10:27AM','202312221',NULL,'','','202312221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','A0GJH',NULL,NULL,NULL,'HSBC Positive Pay-Test','202311279','EMPEXPORT','TEST_XOE',NULL,'EULTHSBCFW',NULL,NULL,NULL,'202311279','Aug  8 2023 10:27AM','Aug  8 2023 10:27AM','202311271',NULL,'','','202311271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -446,7 +446,14 @@ BEGIN
         ,drvHSBCnetCustomerID = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'PC000024709' ELSE 'PC000038632' END
         ,drvFileCreation = REPLACE(format(getdate(),'yyyy-MM-ddTHH:mm:ss.MSMSMS'),'S','')--CCYY-MM-DDTHH:MN:SS.MSMSMS
         ,drvFileReference = format(getdate(),'yyyyMMddHHmm')
-        ,drvRecordCount =  FORMaT( ( SELECT count(distinct drvEEID)  FROM dbo.U_EULTHSBCFW_drvTbl b WITH (NOLOCK) where ISNULL(drvVoidIndicator,'')  = 'V' and drvCheckAmount <> '0000000000')  + ( SELECT count( drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl    where ISNULL(drvVoidIndicator, '')  = ' ' and drvCheckAmount <> '0000000000'),'000000000') ---- MW updated 12/8 FORMAT(count(drvEEID)+2,'000000000')
+        ,drvRecordCount =  CASE WHEN (((Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK)  where ISNULL(drvVoidIndicator, '')  <> 'V' and drvCheckAmount <> '0000000000')> 0 and  (Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK) where ISNULL(drvVoidIndicator, '') = 'V' and drvCheckAmount <> '0000000000') = 0 ) 
+                                            or ((Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK)  where ISNULL(drvVoidIndicator, '')  <> 'V' and drvCheckAmount <> '0000000000') = 0 and  (Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK) where ISNULL(drvVoidIndicator, '') = 'V' and drvCheckAmount <> '0000000000') > 0 )) 
+                                    THEN FORMaT( ( SELECT count(distinct drvEEID)+1  FROM dbo.U_EULTHSBCFW_drvTbl b WITH (NOLOCK) where ISNULL(drvVoidIndicator,'')  = 'V' and drvCheckAmount <> '0000000000')  + ( SELECT count( drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl    where ISNULL(drvVoidIndicator, '')  = ' ' and drvCheckAmount <> '0000000000'),'000000000')
+        
+                                WHEN( (Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK)  where ISNULL(drvVoidIndicator, '')  <> 'V' and drvCheckAmount <> '0000000000')> 0 and (Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK) where ISNULL(drvVoidIndicator, '') = 'V' and drvCheckAmount <> '0000000000')> 0 ) 
+                                THEN FORMaT( ( SELECT count(distinct drvEEID)+2  FROM dbo.U_EULTHSBCFW_drvTbl b WITH (NOLOCK) where ISNULL(drvVoidIndicator,'')  = 'V' and drvCheckAmount <> '0000000000')  + ( SELECT count( drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl    where ISNULL(drvVoidIndicator, '')  = ' ' and drvCheckAmount <> '0000000000'),'000000000')
+                                END 
+        --FORMaT( ( SELECT count(distinct drvEEID)  FROM dbo.U_EULTHSBCFW_drvTbl b WITH (NOLOCK) where ISNULL(drvVoidIndicator,'')  = 'V' and drvCheckAmount <> '0000000000')  + ( SELECT count( drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl    where ISNULL(drvVoidIndicator, '')  = ' ' and drvCheckAmount <> '0000000000'),'000000000') ---- MW updated 12/8 FORMAT(count(drvEEID)+2,'000000000')
     INTO dbo.U_EULTHSBCFW_HDR_drvTbl
     FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK) where  drvCheckAmount <> '0000000000'
     ;

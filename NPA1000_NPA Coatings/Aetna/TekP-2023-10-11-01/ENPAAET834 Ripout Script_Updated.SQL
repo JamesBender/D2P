@@ -5,7 +5,7 @@ ENPAAET834: Aetna MedDent
 FormatCode:     ENPAAET834
 Project:        Aetna MedDent
 Client ID:      NPA1000
-Date/time:      2023-12-26 06:52:11.433
+Date/time:      2023-12-27 06:56:12.680
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -371,7 +371,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ENPAAET834_20231226.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ENPAAET834_20231227.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -848,7 +848,7 @@ Purpose: Aetna MedDent
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
-Marie Waters        12/26/2023       TekP-2023-10-11-01 Populated QTY count in header
+Marie Waters        12/26/2023       TekP-2023-10-11-01 Populated QTY count in header and removed 336 from 2300 loop 12/27
 XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ENPAAET834';
@@ -1474,10 +1474,10 @@ BEGIN
                                           END
                                      
         -- If drvDTP00_DateTime_303 = 'DTP', then Send DTP*303 Segment
-        ,drvDTP00_DateTime_303 = 'DTP' 
-        ,drvDTP01_DateTimeQualifier_303 = '336'
-        ,drvDTP02_DateTimeFormatQual_303 = 'D8' 
-        ,drvDTP03_DateTimePeriod_303 = EecDateofLastHire 
+        ,drvDTP00_DateTime_303 = ''--'DTP' -- MW removed 12/27/2023
+        ,drvDTP01_DateTimeQualifier_303 = ''--'336'-- MW removed 12/27/2023
+        ,drvDTP02_DateTimeFormatQual_303 = ''--'D8' -- MW removed 12/27/2023
+        ,drvDTP03_DateTimePeriod_303 = ''--EecDateofLastHire -- MW removed 12/27/2023
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'
