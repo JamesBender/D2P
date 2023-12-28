@@ -1023,6 +1023,8 @@ BEGIN
         AND BdmCoID = xCoID
      LEFT JOIN dbo.Contacts WITH (NOLOCK) 
         ON ConEEID = xEEID 
+        AND ConIsDependent = 'Y'
+		AND ConRelationship IN ('SPS','DP','SP')
     LEFT JOIN dbo.U_ETANUNUMEX_PEarHist WITH (NOLOCK) -- MW added
         ON Peheeid = xEEID
      LEFT JOIN dbo.U_ETANUNUMEX_Audit -- MW added 
