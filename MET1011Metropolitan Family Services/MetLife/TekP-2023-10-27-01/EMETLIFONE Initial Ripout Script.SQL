@@ -5,7 +5,7 @@ EMETLIFONE: MetLife One Export
 FormatCode:     EMETLIFONE
 Project:        MetLife One Export
 Client ID:      USG1000
-Date/time:      2023-12-27 14:55:49.870
+Date/time:      2023-12-28 10:37:33.107
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -484,7 +484,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMETLIFONE_20231227.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMETLIFONE_20231228.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -591,7 +591,7 @@ CREATE TABLE [dbo].[U_dsi_BDM_EMETLIFONE] (
 IF OBJECT_ID('U_EMETLIFONE_Audit') IS NULL
 CREATE TABLE [dbo].[U_EMETLIFONE_Audit] (
     [audEEID] varchar(255) NOT NULL,
-    [audKey2] varchar(255) NOT NULL,
+    [audCOID] varchar(255) NOT NULL,
     [audKey3] varchar(255) NOT NULL,
     [audTableName] varchar(128) NOT NULL,
     [audFieldName] varchar(128) NOT NULL,
@@ -651,10 +651,10 @@ CREATE TABLE [dbo].[U_EMETLIFONE_drvTbl] (
     [drvAddressLine2] varchar(8000) NULL,
     [drvAddressCity] varchar(8000) NULL,
     [drvAddressState] varchar(8000) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
+    [drvAddressZipCode] varchar(6000) NULL,
     [drvCountryCode] varchar(1) NOT NULL,
     [drvWorkState] varchar(1) NOT NULL,
-    [drvPhoneNumber] varchar(50) NULL,
+    [drvPhoneNumber] varchar(6000) NULL,
     [drvEmailAddress] varchar(50) NULL,
     [drvWorkStatusCode] varchar(1) NULL,
     [drvWorkStatusCodeEffDate] varchar(8000) NULL,
@@ -803,7 +803,8 @@ BEGIN
             ,@StartDate         DATETIME
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
+            ,@EndPerControl     VARCHAR(9)
+            ,@MinCovDate        DATETIME;
 
     -- Set FormatCode
     SELECT @FormatCode = 'EMETLIFONE';
@@ -815,6 +816,7 @@ BEGIN
         ,@StartDate       = LEFT(StartPerControl,8)
         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
         ,@ExportCode      = ExportCode
+        ,@MinCovDate      = '01/01/2024'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
@@ -836,13 +838,13 @@ BEGIN
     IF OBJECT_ID('U_EMETLIFONE_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EMETLIFONE_AuditFields;
     CREATE TABLE dbo.U_EMETLIFONE_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-
+    INSERT INTO dbo.U_EMETLIFONE_AuditFields VALUES ('EmpComp','EecEmplStatus');
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EMETLIFONE_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_EMETLIFONE_Audit;
     SELECT 
         audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
+        ,audCOID= audKey2Value
         ,audKey3 = audKey3Value
         ,audTableName
         ,audFieldName
@@ -860,7 +862,7 @@ BEGIN
     AND audAction <> 'DELETE';
 
     -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_EMETLIFONE_Audit ON dbo.U_EMETLIFONE_Audit (audEEID,audKey2);
+    CREATE CLUSTERED INDEX CDX_U_EMETLIFONE_Audit ON dbo.U_EMETLIFONE_Audit (audEEID,audCOID);
 
     ----================
     ---- Changes Only
@@ -891,7 +893,7 @@ BEGIN
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
@@ -969,10 +971,10 @@ BEGIN
         ,drvAddressLine2 = CASE WHEN BdmRecType = 'EMP' THEN UPPER(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressLine2, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')) END
         ,drvAddressCity = CASE WHEN BdmRecType = 'EMP' THEN UPPER(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressCity, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')) END
         ,drvAddressState = CASE WHEN BdmRecType = 'EMP' THEN UPPER(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressState, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')) END
-        ,drvAddressZipCode = CASE WHEN BdmRecType = 'EMP' THEN EepAddressZipCode END
+        ,drvAddressZipCode = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressZipCode) END
         ,drvCountryCode = ''
         ,drvWorkState = ''
-        ,drvPhoneNumber = CASE WHEN BdmRecType = 'EMP' THEN EepPhoneHomeNumber END
+        ,drvPhoneNumber = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepPhoneHomeNumber) END
         ,drvEmailAddress = CASE WHEN BdmRecType = 'EMP' THEN EepAddressEMail END
         ,drvWorkStatusCode =CASE WHEN BdmRectYpe = 'EMP' THEN
                                     CASE WHEN Eecemplstatus = 'T' and Eectermreason = '203' THEN 'D'
@@ -1014,7 +1016,7 @@ BEGIN
                                    WHEN BdmRectYpe = 'DEP' AND BdmRelationship in ('DP', 'SPS') and  ConIsSmoker ='N' then 'N'
                                 END
         ,drvAccidentIns = CASE WHEN BdmDedcode = 'MTLIF' then 'AH' END
-        ,drvAccCovEffDate = CASE WHEN  BdmDedcode = 'MTLIF' THEN replace(convert(char(10),BdmBenStartDate, 101), '/', '') END
+        ,drvAccCovEffDate = CASE WHEN  BdmDedcode = 'MTLIF' THEN replace(convert(char(10),(dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, BdmBenStartDate)) , 101), '/', '') END
         ,drvAccCovEndDate = CASE WHEN  BdmDedcode = 'MTLIF' THEN replace(convert(char(10),BdmBenStopDate, 101), '/', '') END
         ,drvAccGroupNum = CASE WHEN  BdmDedcode = 'MTLIF' THEN '0254581' END
         ,drvAccSubcode = CASE WHEN  BdmDedcode = 'MTLIF' THEN '0001' END
@@ -1028,7 +1030,7 @@ BEGIN
         ,drvAccEnrollStatus = CASE WHEN  BdmDedcode = 'MTLIF'  AND BdmBenStatus = 'A' THEN 'P' END
         ,drvAccVolCancelInd = CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode = 'MTLIF'  AND BdmBenStatus <> 'A' THEN 'CE' END
         ,drvHospitalIndemnity = CASE WHEN Bdmdedcode = 'MFS' THEN 'HH' END
-        ,drvHospCovEffDate = CASE WHEN Bdmdedcode = 'MFS' THEN replace(convert(char(10),BdmBenStartDate, 101), '/', '') END
+        ,drvHospCovEffDate = CASE WHEN Bdmdedcode = 'MFS' THEN replace(convert(char(10),(dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, BdmBenStartDate)) , 101), '/', '') END
         ,drvHospCovEndDate = CASE WHEN Bdmdedcode = 'MFS' THEN replace(convert(char(10),BdmBenStopDate, 101), '/', '') END
         ,drvHospgroupNum = CASE WHEN Bdmdedcode = 'MFS' THEN '0254581' END
         ,drvHospSubcode = CASE WHEN Bdmdedcode = 'MFS' THEN '0001' END
@@ -1042,7 +1044,7 @@ BEGIN
         ,drvHospEnrollmentstatus = CASE WHEN  BdmDedcode =  'MFS'  AND BdmBenStatus = 'A' THEN 'P' END
         ,drvHospVolCancelInd =  CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode =  'MFS'  AND BdmBenStatus <> 'A' THEN 'CE' END
         ,drvCrillEmpAttainedIge = CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI') THEN 'GE' END
-        ,drvCrillCovEffDateEmp =  CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI')  THEN replace(convert(char(10),BdmBenStartDate, 101), '/', '') END
+        ,drvCrillCovEffDateEmp =  CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI')  THEN replace(convert(char(10),(dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, BdmBenStartDate)) , 101), '/', '') END
         ,drvCrillCovEndDateEmp = CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI')  THEN replace(convert(char(10),BdmBenStopDate, 101), '/', '')END
         ,drvCrillgroupNumEmp = CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI')  THEN '025453' END
         ,drvCrillSubcodeEmp = CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI')  THEN '001' END
@@ -1053,7 +1055,7 @@ BEGIN
         ,drvCrillBenefitamountEmp = CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI')  AND BdmBenStatus = 'A' THEN BdmEEAmt END
         ,drvCrillVolCancelIndEmp = CASE WHEN  BdmRectYpe = 'EMP' AND BdmDedcode IN ('MCRI1', 'MCRI2', 'MECRI')  AND BdmBenStatus <> 'A' THEN 'CE' END
         ,drvCrillDepAttainedIge = CASE WHEN BdmDedcode IN ('MSCR1', 'MSCR2', 'MSCR3',  'MCCR') THEN  'GD' END
-        ,drvCrillCovEffDateDep = CASE WHEN BdmDedcode IN ('MSCR1', 'MSCR2', 'MSCR3',  'MCCR') THEN  replace(convert(char(10),BdmBenStartDate, 101), '/', '') END
+        ,drvCrillCovEffDateDep = CASE WHEN BdmDedcode IN ('MSCR1', 'MSCR2', 'MSCR3',  'MCCR') THEN  replace(convert(char(10),(dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, BdmBenStartDate)) , 101), '/', '') END
         ,drvCrillCovEndDateDep = CASE WHEN BdmDedcode IN ('MSCR1', 'MSCR2', 'MSCR3',  'MCCR') THEN  replace(convert(char(10),BdmBenStopDate, 101), '/', '') END
         ,drvCrillgroupNumDep = CASE WHEN BdmDedcode IN ('MSCR1', 'MSCR2', 'MSCR3',  'MCCR') THEN '025453' END
         ,drvCrillSubcodeDep = CASE WHEN BdmDedcode IN ('MSCR1', 'MSCR2', 'MSCR3',  'MCCR') THEN '0001' END
@@ -1084,6 +1086,11 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
+     LEFT JOIN dbo.U_EMETLIFONE_Audit WITH (NOLOCK)
+        ON AudEEID = XEEID 
+        and AudCOID = XCOID
+    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audDatetime Between @StartDate and @EndDate))
+    ;
     ;
     ---------------------------------
     -- HEADER RECORD
