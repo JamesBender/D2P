@@ -499,12 +499,12 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_@CustomFormatCode_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
-    IF @ExportCode LIKE 'OE%'
-    BEGIN
+   -- IF @ExportCode LIKE 'OE%'
+    --BEGIN
         -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
-        DELETE FROM dbo.U_@CustomFormatCode_EEList
-        WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_@CustomFormatCode_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
-    END;
+   --     DELETE FROM dbo.U_@CustomFormatCode_EEList
+   --     WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_@CustomFormatCode_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
+  --  END;
 
     --==========================================
     -- BDM Section
