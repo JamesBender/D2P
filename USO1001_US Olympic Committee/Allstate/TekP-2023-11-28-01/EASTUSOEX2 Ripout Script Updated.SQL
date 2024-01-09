@@ -5,7 +5,7 @@ EASTUSOEX2: Allstate Cancer and Accident Test
 FormatCode:     EASTUSOEX2
 Project:        Allstate Cancer and Accident Test
 Client ID:      USO1001
-Date/time:      2023-12-19 12:55:37.450
+Date/time:      2024-01-09 12:23:46.147
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -90,7 +90,7 @@ WHERE ExpFormatCode = 'EASTUSOEX2'
 -----------
 
 DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EASTUSOEX2')
-DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = ''
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EASTUSOEX2'
 DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EASTUSOEX2'
 DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EASTUSOEX2'
 DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EASTUSOEX2'
@@ -333,7 +333,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EASTUSOEX2_20231219.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EASTUSOEX2_20240109.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -1005,11 +1005,11 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvRecordType = '38'
         ,drvApplicationID = eepSSN
-        ,drvCoverageTier = CASE WHEN bdmbenoption in ('EE') THEN '1'
-                                WHEN bdmbenoption in ('EES', 'EEDP')  THEN '2'
-                                WHEN bdmbenoption in ('EEC', 'EECH') THEN '3'
-                                WHEN  bdmbenoption in ('EEF', 'EEDPF') THEN '4'
-                           END
+        ,drvCoverageTier = CASE WHEN Bdmbenoption = 'EE' then '1'
+                               WHEN Bdmbenoption in ('EES', 'EEDP') then '2'
+                               WHEN Bdmbenoption in ('EEC', 'EECH') then '3'
+                               WHEN Bdmbenoption in ('EEF', 'EEDPF') then '4'
+                            END
         ,drvSection125 = 'Y'
         ,drvTotalModePremium = CASE WHEN bcaeeamt is not null then CONVERT(VARCHAR,dbo.dsi_fnPadZero(bcaeeamt*100,6,0))  else 
                                         (Select top 1  CONVERT(VARCHAR,dbo.dsi_fnPadZero(coreerate*100,6,0)) from dbo.OptRate where cordedcode = 'ACCDT' and corbenoption =  bdmbenoption)
@@ -1073,9 +1073,9 @@ BEGIN
         ,drvSubSort = bdmdeprecid
         ,drvRecordType ='55'
         ,drvApplicationID = eepSSN
-        ,drvCoverageTier = CASE WHEN Bdmbenoption = 'E' then '1'
+        ,drvCoverageTier = CASE WHEN Bdmbenoption = 'EE' then '1'
                                WHEN Bdmbenoption in ('EES', 'EEDP') then '2'
-                               WHEN Bdmbenoption in ('EEC', 'EEC') then '3'
+                               WHEN Bdmbenoption in ('EEC', 'EECH') then '3'
                                WHEN Bdmbenoption in ('EEF', 'EEDPF') then '4'
                             END
         ,drvSection125= 'Y'
