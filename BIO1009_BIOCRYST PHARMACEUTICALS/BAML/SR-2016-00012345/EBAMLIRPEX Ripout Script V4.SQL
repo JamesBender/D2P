@@ -5,7 +5,7 @@ EBAMLIRPEX: BAML IRP&I
 FormatCode:     EBAMLIRPEX
 Project:        BAML IRP&I
 Client ID:      BIO1009
-Date/time:      2024-01-10 17:51:56.957
+Date/time:      2024-01-11 12:50:21.443
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -739,7 +739,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBAMLIRPEX_20240110.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBAMLIRPEX_20240111.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -888,10 +888,10 @@ CREATE TABLE [dbo].[U_EBAMLIRPEX_drvTbl_BAC01] (
     [drvEEID] varchar(1) NOT NULL,
     [drvCoID] varchar(1) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL,
-    [drvSubSort] varchar(2) NOT NULL,
-    [drvTableCode] varchar(2) NULL,
-    [drvCode] char(15) NULL,
-    [drvCodeDesc] varchar(40) NULL,
+    [drvSubSort] varchar(17) NULL,
+    [drvTableCode] varchar(2) NOT NULL,
+    [drvCode] varchar(15) NULL,
+    [drvCodeDesc] varchar(28) NULL,
     [drvCodeDescFlag] varchar(1) NOT NULL
 );
 
@@ -1113,7 +1113,7 @@ SET NOCOUNT ON;
 Client Name: BIOCRYST PHARMACEUTICALS INC
 
 Created By: Marie Waters
-Business Analyst: Kim Ephraim
+Business Analyst: Kim Ephraim/Lea King
 Create Date: 08/21/2023
 Service Request Number: SR-2016-00012345
 
@@ -1122,6 +1122,7 @@ Purpose: BAML IRP&I
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
+MWaters                1/11/2024      SR-2016-00012345   Client/Vendor has changed requirements repeatedly thus all the commented out code 
 XXXX                XX/XX/2023     SR-2023-000XXXXX   XXXXX
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBAMLIRPEX';
@@ -1575,7 +1576,7 @@ BEGIN
     --                        END
 
 
-        ,drvEligFlag = 'Y' --Case when bdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
+        ,drvEligFlag = CASE WHEN EecEmplstatus = 'T' THEN 'N' ELSE 'Y' END --Updated 1/11/24 from hardcoded 'Y' and previously updated from --Case when bdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS') THEN 'Y' ELSE 'N' END
         ,drvMin_AmtSecurity = dbo.dsi_fnpadzero(0, 15,0)
         ,drvMax_AmtSecurity = dbo.dsi_fnpadzero(0, 15,0)
         ,drvMin_AmtLocal = dbo.dsi_fnpadzero(0, 15,0)
@@ -1596,7 +1597,7 @@ BEGIN
         ,drvIbcs01Cusip = '09058V10' 
         ,drvEspp_AnnualSalary = dbo.dsi_fnpadzero(Replace(EecAnnSalary, '.', ''), 14, 0)+ '0' 
       
-   -- INTO dbo.U_EBAMLIRPEX_drvTbl_BCS01
+   INTO dbo.U_EBAMLIRPEX_drvTbl_BCS01
     FROM dbo.U_EBAMLIRPEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
@@ -1624,62 +1625,70 @@ BEGIN
         ,drvCoID = ''--xCoID
        -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = '5'--EecEmpNo
-        ,drvSubSort =  '05'   --Left(u2.OrgGLSegment, 3) -- MW 12/5/23                       
+        ,drvSubSort =   '5_'+CmpGLSegment    --Left(u2.OrgGLSegment, 3) -- MW 12/5/23                       
               
         -- standard fields above and additional driver fields below 
-        ,drvTableCode = CASE WHEN CmpGLSegment   IS NOT NULL  THEN '05' END --Left(u2.OrgGLSegment, 3) -- MW 12/5/23                           
+        ,drvTableCode = '05'
+        --CASE WHEN CmpGLSegment   IS NOT NULL  THEN '05' END --Left(u2.OrgGLSegment, 3) -- MW 12/5/23                           
                         
-        ,drvCode = CASE WHEN CmpGLSegment   IS NOT NULL   THEN CmpGLSegment  END  -- MW 12/5/23                            
+        ,drvCode = CASE WHEN CmpGLSegment   = '110'   THEN '110'  
+                        WHEN CmpGLSegment   = '510'     THEN '510'
+                     END
+        --CASE WHEN CmpGLSegment   IS NOT NULL   THEN CmpGLSegment  END  -- MW 12/5/23                            
                        
             --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN LEFT(audUser2, 3) 
                         --when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audUser3 
                         --END
-        ,drvCodeDesc = CASE WHEN ISNULL(CmpGLSegment, '') <> ''     THEN cmpcompanyName  END -- MW 12/8/23 
+        ,drvCodeDesc = CASE WHEN CmpGLSegment   = '110'   THEN 'BioCryst Pharmaceuticals Inc'  
+                            WHEN CmpGLSegment   = '510'      THEN 'BioCryst US Sales Co LLC'
+                        END
+        --CASE WHEN ISNULL(CmpGLSegment, '') <> ''     THEN cmpcompanyName  END -- MW 12/8/23 
             --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN audOrgDesc
                         --    when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audOrgDesc
                         --END
          --CASE WHEN LEFT(GLSegment,3) THEN AudNewValue (the new code description) for 05=IBSH01_AC_USER_CODE2 
                         --CASE WHEN EjhOrglvl3<>EecOrglvl3 (CostCenter) THEN AudNewValue (the new code description) for 06=IBSH01_AC_USER_CODE4
         ,drvCodeDescFlag = 'Y' -- per request MW updated to be hardcoded again 11/16/23 -- CASE WHEN EecDedGroupCode NOT In ( 'CONT', 'INTNO') THEN 'N' ELSE 'Y' END -- 'Y' -- MW updated 11/7/23 per layout update
-   INTO dbo.U_EBAMLIRPEX_drvTbl_BAC01
+    INTO dbo.U_EBAMLIRPEX_drvTbl_BAC01
     FROM dbo.U_EBAMLIRPEX_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+ --   JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+ --       ON EecEEID = xEEID 
+ --       AND EecCoID = xCoID
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+ --       ON EepEEID = xEEID
     --LEFT JOIN dbo.U_dsi_BDM_EBAMLIRPEX WITH (NOLOCK)
     --    ON BdmEEID = xEEID 
     --    AND BdmCoID = xCoID
     --    and BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS')
     JOIN dbo.company WITH (NOLOCK) -- MW added 12/5/23
         ON cmpcoid = xcoid
-    LEFT JOIN dbo.OrgLevel U2  WITH(NOLOCK) 
-        ON eecorglvl1 = U2.orgcode
-    --     and Left(U2.OrgGLSegment, 3) IN ('110','115','125','510','210','215','220','225','230','235','240','245') 
-    LEFT JOIN dbo.OrgLevel U3  WITH(NOLOCK) 
-        ON eecorglvl3 = U3.orgcode
-         and u3.OrgGLSegment IN ('1105','1110','1115','1205','1210','1215','1220','1225','1230','1235','1240','1305','3105',
-                                    '3110','3115','3120','3130','3140','3205','3210','4105','4205','7105','7110','7205','7215','7305','7310','7315','7405','7410','7505','7506') 
-    LEFT JOIN dbo.U_EBAMLIRPEX_PTaxHist WITH (NOLOCK)
-        ON PthEEID = xEEID
-    LEFT JOIN dbo.OrgLevel U4 WITH(NOLOCK) 
-        ON CmpGLSegment = U4.orgcode
-    LEFT JOIN (SELECT * FROM  (SELECT Ejheeid,ejhCoid, EjhOrglvl3, EjhJobEffDate,ROW_NUMBER() OVER(PARTITION BY ejheeid ORDER BY auditkey DESC) as Row_Num from dbo.EmphJob WITH (NOLOCK)
-                where EjhOrglvl3  IS NOT NULL
-            ) A WHERE Row_Num = 1) as User3
-            ON User3.ejheeid = xeeid
-            and User3.EjhCoid =XCOID
-        --Left JOIN dbo.TmpAlloc TGL WITH(NOLOCK) 
-        --ON TGL.Eeid = Xeeid
-    --LEFT JOIN dbo.U_EBAMLIRPEX_Audit  WITH (NOLOCK)
-    --    ON Audeeid = XEEID
-    --    and AudCoid = XCOID
-       WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
-        and CASE WHEN CmpGLSegment   IS NOT NULL   THEN CmpGLSegment  END  IS NOT NULL
-         --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
-         --LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
-         --and xeeid = 'DF1S9I000050'    
+     AND CmpGLSegment IN ( '110', '510')
+    --LEFT JOIN dbo.OrgLevel U2  WITH(NOLOCK) 
+    --    ON eecorglvl1 = U2.orgcode
+    ----     and Left(U2.OrgGLSegment, 3) IN ('110','115','125','510','210','215','220','225','230','235','240','245') 
+    --LEFT JOIN dbo.OrgLevel U3  WITH(NOLOCK) 
+    --    ON eecorglvl3 = U3.orgcode
+    --     and u3.OrgGLSegment IN ('1105','1110','1115','1205','1210','1215','1220','1225','1230','1235','1240','1305','3105',
+    --                                '3110','3115','3120','3130','3140','3205','3210','4105','4205','7105','7110','7205','7215','7305','7310','7315','7405','7410','7505','7506') 
+    --LEFT JOIN dbo.U_EBAMLIRPEX_PTaxHist WITH (NOLOCK)
+ --       ON PthEEID = xEEID
+    --LEFT JOIN dbo.OrgLevel U4 WITH(NOLOCK) 
+    --    ON CmpGLSegment = U4.orgcode
+    --LEFT JOIN (SELECT * FROM  (SELECT Ejheeid,ejhCoid, EjhOrglvl3, EjhJobEffDate,ROW_NUMBER() OVER(PARTITION BY ejheeid ORDER BY auditkey DESC) as Row_Num from dbo.EmphJob WITH (NOLOCK)
+    --            where EjhOrglvl3  IS NOT NULL
+ --           ) A WHERE Row_Num = 1) as User3
+ --           ON User3.ejheeid = xeeid
+    --        and User3.EjhCoid =XCOID
+    --    --Left JOIN dbo.TmpAlloc TGL WITH(NOLOCK) 
+    --    --ON TGL.Eeid = Xeeid
+    ----LEFT JOIN dbo.U_EBAMLIRPEX_Audit  WITH (NOLOCK)
+    ----    ON Audeeid = XEEID
+    ----    and AudCoid = XCOID
+ --      WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
+    --    and CASE WHEN CmpGLSegment   IS NOT NULL   THEN CmpGLSegment  END  IS NOT NULL
+    --     --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
+    --     --LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
+    --     --and xeeid = 'DF1S9I000050'    
 
   UNION
 
@@ -1689,16 +1698,48 @@ SELECT DISTINCT
         ,drvCoID = ''--xCoID
        -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = '5'--EecEmpNo
-        ,drvSubSort =  '06'
+        ,drvSubSort =  '6_'+ U2.OrgGLSegment
                          
         -- standard fields above and additional driver fields below 
-        ,drvTableCode = CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN '06'  END--Left(u2.OrgGLSegment, 3)
+        ,drvTableCode = '06'
+        --CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN '06'  END--Left(u2.OrgGLSegment, 3)
                         
-        ,drvCode = CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN  U2.OrgGLSegment  END -- EecOrglvl1  END -- MW updated 12/14/23
+        ,drvCode = CASE WHEN  ISNULL(U2.OrgGLSegment, '') <> ''  THEN U2.OrgGLSegment END -- EecOrglvl1  END -- MW updated 12/14/23
             --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN LEFT(audUser2, 3) 
                         --when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audUser3 
                         --END
-        ,drvCodeDesc = CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN  U2.orgdesc END
+        ,drvCodeDesc =  CASE WHEN   ISNULL(U2.OrgGLSegment, '') <> ''    THEN         
+                               CASE WHEN  U2.OrgGLSegment  = '1105' THEN 'Chem/Bio/Animal'
+                                    WHEN  U2.OrgGLSegment  = '1110' THEN 'CMC'
+                                    WHEN  U2.OrgGLSegment  = '1115' THEN 'Administrative-BHM'
+                                    WHEN  U2.OrgGLSegment  = '1205' THEN 'Clinical Ops'
+                                    WHEN  U2.OrgGLSegment  = '1210' THEN 'Development'
+                                    WHEN  U2.OrgGLSegment  = '1215' THEN 'Nonclinical Development'
+                                    WHEN  U2.OrgGLSegment  = '1220' THEN 'Regulatory Affairs'
+                                    WHEN  U2.OrgGLSegment  = '1225' THEN 'Global Drug Safety & PV'
+                                    WHEN  U2.OrgGLSegment  = '1230' THEN 'Program Management'
+                                    WHEN  U2.OrgGLSegment  = '1235' THEN 'Quality Assurance'
+                                    WHEN  U2.OrgGLSegment  = '1240' THEN 'Clinical'
+                                    WHEN  U2.OrgGLSegment  = '1305' THEN 'Medical Affairs'
+                                    WHEN  U2.OrgGLSegment  = '3110' THEN 'US Marketing'
+                                    WHEN  U2.OrgGLSegment  = '3120' THEN 'Patient Services'
+                                    WHEN  U2.OrgGLSegment  = '3130' THEN 'Sales'
+                                    WHEN  U2.OrgGLSegment  = '3140' THEN 'Patient Advocacy'
+                                    WHEN  U2.OrgGLSegment  = '3210' THEN 'Market Access'
+                                    WHEN  U2.OrgGLSegment  = '4105' THEN 'Commercial'
+                                    WHEN  U2.OrgGLSegment  = '4205' THEN 'Strat Data Insights & Ops'
+                                    WHEN  U2.OrgGLSegment  = '7105' THEN 'Administration'
+                                    WHEN  U2.OrgGLSegment  = '7110' THEN 'IR & Corporate Comms'
+                                    WHEN  U2.OrgGLSegment  = '7205' THEN 'Business Development'
+                                    WHEN  U2.OrgGLSegment  = '7215' THEN 'Supply Chain'
+                                    WHEN  U2.OrgGLSegment  = '7305' THEN 'Legal'
+                                    WHEN  U2.OrgGLSegment  = '7405' THEN 'Finance'
+                                    WHEN  U2.OrgGLSegment  = '7410' THEN 'Information Technology'
+                                    WHEN  U2.OrgGLSegment  = '7505' THEN 'Human Resources'
+                                    WHEN  U2.OrgGLSegment  = '7506' THEN 'University Relations'
+                                END
+                            END
+        --CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN  U2.orgdesc END
             --       CASE WHEN u2.OrgGLSegment  IS NOT NULL and audUser2  IS NOT NULL and u2.OrgGLSegment <> audUser2 THEN audOrgDesc
                         --    when EjhOrglvl3 <> EecOrgLvl3  and audUser3  IS NOT NULL THEN audOrgDesc
                         --END
@@ -1710,37 +1751,44 @@ SELECT DISTINCT
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+ --       ON EepEEID = xEEID
     --LEFT JOIN dbo.U_dsi_BDM_EBAMLIRPEX WITH (NOLOCK)
     --    ON BdmEEID = xEEID 
     --    AND BdmCoID = xCoID
     --    and BdmDedCode IN ('ESPP','ESPP1','ESPP2','ESPPS')
     JOIN dbo.company WITH (NOLOCK) -- MW added 12/5/23
         ON cmpcoid = xcoid
-    LEFT JOIN dbo.OrgLevel U2  WITH(NOLOCK) 
+    JOIN dbo.OrgLevel U2  WITH(NOLOCK) 
         ON eecorglvl1 = U2.orgcode
+        and u2.OrgGLSegment IN ('1105','1110','1115','1205','1210','1215','1220','1225','1230','1235','1240','1305','3105',
+                                    '3110','3115','3120','3130','3140','3205','3210','4105','4205','7105','7110','7205','7215','7305','7310','7315','7405','7410','7505','7506')
     --     and Left(U2.OrgGLSegment, 3) IN ('110','115','125','510','210','215','220','225','230','235','240','245') 
-    LEFT JOIN dbo.OrgLevel U3  WITH(NOLOCK) 
-        ON eecorglvl3 = U3.orgcode
-         and u3.OrgGLSegment IN ('1105','1110','1115','1205','1210','1215','1220','1225','1230','1235','1240','1305','3105',
-                                    '3110','3115','3120','3130','3140','3205','3210','4105','4205','7105','7110','7205','7215','7305','7310','7315','7405','7410','7505','7506') 
-    LEFT JOIN dbo.U_EBAMLIRPEX_PTaxHist WITH (NOLOCK)
-        ON PthEEID = xEEID
-    LEFT JOIN dbo.OrgLevel U4 WITH(NOLOCK) 
-        ON CmpGLSegment = U4.orgcode
-    LEFT JOIN (SELECT * FROM  (SELECT Ejheeid,ejhCoid, EjhOrglvl3, EjhJobEffDate,ROW_NUMBER() OVER(PARTITION BY ejheeid ORDER BY auditkey DESC) as Row_Num from dbo.EmphJob WITH (NOLOCK)
-                where EjhOrglvl3  IS NOT NULL
-            ) A WHERE Row_Num = 1) as User3
-            ON User3.ejheeid = xeeid
-            and User3.EjhCoid =XCOID
+    --LEFT JOIN dbo.OrgLevel U3  WITH(NOLOCK) 
+    --    ON eecorglvl3 = U3.orgcode
+    --     and u3.OrgGLSegment IN ('1105','1110','1115','1205','1210','1215','1220','1225','1230','1235','1240','1305','3105',
+    --                                '3110','3115','3120','3130','3140','3205','3210','4105','4205','7105','7110','7205','7215','7305','7310','7315','7405','7410','7505','7506') 
+    --LEFT JOIN dbo.U_EBAMLIRPEX_PTaxHist WITH (NOLOCK)
+ --       ON PthEEID = xEEID
+    --LEFT JOIN dbo.OrgLevel U4 WITH(NOLOCK) 
+    --    ON CmpGLSegment = U4.orgcode
+    --LEFT JOIN (SELECT * FROM  (SELECT Ejheeid,ejhCoid, EjhOrglvl3, EjhJobEffDate,ROW_NUMBER() OVER(PARTITION BY ejheeid ORDER BY auditkey DESC) as Row_Num from dbo.EmphJob WITH (NOLOCK)
+    --            where EjhOrglvl3  IS NOT NULL
+ --           ) A WHERE Row_Num = 1) as User3
+ --           ON User3.ejheeid = xeeid
+    --        and User3.EjhCoid =XCOID
         --Left JOIN dbo.TmpAlloc TGL WITH(NOLOCK) 
         --ON TGL.Eeid = Xeeid
     --LEFT JOIN dbo.U_EBAMLIRPEX_Audit  WITH (NOLOCK)
     --    ON Audeeid = XEEID
     --    and AudCoid = XCOID
-       WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
-        and  CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN  U2.OrgGLSegment  END IS NOT NULL
+        --Left JOIN dbo.TmpAlloc TGL WITH(NOLOCK) 
+        --ON TGL.Eeid = Xeeid
+    --LEFT JOIN dbo.U_EBAMLIRPEX_Audit  WITH (NOLOCK)
+    --    ON Audeeid = XEEID
+    --    and AudCoid = XCOID
+  --     WHERE EecEEType IN ('FEL', 'FTC', 'REG')  AND (EecEmplstatus <> 'T' or ( EecEmplstatus = 'T' and  Convert( varchar,EecDateofTermination,112) > = Convert(Varchar,(DateAdd(d, -180, GETDATE() )),112)))
+        --and  CASE WHEN  CmpGLSegment   IS NOT NULL and ISNULL(EecOrglvl1,'') <> ''   THEN  U2.OrgGLSegment  END IS NOT NULL
          --AND ( CASE WHEN EepAddressCountry = 'USA' THEN ISNULL(EepSSN,'') END <> '' OR
          --LEFT(EepSSN, 4) NOT IN  ('0000' , '1001') )
          --and xeeid = 'DF1S9I000050'
