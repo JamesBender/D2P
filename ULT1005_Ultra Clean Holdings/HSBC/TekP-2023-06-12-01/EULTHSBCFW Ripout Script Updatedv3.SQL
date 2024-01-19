@@ -5,7 +5,7 @@ EULTHSBCFW: HSBC Positive Pay
 FormatCode:     EULTHSBCFW
 Project:        HSBC Positive Pay
 Client ID:      ULT1005
-Date/time:      2024-01-04 11:52:21.077
+Date/time:      2024-01-19 07:26:22.067
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -181,7 +181,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EULTHSBCFW_20240104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EULTHSBCFW_20240119.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -334,6 +334,7 @@ Update By           Date           Request Num          Desc
 Marie Waters       11/2/2023      TekP-2023-06-12-01    Removed +2 from counts of TotalItems
 LeaK                11/30/23      TekP-2023-06-12-01    Correct trailers and set to not send if blank file
 Marie Waters       12/8/2023      TekP-2023-06-12-01    Updated code for header count
+Marie Waters       1/19/2024      TekP-2023-06-12-01    Updated code for header timestamp
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EULTHSBCFW';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EULTHSBCFW';
@@ -444,7 +445,7 @@ BEGIN
      SELECT DISTINCT
          drvEmpNoSort = ''
         ,drvHSBCnetCustomerID = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'PC000024709' ELSE 'PC000038632' END
-        ,drvFileCreation = FORMAT(GetDate(), 'yyyy-MM-ddThh:mm:ss.ffff') -- MW updated 1/4/2024 from REPLACE(format(getdate(),'yyyy-MM-ddTHH:mm:ss.MSMSMS'),'S','')--CCYY-MM-DDTHH:MN:SS.MSMSMS
+        ,drvFileCreation = FORMAT(GetDate(), 'yyyy-MM-ddT')+ Cast(RIGHT( CAST(GetDate() as Datetime2(6)), 12) as varchar)--FORMAT(GetDate(), 'yyyy-MM-ddThh:mm:ss.ffff') -- MW updated 1/4/2024 from REPLACE(format(getdate(),'yyyy-MM-ddTHH:mm:ss.MSMSMS'),'S','')--CCYY-MM-DDTHH:MN:SS.MSMSMS
         ,drvFileReference = format(getdate(),'yyyyMMddHHmm')
         ,drvRecordCount =  CASE WHEN (((Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK)  where ISNULL(drvVoidIndicator, '')  <> 'V' and drvCheckAmount <> '0000000000')> 0 and  (Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK) where ISNULL(drvVoidIndicator, '') = 'V' and drvCheckAmount <> '0000000000') = 0 ) 
                                             or ((Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK)  where ISNULL(drvVoidIndicator, '')  <> 'V' and drvCheckAmount <> '0000000000') = 0 and  (Select count(drvEEID) FROM dbo.U_EULTHSBCFW_drvTbl WITH (NOLOCK) where ISNULL(drvVoidIndicator, '') = 'V' and drvCheckAmount <> '0000000000') > 0 )) 
