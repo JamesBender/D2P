@@ -5,7 +5,7 @@ ENYSNYLIFE: NY Life FMLA Export
 FormatCode:     ENYSNYLIFE
 Project:        NY Life FMLA Export
 Client ID:      NYS1002
-Date/time:      2023-11-14 09:30:28.547
+Date/time:      2024-01-19 14:56:47.783
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -155,7 +155,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ENYSNYLIFE_20231114.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ENYSNYLIFE_20240119.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -163,8 +163,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'NY Life FMLA Export','202311149','EMPEXPORT','ONDEM_XOE',NULL,'ENYSNYLIFE',NULL,NULL,NULL,'202311149','Nov 14 2023  8:37AM','Nov 14 2023  8:37AM','202310071',NULL,'','','202310071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'NY Life FMLA Export-Sched','202311149','EMPEXPORT','SCH_ENYSNY',NULL,'ENYSNYLIFE',NULL,NULL,NULL,'202311149','Nov 14 2023  8:37AM','Nov 14 2023  8:37AM','202310071',NULL,'','','202310071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'NY Life FMLA Export-Test','202311149','EMPEXPORT','TEST_XOE',NULL,'ENYSNYLIFE',NULL,NULL,NULL,'202311149','Nov 14 2023  8:37AM','Nov 14 2023  8:37AM','202310071',NULL,'','','202310071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',5KG86,5KF7N,5KGB3,5KFTS,5KGEW',NULL,NULL,NULL,'NY Life FMLA Export Tue 830P','207312319','EMPEXPORT','SCH_ENYSNY',NULL,'ENYSNYLIFE',NULL,NULL,NULL,'202401169','Nov 14 2023  8:37AM','Nov 14 2023  8:37AM','202401091',NULL,'','','202310071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'NY Life FMLA Export-Test','202311309','EMPEXPORT','TEST_XOE',NULL,'ENYSNYLIFE',NULL,NULL,NULL,'202311309','Nov 14 2023  8:37AM','Nov 14 2023  8:37AM','202311301',NULL,'','','202311301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -422,7 +422,8 @@ BEGIN
         ON ErnEarnCode = PehEarnCode
     --WHERE  PehPerControl <= @EndPerControl
     WHERE PrgPayDate BETWEEN DATEADD(YY,-1,@StartDate) AND @EndDate
-    and PehInclInDefComp = 'Y'
+   --- and PehInclInDefComp = 'Y'
+    AND ErnEarnCode in ('12','13','15','01','02','03','04','05','07','33','33HC','66','BUS','EOT','HLWRK','HOT','MEALP','OTD','OTP','OTW','POT','REG','WTP') 
     GROUP BY PehEEID
     HAVING SUM(PehCurAmt) <> 0.00;
     --==========================================
@@ -444,7 +445,7 @@ BEGIN
         ,drvLastName =  dbo.dsi_fnRemoveChars('.,/-',REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameLast, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'))
         ,drvFirstName = dbo.dsi_fnRemoveChars('.,/-',REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameFirst, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'))
         ,drvStatus = CASE WHEN EecEmplStatus ='T' THEN 'TE' ELSE 'AC' END
-        ,drvActualAnnHours = dbo.dsi_fnPadZero(REPLACE(CONVERT(MONEY,PehCurHrs12Mos),'.00',''),4,0)
+        ,drvActualAnnHours = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(CONVERT(MONEY,PehCurHrs12Mos),'.00',''),4,0), '0000') = '0000' THEN '0001' ELSE dbo.dsi_fnPadZero(REPLACE(CONVERT(MONEY,PehCurHrs12Mos),'.00',''),4,0) END --v MW updated 1/19/24 dbo.dsi_fnPadZero(REPLACE(CONVERT(MONEY,PehCurHrs12Mos),'.00',''),4,0)
     INTO dbo.U_ENYSNYLIFE_drvTbl
     FROM dbo.U_ENYSNYLIFE_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -452,7 +453,7 @@ BEGIN
         JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-    JOIN dbo.U_ENYSNYLIFE_PEarHist WITH (NOLOCK)
+   LEFT JOIN dbo.U_ENYSNYLIFE_PEarHist WITH (NOLOCK) -- MW 1/19/24 Changted to Left Join 
         ON PehEEID = xEEID
        WHERE EecEEType <>  'TES'
     AND (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
