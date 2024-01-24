@@ -4,16 +4,17 @@ EASUMRFSAE: UMR FSA FSADC Export
 
 FormatCode:     EASUMRFSAE
 Project:        UMR FSA FSADC Export
-Client ID:      USG1000
-Date/time:      2024-01-23 16:33:05.557
+Client ID:      ASS1012
+Date/time:      2024-01-24 07:37:54.730
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EASUMRFSAE_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW3WUP3DB01
+Database:       ULTIPRO_WPFEEDS
+Web Filename:   ASS1012_C931E_EEHISTORY_EASUMRFSAE_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -232,18 +233,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EASUMRFSAE_20240123.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EASUMRFSAE_20240124.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202401239','EMPEXPORT','OEACTIVE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401231',NULL,'','','202401231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202401239','EMPEXPORT','OEPASSIVE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401231',NULL,'','','202401231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UMR FSA FSADC Export','202401239','EMPEXPORT','ONDEM_XOE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401231',NULL,'','','202401231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UMR FSA FSADC Export-Sched','202401239','EMPEXPORT','SCH_EASUMR',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401231',NULL,'','','202401231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UMR FSA FSADC Export-Test','202401239','EMPEXPORT','TEST_XOE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401231',NULL,'','','202401231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202401239','EMPEXPORT','OEACTIVE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401011',NULL,'','','202401011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202401239','EMPEXPORT','OEPASSIVE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401011',NULL,'','','202401011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UMR FSA FSADC Export','202401239','EMPEXPORT','ONDEM_XOE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401011',NULL,'','','202401011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UMR FSA FSADC Export-Sched','202401239','EMPEXPORT','SCH_EASUMR',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401011',NULL,'','','202401011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'UMR FSA FSADC Export-Test','202401239','EMPEXPORT','TEST_XOE',NULL,'EASUMRFSAE',NULL,NULL,NULL,'202401239','Jan 23 2024  3:33PM','Jan 23 2024  3:33PM','202401011',NULL,'','','202401011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -255,11 +256,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASUMRFSAE','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -275,12 +277,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EASUMRFSAE','T90','dbo.U_EASUMRFSAE_Trailer',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -492,7 +494,7 @@ CREATE TABLE [dbo].[U_EASUMRFSAE_Trailer] (
     [drvTotalEEDepCareCont] money NULL,
     [drvTotalEEHCAnnualAmts] money NULL,
     [drvTotalEEDpeCareAnnAmts] money NULL,
-    [drvTotalERHCAnnAmt] varchar(1) NOT NULL
+    [drvTotalERHCAnnAmt] varchar(11) NOT NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EASUMRFSAE]
@@ -733,7 +735,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EASUMRFSAE_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EASUMRFSAE_drvTbl;
-    SELECT DISTINCT
+   SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -745,9 +747,10 @@ BEGIN
         ,drvFirstName = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameFirst, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o')
         ,drvPayrollDate = PrgPayDate 
         ,drvEmployerContributionHC = ''
-        ,drvEmployeeContributionHC = PdhFSA
+        ,drvEmployeeContributionHC = CASE WHEN FSA_DedCode = 'FSA' THEN PdhFSA END
         ,drvEmployerContributionDC = ''
-        ,drvEmployeeContributionDC = PdhFSADC
+        
+        ,drvEmployeeContributionDC = CASE WHEN FSADC_DedCode = 'FSADC' THEN PdhFSADC END
         ,drvLimitedIndicator = ''
         ,drvGroupCode = '001'
         ,drvPayrollFrequency = CASE WHEN PgrPayFrequency  IN ('W', 'B') THEN PgrPayFrequency END
@@ -756,38 +759,60 @@ BEGIN
         ,drvCity = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressCity, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'n','n'),'ö','o'), ',','')
         ,drvState = EepAddressState
         ,drvZipCode = REPLACE(EepAddressZipCode, '-','')
-        ,drvEmployeeCovEffDateHC = CONVERT(VARCHAR(8),CASE WHEN Bdmdedcode = 'FSA' THEN CASE WHEN @ExportCode LIKE 'OE%' THEN Cast(Year(@StartDate)+1 as varchar) + '0101'                                       
-                                                            ELSE dbo.dsi_fnGetMinMaxDates('MAX', (Cast(Year(@StartDate) as varchar) + '0101') , BdmBenStartDate)
+        ,drvEmployeeCovEffDateHC = CONVERT(VARCHAR(8),CASE WHEN FSA_DedCode = 'FSA'  THEN CASE WHEN @ExportCode LIKE 'OE%' THEN Cast(Year(@StartDate)+1 as varchar) + '0101'                                       
+                                                           WHEN @ExportCode NOT LIKE 'OE%' THEN dbo.dsi_fnGetMinMaxDates('MAX', (Cast(Year(@StartDate) as varchar) + '0101') , FSA_BenStartDate)
                                                         END 
                                                 END, 112) 
-        ,drvEmployeeCovTermDateHC = CONVERT(VARCHAR(8),CASE WHEN Bdmdedcode = 'FSA' THEN 
+        ,drvEmployeeCovTermDateHC = CONVERT(VARCHAR(8),CASE WHEN FSA_DedCode = 'FSA'  THEN 
                                                             CASE WHEN @ExportCode LIKE 'OE%' THEN Cast(Year(@StartDate)+1 as varchar) + '1231'                                       
-                                                                  WHEN @ExportCode NOT LIKE 'OE%' and BdmBenStopDate is not null then BdmBenStopDate else (Cast(Year(@StartDate) as varchar) + '1231')
+                                                                  WHEN @ExportCode NOT LIKE 'OE%' and FSA_BenStopDate is not null then FSA_BenStopDate else (Cast(Year(@StartDate) as varchar) + '1231')
                                                                 END 
                                                         END, 112) 
-        ,drvEmpAnnHCElecAmt = CASE WHEN Bdmdedcode = 'FSA' THEN FORMAT(BdmEEGoalAmt, '0.00') END
-        ,drvEmployeeCovEffDateDC = CONVERT(VARCHAR(8),CASE WHEN Bdmdedcode = 'FSADC' THEN CASE WHEN @ExportCode LIKE 'OE%' THEN Cast(Year(@StartDate)+1 as varchar) + '0101'                                       
-                                                            ELSE dbo.dsi_fnGetMinMaxDates('MAX', (Cast(Year(@StartDate) as varchar) + '0101') , BdmBenStartDate) 
+        ,drvEmpAnnHCElecAmt = CASE WHEN FSA_DedCode = 'FSA'  THEN FORMAT(FSA_BdmEEGoalAmt, '0.00') END
+        ,drvEmployeeCovEffDateDC = CONVERT(VARCHAR(8),CASE WHEN FSADC_DedCode = 'FSADC' THEN CASE WHEN @ExportCode LIKE 'OE%' THEN Cast(Year(@StartDate)+1 as varchar) + '0101'                                       
+                                                            WHEN @ExportCode NOT LIKE 'OE%' THEN dbo.dsi_fnGetMinMaxDates('MAX', (Cast(Year(@StartDate) as varchar) + '0101') , FSADC_BenStartDate) 
                                                         END 
                                                 END, 112)
-        ,drvEmployeeCovTermDateDC = CONVERT(VARCHAR(8),CASE WHEN Bdmdedcode = 'FSADC' THEN 
+        ,drvEmployeeCovTermDateDC = CONVERT(VARCHAR(8),CASE WHEN FSADC_DedCode = 'FSADC' THEN 
                                                             CASE WHEN @ExportCode LIKE 'OE%' THEN Cast(Year(@StartDate)+1 as varchar) + '1231'                                       
-                                                                  WHEN @ExportCode NOT LIKE 'OE%' and BdmBenStopDate is not null then BdmBenStopDate else (Cast(Year(@StartDate) as varchar) + '1231')
+                                                                  WHEN @ExportCode NOT LIKE 'OE%' and FSADC_BenStopDate is not null then FSADC_BenStopDate else (Cast(Year(@StartDate) as varchar) + '1231')
                                                                 END 
                                                         END, 112) 
-        ,drvEmpAnnDCElecAmt = CASE WHEN Bdmdedcode = 'FSADC' THEN FORMAT(BdmEEGoalAmt, '0.00')END
+        ,drvEmpAnnDCElecAmt = CASE WHEN FSADC_DedCode = 'FSADC' THEN FORMAT(FSADC_BdmEEGoalAmt, '0.00')END
         ,drvEmployeeID = EecEmpNo
         ,drvDOB = CONVERT(VARCHAR(8),EepDateOfBirth, 112)
         ,drvMaritalStatus = CASE WHEN eepMaritalStatus IN ('W','M','S','D') THEN eepMaritalStatus ELSE 'U' END
         ,drvGender = EepGender
-    INTO dbo.U_EASUMRFSAE_drvTbl
+  INTO dbo.U_EASUMRFSAE_drvTbl
     FROM dbo.U_EASUMRFSAE_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EASUMRFSAE WITH (NOLOCK)
+    JOIN ( SELECT BdmEEID, BdmCOID
+                ,MAX(BdmRecType) AS BdmRecType
+                ,MAX(BdmRelationship) AS BdmRelationship
+                ,MAX(CASE WHEN BdmDedCode = 'FSA' THEN BdmDedCode END) FSA_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'FSADC' THEN BdmDedCode END) FSADC_DedCode
+               
+
+                ,MAX(CASE WHEN BdmDedCode IN ('FSA') THEN BdmBenStatus END) FSA_BenStatus
+                ,MAX(CASE WHEN BdmDedCode IN ('FSA') THEN BdmBenStopDate END) FSA_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode IN ('FSA') THEN BdmBenStartDate END) FSA_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode IN ('FSA') THEN BdmBenOption END) FSA_BenOption
+                ,MAX(CASE WHEN BdmDedCode IN ('FSA') THEN BdmEEGoalAmt END) FSA_BdmEEGoalAmt
+
+                ,MAX(CASE WHEN BdmDedCode IN ('FSADC') THEN BdmBenStatus END) FSADC_BenStatus
+                ,MAX(CASE WHEN BdmDedCode IN ('FSADC') THEN BdmBenStopDate END) FSADC_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode IN ('FSADC') THEN BdmBenStartDate END) FSADC_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode IN ('FSADC') THEN BdmBenOption END) FSADC_BenOption
+                ,MAX(CASE WHEN BdmDedCode IN ('FSADC') THEN BdmEEGoalAmt END) FSADC_BdmEEGoalAmt
+
+
+                FROM dbo.U_dsi_BDM_EASUMRFSAE WITH (NOLOCK) 
+                 GROUP BY BdmEEID, BdmCOID, BdmDepRecID 
+            ) bdm
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     LEFT JOIN dbo.U_EASUMRFSAE_PEarHist WITH (NOLOCK)
@@ -800,7 +825,7 @@ BEGIN
         ON audeeid = xeeid
         and audKey2 = xcoid
            WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and (auddatetime is not null  
-            or (PdhFSA > 0.00 or PdhFSADC > 0.00 )) ))
+             or (PdhFSA > '0.00' or PdhFSADC > '0.00' )) ))
 
     ;
     ---------------------------------
@@ -861,8 +886,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202401161'
-       ,expStartPerControl     = '202401161'
+    SET expLastStartPerControl = '202401011'
+       ,expStartPerControl     = '202401011'
        ,expLastEndPerControl   = '202401239'
        ,expEndPerControl       = '202401239'
 WHERE expFormatCode = 'EASUMRFSAE';
