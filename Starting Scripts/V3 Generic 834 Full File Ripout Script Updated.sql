@@ -966,7 +966,7 @@ ALTER VIEW dbo.dsi_vw@CustomFormatCode_Export AS
 GO
 
 --Check out iAscDefF
-SELECT * FROM dbo.AscDef
+SELECT * FROM dbo.iAscDefF
 WHERE AdfHeaderSystemID LIKE '@CustomFormatCode%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
