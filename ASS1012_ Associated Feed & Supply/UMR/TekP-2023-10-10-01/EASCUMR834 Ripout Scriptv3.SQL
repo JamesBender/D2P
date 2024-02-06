@@ -5,7 +5,7 @@ EASCUMR834: Associated UMR 834 Export
 FormatCode:     EASCUMR834
 Project:        Associated UMR 834 Export
 Client ID:      ASS1012
-Date/time:      2024-01-22 15:01:07.983
+Date/time:      2024-02-06 12:39:05.583
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -367,7 +367,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EASCUMR834_20240122.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EASCUMR834_20240206.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -575,9 +575,9 @@ CREATE TABLE [dbo].[U_EASCUMR834_DrvTbl] (
     [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual1] char(11) NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual2] varchar(15) NULL,
+    [drvREF02_RefNumberQual2] varchar(8) NOT NULL,
     [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual3] varchar(3) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(3) NULL,
     [drvREF01_RefNumberQual4] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual4] varchar(1) NOT NULL,
     [drvDTP00_DateTime1] varchar(3) NOT NULL,
@@ -741,7 +741,7 @@ CREATE TABLE [dbo].[U_EASCUMR834_HdrTbl] (
     [drvBGN07_TransTypeCode] varchar(1) NOT NULL,
     [drvBGN08_ActionCode] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual] varchar(12) NOT NULL,
+    [drvREF02_RefNumberQual] varchar(8) NOT NULL,
     [drvDTP00_DateTime0] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier0] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual0] varchar(2) NOT NULL,
@@ -1092,7 +1092,7 @@ BEGIN
         ,drvBGN07_TransTypeCode = ''
         ,drvBGN08_ActionCode = '4'
         ,drvREF01_RefNumberQual = '38'
-        ,drvREF02_RefNumberQual = '767000416316'
+        ,drvREF02_RefNumberQual = '76416316'--'767000416316'
         ,drvDTP00_DateTime0 = 'DTP'
         ,drvDTP01_DateTimeQualifier0 = CASE WHEN  @ExportCode LIKE 'OE%' THEN '382' 
                                             ELSE '007' 
@@ -1193,21 +1193,30 @@ BEGIN
         ,drvREF02_RefNumberQual1 = EepSSN
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = '1L'
-        ,drvREF02_RefNumberQual2 = CASE WHEN BDMDEDCODE = 'DDMED'  AND  BdmBenStatus = 'A'  AND  (HsaDEDCODE IN ('HSACI','HSAI') ) then '767000416316A06'
-                                        WHEN BDMDEDCODE = 'DDMED'  AND  BdmBenStatus = 'A' AND (HsaDEDCODE IN ('HSACF','HSAF')) then '767000416316A07'
-                                        WHEN BDMDEDCODE = 'DDMED' AND (HsaDEDCODE is null    AND  (bdmbenstatus='A' and bdmbenoption ='EE')) then '767000416316A08'
-                                        WHEN BDMDEDCODE = 'DDMED' AND (HsaDEDCODE is null    AND  (bdmbenstatus='A' and bdmbenoption <> 'EE')) then '767000416316A09'
-                                        WHEN BDMDEDCODE = 'VDMED' and (bdmbenstatus='A') then '767000416316A01'
-                                        WHEN BDMDEDCODE = 'VDPPO' and (bdmbenstatus= 'A' ) then '767000416316A02'
-                                        WHEN BDMDEDCODE IN ('AFMBP', 'MLMED', 'NTMED', 'SFMED',  'VRMED') and (bdmbenstatus='A' ) then '767000416316A03'
-                                        WHEN BDMDEDCODE IN ('AFMED', 'OWMED', 'MLMBU', 'NTMBU', 'SFMBU', 'VRMBU','SFMBP')  and (bdmbenstatus='A' ) then '767000416316A04'
-                                        WHEN BDMDEDCODE IN ('AFOOS', 'MGOOS', 'NTOOS', 'VROOS')  and (bdmbenstatus='A' ) then '767000416316A05'
-                            END  
-                            
-                                    --'76416316'
+        ,drvREF02_RefNumberQual2 = '76416316'
+         --CASE WHEN BDMDEDCODE = 'DDMED'  AND  BdmBenStatus = 'A'  AND  (HsaDEDCODE IN ('HSACI','HSAI') ) then '767000416316A06'
+            --                            WHEN BDMDEDCODE = 'DDMED'  AND  BdmBenStatus = 'A' AND (HsaDEDCODE IN ('HSACF','HSAF')) then '767000416316A07'
+            --                            WHEN BDMDEDCODE = 'DDMED' AND (HsaDEDCODE is null    AND  (bdmbenstatus='A' and bdmbenoption ='EE')) then '767000416316A08'
+            --                            WHEN BDMDEDCODE = 'DDMED' AND (HsaDEDCODE is null    AND  (bdmbenstatus='A' and bdmbenoption <> 'EE')) then '767000416316A09'
+            --                            WHEN BDMDEDCODE = 'VDMED' and (bdmbenstatus='A') then '767000416316A01'
+            --                            WHEN BDMDEDCODE = 'VDPPO' and (bdmbenstatus= 'A' ) then '767000416316A02'
+            --                            WHEN BDMDEDCODE IN ('AFMBP', 'MLMED', 'NTMED', 'SFMED',  'VRMED') and (bdmbenstatus='A' ) then '767000416316A03'
+            --                            WHEN BDMDEDCODE IN ('AFMED', 'OWMED', 'MLMBU', 'NTMBU', 'SFMBU', 'VRMBU','SFMBP')  and (bdmbenstatus='A' ) then '767000416316A04'
+            --                            WHEN BDMDEDCODE IN ('AFOOS', 'MGOOS', 'NTOOS', 'VROOS')  and (bdmbenstatus='A' ) then '767000416316A05'
+            --                END 
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = 'DX'
-        ,drvREF02_RefNumberQual3 = 'PAR' --LocDesc
+        ,drvREF02_RefNumberQual3 = CASE WHEN  Xcoid IN ( 'VHUBV', '9JW51' , 'UGMVA') THEN '001'
+                                        WHEN  Xcoid= '3ZVCS' THEN '002'
+                                        WHEN  Xcoid= '3Y1IS' THEN '003'
+                                        WHEN  Xcoid= 'UGMKC' THEN '004'
+                                        WHEN  Xcoid= 'UGN50' THEN '005'
+                                        WHEN  Xcoid IN ('UJFL8','VDFMS') THEN '006'
+                                        WHEN  Xcoid= 'ZNA97' THEN '007'
+                                        WHEN  Xcoid= 'ZNAFR' THEN '008'
+                                    END
+        
+        --'PAR' --LocDesc
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual4 = ''
         ,drvREF02_RefNumberQual4 = ''
