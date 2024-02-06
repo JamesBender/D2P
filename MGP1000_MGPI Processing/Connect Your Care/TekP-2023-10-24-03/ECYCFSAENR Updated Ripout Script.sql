@@ -1,20 +1,19 @@
 /**********************************************************************************
 
-ECYCFSAEN2: Connect Your Care FSA HSA Enrollment Test
+ECYCFSAENR: Connect Your Care FSA HSA Enrollment Export
 
-FormatCode:     ECYCFSAEN2
-Project:        Connect Your Care FSA HSA Enrollment Test
+FormatCode:     ECYCFSAENR
+Project:        Connect Your Care FSA HSA Enrollment Export
 Client ID:      MGP1000
-Date/time:      2024-02-02 06:47:40.063
+Date/time:      2024-02-05 13:28:49.160
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
 Environment:    EWP
 Server:         EW4WUP3DB01
 Database:       ULTIPRO_WPMGPI
-Web Filename:   MGP1000_BLF99_EEHISTORY_ECYCFSAEN2_ExportCode_YYYYMMDD_HHMMSS.txt
+Web Filename:   MGP1000_BLF99_EEHISTORY_ECYCFSAENR_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
-TestPath:      
 
 **********************************************************************************/
 
@@ -24,7 +23,7 @@ SET NOCOUNT ON;
 -- Drop the SavePath table if it exists
 -----------
 
-IF OBJECT_ID('U_ECYCFSAEN2_SavePath') IS NOT NULL DROP TABLE dbo.U_ECYCFSAEN2_SavePath
+IF OBJECT_ID('U_ECYCFSAENR_SavePath') IS NOT NULL DROP TABLE dbo.U_ECYCFSAENR_SavePath
 
 
 -----------
@@ -49,7 +48,7 @@ END
 -- Clear U_dsi_RipoutParms
 -----------
 
-DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ECYCFSAEN2'
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ECYCFSAENR'
 
 
 -----------
@@ -65,7 +64,7 @@ CfgName,
 CfgValue
 
 FROM dbo.U_Dsi_Configuration
-WHERE FormatCode = 'ECYCFSAEN2'
+WHERE FormatCode = 'ECYCFSAENR'
 AND CfgName LIKE '%path%'
 
 
@@ -82,77 +81,75 @@ ExpExportCode,
 ExpSystemID
 
 FROM dbo.AscExp
-WHERE ExpFormatCode = 'ECYCFSAEN2'
+WHERE ExpFormatCode = 'ECYCFSAENR'
 
 
 -----------
 -- Delete configuration data
 -----------
 
-DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ECYCFSAEN2')
-DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ECYCFSAEN2'
-DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ECYCFSAEN2'
-DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ECYCFSAEN2'
-DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ECYCFSAEN2'
-DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ECYCFSAEN2'
-DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ECYCFSAEN2'
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ECYCFSAENR')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ECYCFSAENR'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ECYCFSAENR'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ECYCFSAENR'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ECYCFSAENR'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ECYCFSAENR'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ECYCFSAENR'
 
-IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ECYCFSAEN2'
-IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ECYCFSAEN2'
-IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ECYCFSAEN2'
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ECYCFSAENR'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ECYCFSAENR'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ECYCFSAENR'
 
 
 -----------
 -- Drop export-specific objects
 -----------
 
-IF OBJECT_ID('dsi_vwECYCFSAEN2_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECYCFSAEN2_Export];
+IF OBJECT_ID('dsi_vwECYCFSAENR_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECYCFSAENR_Export];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_ECYCFSAEN2') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECYCFSAEN2];
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ECYCFSAENR') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECYCFSAENR];
 GO
-IF OBJECT_ID('U_ECYCFSAEN2_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAEN2_PEarHist];
+IF OBJECT_ID('U_ECYCFSAENR_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAENR_PEarHist];
 GO
-IF OBJECT_ID('U_ECYCFSAEN2_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAEN2_PDedHist];
+IF OBJECT_ID('U_ECYCFSAENR_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAENR_PDedHist];
 GO
-IF OBJECT_ID('U_ECYCFSAEN2_File') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAEN2_File];
+IF OBJECT_ID('U_ECYCFSAENR_File') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAENR_File];
 GO
-IF OBJECT_ID('U_ECYCFSAEN2_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAEN2_EEList];
+IF OBJECT_ID('U_ECYCFSAENR_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAENR_EEList];
 GO
-IF OBJECT_ID('U_ECYCFSAEN2_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAEN2_drvTbl];
+IF OBJECT_ID('U_ECYCFSAENR_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAENR_drvTbl];
 GO
-IF OBJECT_ID('U_ECYCFSAEN2_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAEN2_DedList];
-GO
-IF OBJECT_ID('U_dsi_BDM_ECYCFSAEN2') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECYCFSAEN2];
+IF OBJECT_ID('U_ECYCFSAENR_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECYCFSAENR_DedList];
 GO
 
 -----------
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','ECYCFSAEN2','Connect Your Care FSA HSA Enrollment Test','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','300','S','N','ECYCFSAEN2Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','ECYCFSAENR','Connect Your Care FSA HSA Enrollment Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','300','S','N','ECYCFSAENRZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
 -----------
 
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECYCFSAEN2Z0','11','D','10','1',NULL,'Account SSN',NULL,NULL,'"drvAccountSSN"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECYCFSAEN2Z0','30','D','10','12',NULL,'Employee ID',NULL,NULL,'"drvEmployeeID"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECYCFSAEN2Z0','30','D','10','42',NULL,'Special Use',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECYCFSAEN2Z0','30','D','10','72',NULL,'Policy Number',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECYCFSAEN2Z0','2','D','10','102',NULL,'Transaction Type',NULL,NULL,'"drvTransactionType"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECYCFSAEN2Z0','8','D','10','104',NULL,'Transaction Effective Date',NULL,NULL,'"drvTransactionEffDate"','(''UD112''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECYCFSAEN2Z0','8','D','10','112',NULL,'Policy Effective Date',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECYCFSAEN2Z0','20','D','10','120',NULL,'Enrollment Submitter ID',NULL,NULL,'"MGPINGREDIENTS"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECYCFSAEN2Z0','30','D','10','140',NULL,'Employer ID',NULL,NULL,'"MGPINGREDIENTS"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECYCFSAEN2Z0','30','D','10','170',NULL,'Employer Offering ID',NULL,NULL,'"drvEmployerOfferingID"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECYCFSAEN2Z0','10','D','10','200',NULL,'Option ID',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECYCFSAEN2Z0','10','D','10','210',NULL,'Tier Coverage Code',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECYCFSAEN2Z0','10','D','10','220',NULL,'Total Policy Amount',NULL,NULL,'"drvTotalPolicyAmount"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECYCFSAEN2Z0','8','D','10','230',NULL,'HSA Disclosure Date',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECYCFSAEN2Z0','8','D','10','238',NULL,'HSA Disclosure Time',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECYCFSAEN2Z0','30','D','10','246',NULL,'Partner Employee ID',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECYCFSAEN2Z0','20','D','10','276',NULL,'HSA Account Number',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECYCFSAEN2Z0','5','D','10','296',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECYCFSAENRZ0','11','D','10','1',NULL,'Account SSN',NULL,NULL,'"drvAccountSSN"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECYCFSAENRZ0','30','D','10','12',NULL,'Employee ID',NULL,NULL,'"drvEmployeeID"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECYCFSAENRZ0','30','D','10','42',NULL,'Special Use',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECYCFSAENRZ0','30','D','10','72',NULL,'Policy Number',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECYCFSAENRZ0','2','D','10','102',NULL,'Transaction Type',NULL,NULL,'"drvTransactionType"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECYCFSAENRZ0','8','D','10','104',NULL,'Transaction Effective Date',NULL,NULL,'"drvTransactionEffDate"','(''UD112''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECYCFSAENRZ0','8','D','10','112',NULL,'Policy Effective Date',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECYCFSAENRZ0','20','D','10','120',NULL,'Enrollment Submitter ID',NULL,NULL,'"MGPINGREDIENTS"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECYCFSAENRZ0','30','D','10','140',NULL,'Employer ID',NULL,NULL,'"MGPINGREDIENTS"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECYCFSAENRZ0','30','D','10','170',NULL,'Employer Offering ID',NULL,NULL,'"drvEmployerOfferingID"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECYCFSAENRZ0','10','D','10','200',NULL,'Option ID',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECYCFSAENRZ0','10','D','10','210',NULL,'Tier Coverage Code',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECYCFSAENRZ0','10','D','10','220',NULL,'Total Policy Amount',NULL,NULL,'"drvTotalPolicyAmount"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECYCFSAENRZ0','8','D','10','230',NULL,'HSA Disclosure Date',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECYCFSAENRZ0','8','D','10','238',NULL,'HSA Disclosure Time',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECYCFSAENRZ0','30','D','10','246',NULL,'Partner Employee ID',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECYCFSAENRZ0','20','D','10','276',NULL,'HSA Account Number',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECYCFSAENRZ0','5','D','10','296',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 
 -----------
 -- Build web filename
@@ -165,17 +162,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECYCFSAEN2_20240202.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECYCFSAENR_20240205.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','WA3OC,M0UP1,M0U4Y',NULL,NULL,NULL,'CYC FSA HSA Active Open Enroll','202401019','EMPEXPORT','ACTIVEXOE',NULL,'ECYCFSAEN2',NULL,NULL,NULL,'202401019',NULL,NULL,'202401011',NULL,'','','202401011',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CYC FSA HSA Enrollment-OnDem','202201031','EMPEXPORT','ONDEM_XOE','Jan  3 2022  4:32PM','ECYCFSAEN2',NULL,NULL,NULL,'202201031','Jan  3 2022 12:00AM','Dec 30 1899 12:00AM','202201031','379','','','202201031',dbo.fn_GetTimedKey(),NULL,'us3cPeMGP1000',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',M0UP1,M0U4Y,WA3OC',NULL,NULL,NULL,'CYC FSA HSA Enrollment-Sched','202105079','EMPEXPORT','SCH_ECYCFS',NULL,'ECYCFSAEN2',NULL,NULL,NULL,'202311249','Dec  1 2020 10:01AM','Dec  1 2020 10:01AM','202311171',NULL,'','','202104301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',WA3OC,M0UP1,M0U4Y,Y5019',NULL,NULL,NULL,'CYC FSA HSA Enrollment-Test','202401299','EMPEXPORT','TEST_XOE',NULL,'ECYCFSAEN2',NULL,NULL,NULL,'202401299','Dec  1 2020 10:01AM','Dec  1 2020 10:01AM','202401291',NULL,'','','202401291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',WA3OC,M0UP1,M0U4Y',NULL,NULL,NULL,'CYC FSA HSA Active Open Enroll','202212069','EMPEXPORT','ACTIVEXOE',NULL,'ECYCFSAENR',NULL,NULL,NULL,'202212069',NULL,NULL,'202212061',NULL,NULL,'','202212061',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',WA3OC,M0UP1,M0U4Y,Y5019',NULL,NULL,NULL,'CYC FSA HSA Enrollment-OnDem','202402059','EMPEXPORT','ONDEM_XOE','Jan  3 2022  4:32PM','ECYCFSAENR',NULL,NULL,NULL,'202402059','Jan  3 2022 12:00AM','Dec 30 1899 12:00AM','202402051','379','','','202402051',dbo.fn_GetTimedKey(),NULL,'us3cPeMGP1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',WA3OC,M0UP1,M0U4Y,Y5019',NULL,NULL,NULL,'CYC FSA HSA Enrollment-Sched','202105079','EMPEXPORT','SCH_ECYCFS',NULL,'ECYCFSAENR',NULL,NULL,NULL,'202402029','Dec  1 2020 10:01AM','Dec  1 2020 10:01AM','202401261',NULL,'','','202104301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -186,13 +182,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -- U_dsi_Configuration inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAEN2','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAEN2','ExportPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAEN2','InitialSort','C','drvInitialSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAEN2','SubSort','C','drvSubSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAEN2','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAEN2','TestPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAEN2','UseFileName','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAENR','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAENR','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAENR','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAENR','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAENR','Testing','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECYCFSAENR','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -203,7 +198,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECYCFSAEN2','D10','dbo.U_ECYCFSAEN2_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECYCFSAENR','D10','dbo.U_ECYCFSAENR_drvTbl',NULL);
 
 -----------
 -- U_dsi_Translations inserts
@@ -216,69 +211,21 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- Create table U_dsi_BDM_ECYCFSAEN2
+-- Create table U_ECYCFSAENR_DedList
 -----------
 
-IF OBJECT_ID('U_dsi_BDM_ECYCFSAEN2') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_ECYCFSAEN2] (
-    [BdmRecType] varchar(3) NOT NULL,
-    [BdmCOID] char(5) NULL,
-    [BdmEEID] char(12) NOT NULL,
-    [BdmDepRecID] char(12) NULL,
-    [BdmSystemID] char(12) NULL,
-    [BdmRunID] varchar(32) NULL,
-    [BdmDedRowStatus] varchar(256) NULL,
-    [BdmRelationship] char(3) NULL,
-    [BdmDateOfBirth] datetime NULL,
-    [BdmDedCode] char(5) NULL,
-    [BdmDedType] varchar(32) NULL,
-    [BdmBenOption] char(6) NULL,
-    [BdmBenStatus] char(1) NULL,
-    [BdmBenStartDate] datetime NULL,
-    [BdmBenStopDate] datetime NULL,
-    [BdmBenStatusDate] datetime NULL,
-    [BdmBenOptionDate] datetime NULL,
-    [BdmChangeReason] char(6) NULL,
-    [BdmStartDate] datetime NULL,
-    [BdmStopDate] datetime NULL,
-    [BdmIsCobraCovered] char(1) NULL,
-    [BdmCobraReason] char(6) NULL,
-    [BdmDateOfCOBRAEvent] datetime NULL,
-    [BdmIsPQB] char(1) NULL,
-    [BdmIsChildOldest] char(1) NULL,
-    [BdmUSGField1] varchar(256) NULL,
-    [BdmUSGField2] varchar(256) NULL,
-    [BdmUSGDate1] datetime NULL,
-    [BdmUSGDate2] datetime NULL,
-    [BdmTVStartDate] datetime NULL,
-    [BdmSessionID] varchar(32) NULL,
-    [BdmEEAmt] money NULL,
-    [BdmEECalcRateOrPct] decimal NULL,
-    [BdmEEGoalAmt] money NULL,
-    [BdmEEMemberOrCaseNo] char(40) NULL,
-    [BdmERAmt] money NULL,
-    [BdmNumSpouses] int NULL,
-    [BdmNumChildren] int NULL,
-    [BdmNumDomPartners] int NULL,
-    [BdmNumDPChildren] int NULL
-);
-
------------
--- Create table U_ECYCFSAEN2_DedList
------------
-
-IF OBJECT_ID('U_ECYCFSAEN2_DedList') IS NULL
-CREATE TABLE [dbo].[U_ECYCFSAEN2_DedList] (
+IF OBJECT_ID('U_ECYCFSAENR_DedList') IS NULL
+CREATE TABLE [dbo].[U_ECYCFSAENR_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
 );
 
 -----------
--- Create table U_ECYCFSAEN2_drvTbl
+-- Create table U_ECYCFSAENR_drvTbl
 -----------
 
-IF OBJECT_ID('U_ECYCFSAEN2_drvTbl') IS NULL
-CREATE TABLE [dbo].[U_ECYCFSAEN2_drvTbl] (
+IF OBJECT_ID('U_ECYCFSAENR_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ECYCFSAENR_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvInitialSort] char(11) NULL,
@@ -292,21 +239,21 @@ CREATE TABLE [dbo].[U_ECYCFSAEN2_drvTbl] (
 );
 
 -----------
--- Create table U_ECYCFSAEN2_EEList
+-- Create table U_ECYCFSAENR_EEList
 -----------
 
-IF OBJECT_ID('U_ECYCFSAEN2_EEList') IS NULL
-CREATE TABLE [dbo].[U_ECYCFSAEN2_EEList] (
+IF OBJECT_ID('U_ECYCFSAENR_EEList') IS NULL
+CREATE TABLE [dbo].[U_ECYCFSAENR_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
 
 -----------
--- Create table U_ECYCFSAEN2_File
+-- Create table U_ECYCFSAENR_File
 -----------
 
-IF OBJECT_ID('U_ECYCFSAEN2_File') IS NULL
-CREATE TABLE [dbo].[U_ECYCFSAEN2_File] (
+IF OBJECT_ID('U_ECYCFSAENR_File') IS NULL
+CREATE TABLE [dbo].[U_ECYCFSAENR_File] (
     [RecordSet] char(3) NOT NULL,
     [InitialSort] varchar(100) NOT NULL,
     [SubSort] varchar(100) NOT NULL,
@@ -316,11 +263,11 @@ CREATE TABLE [dbo].[U_ECYCFSAEN2_File] (
 );
 
 -----------
--- Create table U_ECYCFSAEN2_PDedHist
+-- Create table U_ECYCFSAENR_PDedHist
 -----------
 
-IF OBJECT_ID('U_ECYCFSAEN2_PDedHist') IS NULL
-CREATE TABLE [dbo].[U_ECYCFSAEN2_PDedHist] (
+IF OBJECT_ID('U_ECYCFSAENR_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_ECYCFSAENR_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhDedCode] char(5) NOT NULL,
     [PdhEECurAmt] numeric NULL,
@@ -331,18 +278,18 @@ CREATE TABLE [dbo].[U_ECYCFSAEN2_PDedHist] (
 );
 
 -----------
--- Create table U_ECYCFSAEN2_PEarHist
+-- Create table U_ECYCFSAENR_PEarHist
 -----------
 
-IF OBJECT_ID('U_ECYCFSAEN2_PEarHist') IS NULL
-CREATE TABLE [dbo].[U_ECYCFSAEN2_PEarHist] (
+IF OBJECT_ID('U_ECYCFSAENR_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_ECYCFSAENR_PEarHist] (
     [PehEEID] char(12) NOT NULL,
     [PrgPayDate] datetime NULL,
     [PehCurAmt] numeric NULL,
     [PehCurHrs] decimal NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECYCFSAEN2]
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECYCFSAENR]
     @SystemID char(12)
 AS
 SET NOCOUNT ON;
@@ -354,19 +301,19 @@ Business Analyst: Van Amundson
 Create Date: 12/01/2020
 Service Request Number: N/A Partner Direct
 
-Purpose: Connect Your Care FSA HSA Enrollment Test
+Purpose: Connect Your Care FSA HSA Enrollment Export
 
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
-Marie Waters        12/01/2023       TekP-2023-10-24-03  Created copy and added coding for OE on EmployerOfferingID
+Marie Waters        02/02/2024       TekP-2023-10-24-03  Added coding for OE on EmployerOfferingID to Prod file
 XXXX                XX/XX/2020     SR-2020-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECYCFSAEN2';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECYCFSAEN2';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECYCFSAEN2';
-SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ECYCFSAEN2';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECYCFSAEN2' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECYCFSAENR';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECYCFSAENR';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECYCFSAENR';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ECYCFSAENR';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECYCFSAENR' ORDER BY RunID DESC;
 
 Job Ownership Scripts
 ---------------------
@@ -379,16 +326,15 @@ EXEC msdb..usg_set_job_owner @job_name = '', @set_owner_to_self = 1;
 
 --Update Testing flag in U_DSI_Configuration for Production
 ---------------------------------------------------
-update dbo.U_DSI_Configuration SET cfgvalue = 'N' WHERE formatcode = 'ECYCFSAEN2' AND cfgname = 'Testing';
+update dbo.U_DSI_Configuration SET cfgvalue = 'N' WHERE formatcode = 'ECYCFSAENR' AND cfgname = 'Testing';
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAEN2', 'ONDEM_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAEN2', 'SCH_ECYCFS';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAEN2', 'ACTIVEXOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAEN2', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAENR', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAENR', 'SCH_ECYCFS';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAENR', 'ACTIVEXOE';
 
-EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ECYCFSAEN2', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ECYCFSAENR', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -403,9 +349,8 @@ BEGIN
             ,@EndPerControl     VARCHAR(9)
             ,@MinCovDate        DATETIME;
 
-
     -- Set FormatCode
-    SELECT @FormatCode = 'ECYCFSAEN2';
+    SELECT @FormatCode = 'ECYCFSAENR';
 
     -- Declare dates from Parameter file
     SELECT
@@ -424,9 +369,9 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_ECYCFSAEN2_EEList --select * from  dbo.U_ECYCFSAEN2_EEList
+    DELETE FROM dbo.U_ECYCFSAENR_EEList --select * from  dbo.U_ECYCFSAENR_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_ECYCFSAEN2_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_ECYCFSAENR_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     --==========================================
     -- Create Deduction List
@@ -434,12 +379,12 @@ BEGIN
     DECLARE @DedList VARCHAR(MAX)
     SET @DedList = 'HSAI,HSACI,HSAA1,HSAA3,HSAF,HSACF,HSAA2,HSAA4,FLXLB,DCPLB,FLXAT,DPCAT';
 
-    IF OBJECT_ID('U_ECYCFSAEN2_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_ECYCFSAEN2_DedList;
+    IF OBJECT_ID('U_ECYCFSAENR_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_ECYCFSAENR_DedList;
     SELECT DISTINCT
          DedCode = DedDedCode
         ,DedType = DedDedType
-    INTO dbo.U_ECYCFSAEN2_DedList
+    INTO dbo.U_ECYCFSAENR_DedList
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
@@ -462,14 +407,13 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
 
-
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
     BEGIN
          INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'PASSIVE');
     END;
 
-    IF @ExportCode LIKE 'ACTIVE%'
+    IF @ExportCode LIKE '%ACTIVE'
     BEGIN
          INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'ACTIVE');
     END;
@@ -477,10 +421,9 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
     EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable_v2 @FormatCode;
 
 
-    EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
+EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
 
-
---select * from dbo.U_dsi_BDM_EmpDeductions with (nolock) where eedformatcode = 'ECYCFSAEN2' and eedvalidforexport = 'Y'
+--select * from dbo.U_dsi_BDM_EmpDeductions with (nolock) where eedformatcode = 'ECYCFSAENR' and eedvalidforexport = 'Y'
     --==========================================
     -- Build Working Tables
     --==========================================
@@ -488,8 +431,8 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
  --   -----------------------------
  --   -- Working Table - PDedHist
  --   -----------------------------
- --     IF OBJECT_ID('U_ECYCFSAEN2_PDedHist','U') IS NOT NULL
- --       DROP TABLE dbo.U_ECYCFSAEN2_PDedHist;
+ --     IF OBJECT_ID('U_ECYCFSAENR_PDedHist','U') IS NOT NULL
+ --       DROP TABLE dbo.U_ECYCFSAENR_PDedHist;
  --   SELECT DISTINCT
  --        PdhEEID
  --        --,Substring(PdhPerControl,1,8) AS PdhPayDate
@@ -502,9 +445,9 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
  --       ,PdhHSAEE     = SUM(CASE WHEN PdhDedCode IN ('HSAI','HSACI','HSAA1','HSAA3','HSAF','HSACF','HSAA2','HSAA4') THEN PdhEECurAmt ELSE 0.00 END)
  --       ,PdhDCAPEE     = SUM(CASE WHEN PdhDedCode IN ('FLXLB','DCPLB','FLXAT','DPCAT') THEN PdhEECurAmt ELSE 0.00 END) 
     --    ,PdhPayDate    = MAX(PdhPayDate)
-    --INTO dbo.U_ECYCFSAEN2_PDedHist -- SELECT *            --SELECT pdhdedcode, count(pdheeid) FROM dbo.U_ECYCFSAEN2_PDedHist group by pdhdedcode
+    --INTO dbo.U_ECYCFSAENR_PDedHist -- SELECT *            --SELECT pdhdedcode, count(pdheeid) FROM dbo.U_ECYCFSAENR_PDedHist group by pdhdedcode
  --   FROM dbo.PDedHist WITH (NOLOCK)
- --   JOIN dbo.U_ECYCFSAEN2_DedList WITH (NOLOCK) -- select * from dbo.U_ECYCFSAEN2_EEList
+ --   JOIN dbo.U_ECYCFSAENR_DedList WITH (NOLOCK) -- select * from dbo.U_ECYCFSAENR_EEList
  --      ON DedCode = PdhDedCode                    -- select distinct PdhDedCode from dbo.PDedHist            
     --WHERE PdhPerControl BETWEEN @StartPerControl AND @EndPerControl
  --   --LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
@@ -515,15 +458,15 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
     -------------------------------
  --   -- Working Table - PEarHist
  --   -----------------------------
-    IF OBJECT_ID('U_ECYCFSAEN2_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_ECYCFSAEN2_PEarHist;
+    IF OBJECT_ID('U_ECYCFSAENR_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ECYCFSAENR_PEarHist;
     SELECT DISTINCT
          PehEEID
         ,PrgPayDate             = MAX(PrgPayDate)
         -- Current Payroll Amount/Hours
         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
         ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-    INTO dbo.U_ECYCFSAEN2_PEarHist --SELECT * FROM U_ECYCFSAEN2_PEarHist
+    INTO dbo.U_ECYCFSAENR_PEarHist --SELECT * FROM U_ECYCFSAENR_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
@@ -535,10 +478,10 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
     -- Build Driver Tables
     --==========================================
     ---------------------------------
-    -- DETAIL RECORD - U_ECYCFSAEN2_drvTbl
+    -- DETAIL RECORD - U_ECYCFSAENR_drvTbl
     ---------------------------------
-    IF OBJECT_ID('U_ECYCFSAEN2_drvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_ECYCFSAEN2_drvTbl;
+    IF OBJECT_ID('U_ECYCFSAENR_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECYCFSAENR_drvTbl;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -559,11 +502,17 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
                                       WHEN EedDedCode IN ('DCPLB','DPCAT') THEN 'DCAPEE' + CASE WHEN @ExportCode LIKE 'ACTIVE%'  THEN CONVERT(varchar(4),DATEPART(YEAR,GETDATE())+1) ELSE CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) END -- MW updated 12/1/2023 from CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))
                                       WHEN EedDedCode IN ('FLXLB','FLXAT') THEN 'FSAEE' + CASE WHEN @ExportCode LIKE 'ACTIVE%'  THEN CONVERT(varchar(4),DATEPART(YEAR,GETDATE())+1) ELSE CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) END -- MW updated 12/1/2023 from CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))    --MB added 2/12/2021 per feedback
                                       --WHEN PehEEID IS NOT NULL THEN 'HSAER' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))  --XXX TJJ ADDED HSAER 3/1/2021
-                                     END
+                                     END    
+        
+                                    --CASE WHEN EedDedCode IN ('HSAI','HSACI','HSAA1','HSAA3','HSAF','HSACF','HSAA2','HSAA4') THEN 'HSAEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) 
+                              --           WHEN EedDedCode IN ('DCPLB','DPCAT') THEN 'DCAPEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) 
+                              --           WHEN EedDedCode IN ('FLXLB','FLXAT') THEN 'FSAEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))    --MB added 2/12/2021 per feedback
+                                          --WHEN PehEEID IS NOT NULL THEN 'HSAER' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))  --XXX TJJ ADDED HSAER 3/1/2021
+                              --     END
         ,drvTotalPolicyAmount = (dbo.dsi_fnPadZero(EedEEGoalAmt*100,10,0)) --CASE WHEN EedDedCode IN ('HSAI','HSACI','HSAA1','HSAA3','HSAF','HSACF','HSAA2','HSAA4','FLXLB','CDPLB','FLXAT','DCPAT') THEN (dbo.dsi_fnPadZero(EedEEGoalAmt*100,10,0)) 
                                     --END
-    INTO dbo.U_ECYCFSAEN2_drvTbl  --select * from dbo.U_ECYCFSAEN2_drvTbl order by drveeid
-    FROM dbo.U_ECYCFSAEN2_EEList WITH (NOLOCK)
+    INTO dbo.U_ECYCFSAENR_drvTbl  --select * from dbo.U_ECYCFSAENR_drvTbl order by drveeid
+    FROM dbo.U_ECYCFSAENR_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
@@ -572,11 +521,11 @@ INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOptio
     JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID
         AND EedCOID = xCOID
-        AND EedFormatCode = 'ECYCFSAEN2'
+        AND EedFormatCode = 'ECYCFSAENR'
         AND EedValidForExport = 'Y'
     --JOIN dbo.EmpPers WITH (NOLOCK)
     --    ON EepEEID = xEEID
-    --JOIN dbo.U_ECYCFSAEN2_PDedHist WITH (NOLOCK)
+    --JOIN dbo.U_ECYCFSAENR_PDedHist WITH (NOLOCK)
     --    ON PdhEEID = xEEID
 UNION 
 
@@ -598,8 +547,8 @@ UNION
                                 END
         ,drvEmployerOfferingID = 'HSAER' + CASE WHEN @ExportCode LIKE 'ACTIVE%'  THEN CONVERT(varchar(4),DATEPART(YEAR,GETDATE())+1) ELSE CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) END -- CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) 
         ,drvTotalPolicyAmount = ISNULL((dbo.dsi_fnPadZero(EeeYTDAmt*100,10,0)),'0000000000')
-    --INTO dbo.U_ECYCFSAEN2_drvTbl  --select * from dbo.U_ECYCFSAEN2_drvTbl where drveeid = 'BP4KOC0280K0'
-    FROM dbo.U_ECYCFSAEN2_EEList WITH (NOLOCK)
+    --INTO dbo.U_ECYCFSAENR_drvTbl  --select * from dbo.U_ECYCFSAENR_drvTbl where drveeid = 'BP4KOC0280K0'
+    FROM dbo.U_ECYCFSAENR_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
@@ -608,7 +557,7 @@ UNION
     JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID
         AND EedCOID = xCOID
-        AND EedFormatCode = 'ECYCFSAEN2'
+        AND EedFormatCode = 'ECYCFSAENR'
         AND EedDedCode IN ('HSAI','HSACI','HSAA1','HSAA3','HSAF','HSACF','HSAA2','HSAA4')
         AND EedValidForExport = 'Y'
     LEFT JOIN dbo.EmpEarn WITH (NOLOCK)
@@ -633,13 +582,13 @@ END;
 /**********************************************************************************
 
 --Alter the View
-ALTER VIEW dbo.dsi_vwECYCFSAEN2_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_ECYCFSAEN2_File (NOLOCK)
+ALTER VIEW dbo.dsi_vwECYCFSAENR_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ECYCFSAENR_File (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE 'ECYCFSAEN2%'
+WHERE AdfHeaderSystemID LIKE 'ECYCFSAENR%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
@@ -648,17 +597,17 @@ UPDATE dbo.AscExp
        ,expStartPerControl     = '202105281'
        ,expLastEndPerControl   = '202106049'
        ,expEndPerControl       = '202106049'
-WHERE expFormatCode = 'ECYCFSAEN2' AND expExportCode = 'ONDEM_XOE';
+WHERE expFormatCode = 'ECYCFSAENR' AND expExportCode = 'ONDEM_XOE';
 
 
 
-    --------JOB NAME: Connect Your Care FSA HSA Enrollment Test (ECYCFSAEN2) - Weekly, Wednesday, 5:30am ET--------
+    --------JOB NAME: Connect Your Care FSA HSA Enrollment Export (ECYCFSAENR) - Weekly, Wednesday, 5:30am ET--------
     --Copy and paste this in environment to create job script
 
     BEGIN TRANSACTION
     DECLARE @ReturnCode INT, @JobName varchar(100), @dbName varchar(50)
     SELECT @ReturnCode = 0
-    SELECT @JobName = RTRIM(REPLACE(DB_NAME(),'ULTIPRO_','')) + ' - Connect Your Care FSA HSA Enrollment Test (ECYCFSAEN2) - Weekly, Wednesday, 5:30am ET'
+    SELECT @JobName = RTRIM(REPLACE(DB_NAME(),'ULTIPRO_','')) + ' - Connect Your Care FSA HSA Enrollment Export (ECYCFSAENR) - Weekly, Wednesday, 5:30am ET'
     SELECT @dbname = RTRIM(DB_NAME())
 
     -- Job Params
@@ -686,7 +635,7 @@ WHERE expFormatCode = 'ECYCFSAEN2' AND expExportCode = 'ONDEM_XOE';
     IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 
     -- Step 'Update AscExp'
-    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Update AscExp Start/End Date (ECYCFSAEN2)', 
+    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Update AscExp Start/End Date (ECYCFSAENR)', 
             @step_id=1, 
             @cmdexec_success_code=0, 
             @on_success_action=3, 
@@ -710,14 +659,14 @@ SET    expStartPerControl = @StartPerControl,
     expEndPerControl = @EndPerControl,
     expLastEndPerControl = @EndPerControl,
     expExported = @RunDate
-WHERE expFormatCode = ''ECYCFSAEN2''
+WHERE expFormatCode = ''ECYCFSAENR''
   AND expExportCode = ''SCHEDULED'';',
             @database_name=@dbName,
             @flags=0
     IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 
     -- Step 'Run SP'
-    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Create Export File (ECYCFSAEN2)', 
+    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Create Export File (ECYCFSAENR)', 
             @step_id=2, 
             @cmdexec_success_code=0, 
             @on_success_action=1, 
@@ -727,7 +676,7 @@ WHERE expFormatCode = ''ECYCFSAEN2''
             @retry_attempts=0, 
             @retry_interval=0, 
             @os_run_priority=0, @subsystem=N'TSQL', 
-            @command=N'EXEC dbo.dsi_sp_TestSwitchbox_v2 ''ECYCFSAEN2'', ''SCHEDULED'';', 
+            @command=N'EXEC dbo.dsi_sp_TestSwitchbox_v2 ''ECYCFSAENR'', ''SCHEDULED'';', 
             @database_name=@dbName, 
             @flags=0
     IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
@@ -760,8 +709,8 @@ WHERE expFormatCode = ''ECYCFSAEN2''
     --------END JOB SCRIPT--------
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwECYCFSAEN2_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_ECYCFSAEN2_File WITH (NOLOCK)
+CREATE VIEW dbo.dsi_vwECYCFSAENR_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_ECYCFSAENR_File WITH (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort
 
 GO
@@ -774,7 +723,7 @@ GO
 INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
 SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
   FROM dbo.AscDefH WITH (NOLOCK)
- WHERE AdhFormatCode = 'ECYCFSAEN2' AND AdhEngine = 'EMPEXPORT'
+ WHERE AdhFormatCode = 'ECYCFSAENR' AND AdhEngine = 'EMPEXPORT'
    AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
 
 
@@ -786,7 +735,7 @@ UPDATE dbo.U_dsi_Configuration
    SET CfgValue = rpoParmValue02
   FROM dbo.U_dsi_Configuration
   JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
- WHERE rpoFormatCode = 'ECYCFSAEN2'
+ WHERE rpoFormatCode = 'ECYCFSAENR'
    AND rpoParmType = 'Path'
 
 
@@ -798,7 +747,7 @@ UPDATE dbo.AscExp
    SET expSystemID = rpoParmValue02
   FROM dbo.AscExp
   JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
- WHERE rpoFormatCode = 'ECYCFSAEN2'
+ WHERE rpoFormatCode = 'ECYCFSAENR'
    AND rpoParmType = 'expSystemID'
 
 
@@ -806,15 +755,15 @@ UPDATE dbo.AscExp
 -- This is a web export; set paths to NULL
 -----------
 
-EXEC dbo.dsi_sp_UpdateConfig 'ECYCFSAEN2', 'ExportPath', 'V', NULL
-EXEC dbo.dsi_sp_UpdateConfig 'ECYCFSAEN2', 'TestPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'ECYCFSAENR', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'ECYCFSAENR', 'TestPath', 'V', NULL
 
 
 -----------
 -- This is a web export; set UseFileName = Y
 -----------
 
-EXEC dbo.dsi_sp_UpdateConfig 'ECYCFSAEN2', 'UseFileName', 'V', 'Y'
+EXEC dbo.dsi_sp_UpdateConfig 'ECYCFSAENR', 'UseFileName', 'V', 'Y'
 
 
 -- End ripout

@@ -5,7 +5,7 @@ ECYCFSAENR: Connect Your Care FSA HSA Enrollment Export
 FormatCode:     ECYCFSAENR
 Project:        Connect Your Care FSA HSA Enrollment Export
 Client ID:      MGP1000
-Date/time:      2024-01-29 13:56:57.077
+Date/time:      2024-02-02 06:55:11.313
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -162,7 +162,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECYCFSAENR_20240129.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECYCFSAENR_20240202.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -171,7 +171,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',WA3OC,M0UP1,M0U4Y',NULL,NULL,NULL,'CYC FSA HSA Active Open Enroll','202212069','EMPEXPORT','ACTIVEXOE',NULL,'ECYCFSAENR',NULL,NULL,NULL,'202212069',NULL,NULL,'202212061',NULL,NULL,'','202212061',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CYC FSA HSA Enrollment-OnDem','202201031','EMPEXPORT','ONDEM_XOE','Jan  3 2022  4:32PM','ECYCFSAENR',NULL,NULL,NULL,'202201031','Jan  3 2022 12:00AM','Dec 30 1899 12:00AM','202201031','379','','','202201031',dbo.fn_GetTimedKey(),NULL,'us3cPeMGP1000',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',M0UP1,M0U4Y,WA3OC',NULL,NULL,NULL,'CYC FSA HSA Enrollment-Sched','202105079','EMPEXPORT','SCH_ECYCFS',NULL,'ECYCFSAENR',NULL,NULL,NULL,'202401269','Dec  1 2020 10:01AM','Dec  1 2020 10:01AM','202401191',NULL,'','','202104301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',WA3OC,M0UP1,M0U4Y,Y5019',NULL,NULL,NULL,'CYC FSA HSA Enrollment-Sched','202105079','EMPEXPORT','SCH_ECYCFS',NULL,'ECYCFSAENR',NULL,NULL,NULL,'202401269','Dec  1 2020 10:01AM','Dec  1 2020 10:01AM','202401191',NULL,'','','202104301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -306,6 +306,7 @@ Purpose: Connect Your Care FSA HSA Enrollment Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
+Marie Waters        02/02/2024       TekP-2023-10-24-03  Added coding for OE on EmployerOfferingID to Prod file
 XXXX                XX/XX/2020     SR-2020-000XXXXX   XXXXX
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECYCFSAENR';
@@ -331,7 +332,7 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAENR', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAENR', 'SCH_ECYCFS';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAEN2', 'ACTIVEXOE'; -- MW added 12/1/23
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECYCFSAENR', 'ACTIVEXOE';
 
 EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ECYCFSAENR', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
@@ -495,11 +496,13 @@ EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
         ,drvTransactionEffDate = CASE WHEN EedBenStopDate IS NULL THEN EedBenStartDate --XXX TJJ 6/4
                                       WHEN EedBenStopDate IS NOT NULL THEN EedBenStopDate --XXX TJJ 6/4
                                 END
-        ,drvEmployerOfferingID = CASE WHEN EedDedCode IN ('HSAI','HSACI','HSAA1','HSAA3','HSAF','HSACF','HSAA2','HSAA4') THEN 'HSAEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) 
+        ,drvEmployerOfferingID =    CASE WHEN EedDedCode IN ('HSAI','HSACI','HSAA1','HSAA3','HSAF','HSACF','HSAA2','HSAA4') THEN 'HSAEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) 
                                       WHEN EedDedCode IN ('DCPLB','DPCAT') THEN 'DCAPEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE())) 
-                                      WHEN EedDedCode IN ('FLXLB','FLXAT') THEN 'FSAEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))    --MB added 2/12/2021 per feedback
-                                      --WHEN PehEEID IS NOT NULL THEN 'HSAER' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))  --XXX TJJ ADDED HSAER 3/1/2021
-                                     END
+                                      WHEN EedDedCode IN ('FLXLB','FLXAT') THEN 'FSAEE' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))	--MB added 2/12/2021 per feedback
+									  --WHEN PehEEID IS NOT NULL THEN 'HSAER' + CONVERT(varchar(4),DATEPART(YEAR,GETDATE()))  --XXX TJJ ADDED HSAER 3/1/2021
+                                     END 
+        
+                            
         ,drvTotalPolicyAmount = (dbo.dsi_fnPadZero(EedEEGoalAmt*100,10,0)) --CASE WHEN EedDedCode IN ('HSAI','HSACI','HSAA1','HSAA3','HSAF','HSACF','HSAA2','HSAA4','FLXLB','CDPLB','FLXAT','DCPAT') THEN (dbo.dsi_fnPadZero(EedEEGoalAmt*100,10,0)) 
                                     --END
     INTO dbo.U_ECYCFSAENR_drvTbl  --select * from dbo.U_ECYCFSAENR_drvTbl order by drveeid

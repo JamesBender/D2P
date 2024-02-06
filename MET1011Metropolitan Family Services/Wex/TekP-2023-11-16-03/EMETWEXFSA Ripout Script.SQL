@@ -804,7 +804,7 @@ BEGIN
         -- Categorize Payroll Amounts
         ,PdhFSA     = SUM(CASE WHEN PdhDedCode IN ('FSA','FSAHC') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhDep     = SUM(CASE WHEN PdhDedCode IN ('FSADC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhLimited     = SUM(CASE WHEN PdhDedCode IN ('FSALI') THEN PdhERCurAmt ELSE 0.00 END)        
+        ,PdhLimited     = SUM(CASE WHEN PdhDedCode IN ('FSALI') THEN PdhEECurAmt ELSE 0.00 END)        
         ,PdhTrans     = SUM(CASE WHEN PdhDedCode IN ('TRANS') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhPark     = SUM(CASE WHEN PdhDedCode IN ('PARK') THEN PdhEECurAmt ELSE 0.00 END)
       
